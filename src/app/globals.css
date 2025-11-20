@@ -73,6 +73,7 @@
   --text-main: var(--color-slate);
   --text-light: var(--color-soft-white);
   --text-accent: var(--color-aegean);
+  --text-accent-hover: #4b6880; /* etwas dunkler, harmonisch */
 
   --btn-primary-bg: var(--color-summer-gold);
   --btn-primary-text: var(--color-white);
@@ -102,7 +103,7 @@
   --muted: var(--color-sandstone);
   --muted-foreground: oklch(0.556 0 0); /* leicht abgeschwächter Text */
 
-  --accent: var(--color-aegean);
+  --accent: var(--text-accent);
   --accent-foreground: var(--text-light);
 
   --destructive: oklch(0.577 0.245 27.325);
@@ -175,6 +176,15 @@ html {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+a {
+  color: var(--text-accent);
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--text-accent-hover);
 }
 
 @layer base {

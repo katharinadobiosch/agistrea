@@ -10,7 +10,7 @@ export function Footer() {
         <div className="grid gap-8 text-sm text-muted-foreground md:grid-cols-3">
           {/* Spalte 1 – Explore */}
           <div className="space-y-3">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground">
+            <h3 className="text-xs font-semibold uppercase tracking-[1.6px] text-foreground">
               Explore
             </h3>
             <ul className="space-y-1.5">
@@ -39,7 +39,7 @@ export function Footer() {
 
           {/* Spalte 2 – Plan your stay */}
           <div className="space-y-3">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground">
+            <h3 className="text-xs font-semibold uppercase tracking-[1.6px] text-foreground">
               Plan your stay
             </h3>
             <ul className="space-y-1.5">
@@ -68,7 +68,7 @@ export function Footer() {
 
           {/* Spalte 3 – About & Connect */}
           <div className="space-y-3">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground">
+            <h3 className="text-xs font-semibold uppercase tracking-[1.6px] text-foreground">
               Agistrea
             </h3>
             <ul className="space-y-1.5">
@@ -95,21 +95,21 @@ export function Footer() {
             </ul>
 
             <div className="mt-4 space-y-1.5">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground">
+              <p className="text-xs font-semibold uppercase tracking-[1.6px] text-foreground">
                 Connect
               </p>
-              <div className="flex flex-wrap gap-3 text-sm">
+              <div className="flex flex-wrap gap-3">
                 <Link
                   href="https://instagram.com"
                   className="hover:text-accent"
                 >
-                  Instagram
+                  <i className="fa-brands fa-square-instagram" />
                 </Link>
                 <Link
                   href="https://pinterest.com"
                   className="hover:text-accent"
                 >
-                  Pinterest
+                  <i className="fa-brands fa-square-pinterest" />
                 </Link>
                 {/* ggf. später weitere Channels */}
               </div>
@@ -123,12 +123,6 @@ export function Footer() {
             <p>© {year} Agistrea – small island stays.</p>
             <div className="flex flex-wrap items-center gap-3">
               <span>Made with ♥ for a tiny Greek island.</span>
-              <Link
-                href="/owners/register"
-                className="underline-offset-2 hover:text-accent hover:underline"
-              >
-                List your place
-              </Link>
             </div>
           </div>
         </div>

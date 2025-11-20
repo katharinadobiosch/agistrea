@@ -4,21 +4,22 @@ import Link from "next/link";
 
 export function SideNav() {
   return (
-    <aside className="hidden lg:flex absolute top-0 pt-[15px] pb-[15px] w-14 flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10 h-[100vh]">
+    <aside className="hidden lg:flex fixed inset-y-0 left-0 top-0 pt-[15px] pb-[15px] w-14 flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10 h-[100vh]">
+      {/* <aside className="hidden lg:flex absolute top-0 pt-[15px] pb-[15px] w-14 flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10 h-[100vh]"></aside> */}
       {/* Top icons */}
       <div className="mt-4 flex flex-col items-center gap-4 text-slate-700">
         <button aria-label="Home">
-          <i className="fa-regular fa-circle-up text-lg text-white" />
+          <i className="fa-solid fa-house text-lg text-white" />
         </button>
-        <button aria-label="Help">
+        {/* <button aria-label="Help">
           <i className="fa-regular fa-circle-question text-lg text-white" />
-        </button>
+        </button> */}
         <button aria-label="Open menu">
           <i className="fa-solid fa-bars text-lg text-white" />
         </button>
-        <button aria-label="Ideas">
+        {/* <button aria-label="Ideas">
           <i className="fa-regular fa-lightbulb text-lg text-white" />
-        </button>
+        </button> */}
       </div>
 
       {/* Bottom icons (z.B. Sprache, Chat, Favs) */}

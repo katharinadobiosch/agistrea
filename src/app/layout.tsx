@@ -32,7 +32,9 @@ export default function RootLayout({
           <Hero />
           <Header />
           <SideNav />
-          <main id="wrapper">{children}</main>
+          <main id="wrapper" className="max-w-[1200px]">
+            {children}
+          </main>
           <Footer />
         </div>
       </body>
