@@ -5,11 +5,11 @@ import { Footer } from "@/components/layout/Footer";
 import { SideNav } from "@/components/layout/SideNav";
 import Hero from "@/components/layout/Hero";
 
-export const metadata: Metadata = {
-  title: "Agistrea – handpicked places on a tiny Greek island",
-  description:
-    "Curated apartments and rooms on Agistri, Greece. No mass tourism – just small, quiet places to stay.",
-};
+// export const metadata: Metadata = {
+//   title: "Agistrea – handpicked places on a tiny Greek island",
+//   description:
+//     "Curated apartments and rooms on Agistri, Greece. No mass tourism – just small, quiet places to stay.",
+// };
 
 export default function RootLayout({
   children,
