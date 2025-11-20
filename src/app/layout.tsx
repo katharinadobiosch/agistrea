@@ -28,7 +28,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${playfair.variable} bg-white`}>
-        <div className="site-wrapper mx-auto max-w-[1600px] border-[10px] border-black">
+        <div className="site-wrapper mx-auto max-w-[1600px] max-h-[100vh]">
           <Hero />
           <Header />
           <SideNav />

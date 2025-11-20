@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Intro() {
   return (
-    <section className="intro pt-[95vh]">
+    <section className="intro pt-[100vh]">
       <section className="space-y-[1.2rem]">
         <p className="text-[1.1rem] font-semibold uppercase tracking-[0.25em] text-sky-700">
           Agistri, Greece
