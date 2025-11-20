@@ -33,6 +33,7 @@ export default function RootLayout({
           <Header />
           <SideNav />
           <main id="wrapper">{children}</main>
+          <Footer />
         </div>
       </body>
     </html>

@@ -45,45 +45,92 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --page-max-width: 1270px;
+  --page-padding-x: 15px;
+
+  /* Brand – Natur & Pinien */
+  --color-pine-brown: #7b5f3a; /* Primary */
+  --color-pine-green: #3f5a45; /* Secondary accent */
+
+  /* Insellicht – warme Akzente */
+  --color-summer-gold: #d3a96f; /* Highlight / Buttons */
+  --color-sandstone: #e6ddcf; /* Soft section background */
+
+  /* Meer – subtile Akzente */
+  --color-aegean: #5e7f9a; /* Links, Icons */
+
+  /* Neutrals */
+  --color-slate: #2a2f38; /* Footer / strong text */
+  --color-soft-white: #faf9f6; /* Background */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Semantic — eigene Tokens */
+  --bg-base: var(--color-soft-white);
+  --bg-section: var(--color-sandstone);
+  --bg-card: var(--color-pine-brown);
+
+  --text-main: var(--color-slate);
+  --text-light: var(--color-soft-white);
+  --text-accent: var(--color-aegean);
+
+  --btn-primary-bg: var(--color-summer-gold);
+  --btn-primary-text: var(--color-white);
+  --btn-primary-hover-bg: #c4995b; /* leicht dunkler */
+
+  --border-light: rgba(0, 0, 0, 0.1);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+  --font-serif: "Playfair Display", serif;
+
+  /* Mapping auf Tailwind/Shadcn-Design-Tokens */
+  --background: var(--bg-base);
+  --foreground: var(--text-main);
+
+  --card: var(--bg-card);
+  --card-foreground: var(--text-light);
+
+  --popover: var(--bg-base);
+  --popover-foreground: var(--text-main);
+
+  --primary: var(--color-pine-brown);
+  --primary-foreground: var(--text-light);
+
+  --secondary: var(--color-sandstone);
+  --secondary-foreground: var(--text-main);
+
+  --muted: var(--color-sandstone);
+  --muted-foreground: oklch(0.556 0 0); /* leicht abgeschwächter Text */
+
+  --accent: var(--color-aegean);
+  --accent-foreground: var(--text-light);
+
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+
+  --border: var(--border-light);
+  --input: var(--border-light);
+  --ring: var(--color-aegean);
+
+  /* Charts kannst du später bei Bedarf anpassen */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --page-max-width: 1120px;
-  --page-padding-x: 15px;
 
-  --font-serif: "Playfair Display", serif;
+  --sidebar: var(--bg-base);
+  --sidebar-foreground: var(--text-main);
+  --sidebar-primary: var(--color-pine-brown);
+  --sidebar-primary-foreground: var(--text-light);
+  --sidebar-accent: var(--color-sandstone);
+  --sidebar-accent-foreground: var(--text-main);
+  --sidebar-border: var(--border-light);
+  --sidebar-ring: var(--color-aegean);
 }
 
 /*  1rem = 10px */
 html {
+  color: var(--text-main);
   /* font-size: 62.5%; */
 }
 
@@ -95,6 +142,7 @@ html {
   margin-right: auto;
 }
 
+/* Dark Mode – erstmal Standard lassen, kannst du später anpassen */
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -137,5 +185,3 @@ html {
     @apply bg-background text-foreground;
   }
 }
-
-

@@ -12,12 +12,12 @@ export function Header() {
 
   return (
     <header className="relative z-10">
-      <div className="flex items-center p-[16px]">
+      <div className="flex items-center p-[15px]">
         {/* Left: Menu, FAQ, Language */}
         <div className="flex items-center flex-1 gap-2 lg:hidden">
           <button
             type="button"
-            className="pt-[4px] pr-[16px]"
+            className="pt-[5px] pr-[15px]"
             aria-label="Open menu"
           >
             <i className="fa-solid fa-bars text-white" />
@@ -25,7 +25,7 @@ export function Header() {
           </button>
           <button
             type="button"
-            className="pt-[4px] pr-[16px]"
+            className="pt-[5px] pr-[15px]"
             aria-label="Open FAQ"
           >
             <i className="fa-regular fa-circle-question text-white" />
@@ -94,7 +94,7 @@ export function Header() {
         {/* Center: Logo */}
         <div className="flex justify-center flex-1">
           <Link href="/en">
-            <div className="text-2xl font-serif font-semibold text-white">
+            <div className="text-3xl font-serif font-semibold text-white">
               Agistrea
             </div>
           </Link>
@@ -104,7 +104,7 @@ export function Header() {
         <div className="flex items-center justify-end flex-1 gap-2 lg:hidden">
           <button
             type="button"
-            className="pt-[4px] pr-[16px]"
+            className="pt-[5px] pr-[15px]"
             aria-label="Open login fav"
           >
             <i className="fa-regular fa-heart text-white" />
@@ -113,7 +113,7 @@ export function Header() {
 
           <button
             type="button"
-            className="pt-[4px] pr-[16px]"
+            className="pt-[5px] pr-[15px]"
             aria-label="Open login"
           >
             <i className="fa-regular fa-user text-white" />
