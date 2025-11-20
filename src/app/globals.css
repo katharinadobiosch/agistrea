@@ -76,6 +76,13 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --page-max-width: 112rem; /* 1120px */
+  --page-padding-x: 1.5rem; /* 15px */
+}
+
+/*  1rem = 10px */
+html {
+  font-size: 62.5%;
 }
 
 .dark {
@@ -119,4 +126,18 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* 👉 Globale Layout-Helfer */
+
+.page-shell {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 2.4rem var(--page-padding-x) 4rem;
+}
+
+.page-shell-inner {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 1.5rem var(--page-padding-x);
 }
