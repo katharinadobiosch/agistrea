@@ -1,13 +1,8 @@
-import type { Metadata } from "next";
 import "./globals.css";
+import { playfair } from "./fonts";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-
-export const metadata: Metadata = {
-  title: "Agistrea – handpicked places on a tiny Greek island",
-  description:
-    "Curated apartments and rooms on Agistri, Greece. No mass tourism – just small, quiet places to stay.",
-};
+import { SideNav } from "@/components/layout/SideNav";
 
 export default function RootLayout({
   children,
@@ -26,11 +21,21 @@ export default function RootLayout({
         />
       </head>
 
-      <body className="min-h-screen">
-        <div className="flex min-h-screen flex-col">
-          <Header />
-          <main className="page-shell">{children}</main>
-          <Footer />
+      <body className={`${playfair.variable} min-h-screen`}>
+        <div className="w-full max-w-[1600px]  relative">
+          {/* Platz für die Sidebar ab lg: 56px (w-14) */}
+
+          <div className="w-full max-w-[1600px] min-h-screen flex">
+            {/* Sidebar ist Teil der 1600px-Breite */}
+            <SideNav />
+
+            {/* Main area (Header + Hero + Content + Footer) */}
+            <div className="flex-1 flex flex-col">
+              <Header />
+              <main className="page-shell">{children}</main>
+              <Footer />
+            </div>
+          </div>
         </div>
       </body>
     </html>

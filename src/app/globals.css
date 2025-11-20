@@ -78,11 +78,13 @@
   --sidebar-ring: oklch(0.708 0 0);
   --page-max-width: 112rem; /* 1120px */
   --page-padding-x: 1.5rem; /* 15px */
+
+  --font-serif: "Playfair Display", serif;
 }
 
 /*  1rem = 10px */
 html {
-  font-size: 62.5%;
+  /* font-size: 62.5%; */
 }
 
 .dark {
