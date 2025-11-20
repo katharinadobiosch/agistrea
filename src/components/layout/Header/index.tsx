@@ -11,8 +11,8 @@ export function Header() {
   };
 
   return (
-    <header className="relative z-10 bg-green">
-      <div className="flex items-center p-[16px] bg-black">
+    <header className="relative z-10">
+      <div className="flex items-center p-[16px]">
         {/* Left: Menu, FAQ, Language */}
         <div className="flex items-center flex-1 gap-2 lg:hidden">
           <button
@@ -20,10 +20,9 @@ export function Header() {
             className="pt-[4px] pr-[16px]"
             aria-label="Open menu"
           >
-            <i className="fa-solid fa-bars text-white " />
+            <i className="fa-solid fa-bars text-white" />
             <span className="sr-only">Open menu</span>
           </button>
-
           <button
             type="button"
             className="pt-[4px] pr-[16px]"
@@ -32,7 +31,6 @@ export function Header() {
             <i className="fa-regular fa-circle-question text-white" />
             <span className="sr-only">Open FAQ</span>
           </button>
-
           <div className="relative pt-1">
             {/* Language trigger */}
             <button
@@ -53,7 +51,7 @@ export function Header() {
 
             {/* Dropdown (nur statisch, Logik kannst du später mit State machen) */}
             {isLanguageMenuOpen && (
-              <ul className="absolute left-0 mt-2 w-32 rounded-md bg-white shadow-lg ring-1 ring-black/5 text-sm">
+              <ul className="absolute left-0 mt-2 w-32 rounded-md  shadow-lg ring-1 ring-white/5 text-sm">
                 <li>
                   <Link
                     href="/en"

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function SideNav() {
   return (
-    <aside className="hidden lg:flex w-14 flex-col items-center justify-between bg-white/90 backdrop-blur border-r border-slate-200 z-10">
+    <aside className="hidden lg:flex w-14 flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10">
       {/* Top icons */}
       <div className="mt-4 flex flex-col items-center gap-4 text-slate-700">
         <button aria-label="Home">

@@ -3,6 +3,13 @@ import { playfair } from "./fonts";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SideNav } from "@/components/layout/SideNav";
+import Hero from "@/components/layout/Hero";
+
+export const metadata: Metadata = {
+  title: "Agistrea – handpicked places on a tiny Greek island",
+  description:
+    "Curated apartments and rooms on Agistri, Greece. No mass tourism – just small, quiet places to stay.",
+};
 
 export default function RootLayout({
   children,
@@ -20,34 +27,13 @@ export default function RootLayout({
           referrerPolicy="no-referrer"
         />
       </head>
-
-      {/* <body className={`${playfair.variable} min-h-screen`}>
-        <div className="w-full max-w-[1600px]  relative">
-
-          <div className="w-full max-w-[1600px] min-h-screen flex">
-            <SideNav />
-
-            <div className="flex-1 flex flex-col">
-              <Header />
-              <main>{children}</main>
-              <Footer />
-            </div>
-          </div>
-        </div>
-      </body> */}
-
-      <body className="min-h-screen">
-        {/* Sidebar wird ganz außen gehalten */}
-        <div className="min-h-screen lg:pl-14 relative">
-          <SideNav />
-
-          {/* Hero MUSS außerhalb der max-w Box sein */}
+      <body className={`${playfair.variable} bg-white`}>
+        <div className="site-wrapper mx-auto max-w-[1600px] border-[10px] border-black">
+          <Hero />
           <Header />
-
-          {/* FULLWIDTH HERO bleibt hier */}
-          {children /* Hier kommt Home rein → Hero + Intro */}
+          <SideNav />
+          <main id="wrapper">{children}</main>
         </div>
-        <Footer />
       </body>
     </html>
   );
