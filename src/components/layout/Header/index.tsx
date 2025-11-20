@@ -11,8 +11,8 @@ export function Header() {
   };
 
   return (
-    <header className="relative z-10">
-      <div className="flex items-center p-[16px]">
+    <header className="relative z-10 bg-green">
+      <div className="flex items-center p-[16px] bg-black">
         {/* Left: Menu, FAQ, Language */}
         <div className="flex items-center flex-1 gap-2 lg:hidden">
           <button

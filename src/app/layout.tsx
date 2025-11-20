@@ -21,22 +21,33 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={`${playfair.variable} min-h-screen`}>
+      {/* <body className={`${playfair.variable} min-h-screen`}>
         <div className="w-full max-w-[1600px]  relative">
-          {/* Platz für die Sidebar ab lg: 56px (w-14) */}
 
           <div className="w-full max-w-[1600px] min-h-screen flex">
-            {/* Sidebar ist Teil der 1600px-Breite */}
             <SideNav />
 
-            {/* Main area (Header + Hero + Content + Footer) */}
             <div className="flex-1 flex flex-col">
               <Header />
-              <main className="page-shell">{children}</main>
+              <main>{children}</main>
               <Footer />
             </div>
           </div>
         </div>
+      </body> */}
+
+      <body className="min-h-screen">
+        {/* Sidebar wird ganz außen gehalten */}
+        <div className="min-h-screen lg:pl-14 relative">
+          <SideNav />
+
+          {/* Hero MUSS außerhalb der max-w Box sein */}
+          <Header />
+
+          {/* FULLWIDTH HERO bleibt hier */}
+          {children /* Hier kommt Home rein → Hero + Intro */}
+        </div>
+        <Footer />
       </body>
     </html>
   );

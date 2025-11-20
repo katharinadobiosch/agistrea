@@ -11,8 +11,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Hero />
-      <div className="home space-y-[2.4rem]">
+      <Hero /> {/* Fullscreen, nicht im Container */}
+      {/* max-w Container für Text/Content */}
+      <div className="max-w-[1600px] mx-auto px-6 space-y-[2.4rem]">
         <Intro />
       </div>
     </>

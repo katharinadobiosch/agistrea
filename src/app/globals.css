@@ -130,16 +130,4 @@ html {
   }
 }
 
-/* 👉 Globale Layout-Helfer */
 
-.page-shell {
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-  padding: 2.4rem var(--page-padding-x) 4rem;
-}
-
-.page-shell-inner {
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-  padding: 1.5rem var(--page-padding-x);
-}
