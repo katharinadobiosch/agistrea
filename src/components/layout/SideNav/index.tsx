@@ -4,7 +4,8 @@ import Link from "next/link";
 
 export function SideNav() {
   return (
-    <aside className="hidden lg:flex fixed inset-y-0 left-0 top-0 pt-[15px] pb-[15px] w-14 flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10 h-[100vh]">
+    // <aside className="hidden lg:flex fixed inset-y-0 left-0 top-0 pt-[15px] pb-[15px] w-14 flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10 h-[100vh] border-pink-900 border-[20px]">
+    <aside className="flex absolute w-[100px] border-orange-900 border-[20px] z-100">
       {/* <aside className="hidden lg:flex absolute top-0 pt-[15px] pb-[15px] w-14 flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10 h-[100vh]"></aside> */}
       {/* Top icons */}
       <div className="mt-4 flex flex-col items-center gap-4 text-slate-700">

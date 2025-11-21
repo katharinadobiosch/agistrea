@@ -1,5 +1,6 @@
 import Hero from "@/components/layout/Hero";
 import Intro from "@/components/Intro/Intro";
+import { SideNav } from "@/components/layout/SideNav";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <>
       <div className="home">
+        <SideNav />
         <Intro />
       </div>
     </>

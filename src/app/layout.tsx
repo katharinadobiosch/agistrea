@@ -2,7 +2,6 @@ import "./globals.css";
 import { playfair } from "./fonts";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { SideNav } from "@/components/layout/SideNav";
 import Hero from "@/components/layout/Hero";
 
 // export const metadata: Metadata = {
@@ -28,11 +27,14 @@ export default function RootLayout({
         />
       </head>
       <body className={`${playfair.variable} bg-white`}>
-        <div className="site-wrapper mx-auto max-w-[1600px] max-h-[100vh]">
-          <Hero />
+        <div className="site-wrapper flex justify-center items-center flex-col min-w-[100%] min-h-[100%] mx-auto max-w-[1600px] max-h-[100vh] border-red-600 border-[20px] ">
+          {/* <Hero /> */}
           <Header />
-          <SideNav />
-          <main id="wrapper" className="max-w-[1200px]">
+         
+          <main
+            id="wrapper"
+            className="max-w-[1200px] border-green-600 border-[20px]"
+          >
             {children}
           </main>
           <Footer />
