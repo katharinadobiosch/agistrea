@@ -2,31 +2,32 @@
 
 import Link from "next/link";
 
-type MobileNavigationProps = {
+type DesktopNavigationProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
-const MobileNavigation: React.FC<MobileNavigationProps> = ({
+const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
   isOpen,
   onClose,
 }) => {
   return (
     <div
       className={[
-        "fixed z-40 inset-0",
-        "bg-slate-900 text-white",
-        "pt-[72px] px-6",
+        // nur Desktop
+        "hidden lg:block",
+        // Drawer-Container
+        "fixed top-0 left-[100px] h-screen w-[100%] z-40",
+        "bg-slate-900/95 text-white",
+        "pt-[100px] px-8",
+        // Animation: von links reinsliden
         "transform transition-transform duration-500 ease-out",
-
-        // MOBILE: from top
-        // DESKTOP: from left
-        isOpen ? "translate-y-0" : "-translate-y-full",
+        isOpen ? "translate-x-0" : "-translate-x-full",
       ]
         .filter(Boolean)
         .join(" ")}
     >
-      <nav className="space-y-6 mt-6">
+      <nav className="space-y-4 text-lg">
         <Link
           href="/en"
           className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"
@@ -67,4 +68,4 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
   );
 };
 
-export default MobileNavigation;
+export default DesktopNavigation;
