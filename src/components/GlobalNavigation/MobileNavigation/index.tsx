@@ -14,17 +14,24 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
   return (
     <div
       className={[
-        "fixed inset-0 z-40 lg:hidden", // nur mobile
+        "fixed z-40 inset-0",
         "bg-slate-900 text-white",
-        "pt-[72px] px-6", // Platz für den Header
+        "pt-[72px] px-6 lg:pt-[40px]",
         "transform transition-transform duration-500 ease-out",
-        isOpen ? "translate-y-0" : "-translate-y-full",
+
+        // MOBILE: from top
+        // DESKTOP: from left
+        isOpen
+          ? "translate-y-0 lg:translate-y-0 lg:translate-x-0"
+          : "-translate-y-full lg:translate-y-0 lg:-translate-x-full",
+
+        // Desktop width
+        "lg:w-[360px] lg:left-0 lg:right-auto lg:h-full",
       ]
         .filter(Boolean)
         .join(" ")}
     >
-      {/* Menu Items */}
-      <nav className="space-y-4 text-lg">
+      <nav className="space-y-6 text-lg mt-6">
         <Link
           href="/en"
           className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"

@@ -1,8 +1,10 @@
 "use client";
 
-import Link from "next/link";
+type SideNavProps = {
+  onToggleMenu: () => void;
+};
 
-export function SideNav() {
+export function SideNav({ onToggleMenu }: SideNavProps) {
   return (
     <aside className="hidden lg:flex fixed w-[80px] z-50 pt-[24px] pb-[24px] h-[100vh] flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10">
       {/* <aside className="hidden lg:flex absolute top-0 pt-[24px] pb-[24px] w-14 flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10 h-[100vh]"></aside> */}
@@ -14,9 +16,10 @@ export function SideNav() {
         {/* <button aria-label="Help">
           <i className="fa-regular fa-circle-question text-lg text-white" />
         </button> */}
-        <button aria-label="Open menu">
+        <button aria-label="Open menu" onClick={onToggleMenu}>
           <i className="fa-solid fa-bars text-lg text-white" />
         </button>
+
         {/* <button aria-label="Ideas">
           <i className="fa-regular fa-lightbulb text-lg text-white" />
         </button> */}
