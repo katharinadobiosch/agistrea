@@ -4,7 +4,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto pl-[130px] border-t border-border bg-background/90">
+    <footer className="mt-auto pl-[24px] border-t border-border bg-background/90 lg:pl-[130px]">
       <div className="w-full max-w-[var(--page-max-width)]  py-10">
         {/* 3 Spalten auf Desktop, 1 Spalte auf Mobile */}
         <div className="grid gap-8 text-sm text-muted-foreground md:grid-cols-3">
@@ -118,8 +118,11 @@ export function Footer() {
         </div>
 
         {/* Bottom-Bar wie bisher, nur typografisch eingebettet */}
-        <div className="mt-10 border-t border-border/70 pt-4 text-xs text-muted-foreground">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div className="bottom-bar mt-10 border-t border-border/70 pt-4 text-xs text-muted-foreground">
+          <div
+            className="flex flex-col items-center justify-center text-center
+                lg:flex-row lg:justify-between lg:gap-2 lg:text-left"
+          >
             <p>© {year} Agistrea – small island stays.</p>
             <div className="flex flex-wrap items-center gap-3">
               <span>Made with ♥ for a tiny Greek island.</span>

@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export function SideNav() {
   return (
-    <aside className="hidden lg:flex fixed w-[80px] z-50 pt-[15px] pb-[15px] h-[100vh] flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10">
-      {/* <aside className="hidden lg:flex absolute top-0 pt-[15px] pb-[15px] w-14 flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10 h-[100vh]"></aside> */}
+    <aside className="hidden lg:flex fixed w-[80px] z-50 pt-[24px] pb-[24px] h-[100vh] flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10">
+      {/* <aside className="hidden lg:flex absolute top-0 pt-[24px] pb-[24px] w-14 flex-col items-center justify-between  backdrop-blur border-r border-slate-200 z-10 h-[100vh]"></aside> */}
       {/* Top icons */}
       <div className="mt-4 flex flex-col items-center gap-4 text-slate-700">
         <button aria-label="Home">

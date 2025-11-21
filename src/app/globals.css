@@ -46,7 +46,7 @@
 :root {
   --radius: 0.625rem;
   --page-max-width: 1270px;
-  --page-padding-x: 15px;
+  --page-padding-x: 24px;
 
   /* Brand – Natur & Pinien */
   --color-pine-brown: #7b5f3a; /* Primary */

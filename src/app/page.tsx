@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <SideNav />
-      <div className="home pl-[130px] pt-[100vh] pr-[50px]">
+      <div className="home pl-[24px] pr-[24px] pt-[100vh] lg:pl-[130px] pr-[50px]">
         <Intro />
         <div>HELLO WORLD</div>
         <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}

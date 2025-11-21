@@ -36,7 +36,7 @@ export default function Intro() {
       </section>
 
       {/* Drei kleine Cards */}
-      <section className="grid gap-[32px] pt-[15px] sm:grid-cols-3">
+      <section className="grid gap-[32px] pt-[24px] sm:grid-cols-3">
         <div className="bg-[var(--color-surface)] p-[18px] shadow-sm">
           <h2 className="text-[14px] font-semibold text-slate-900">
             Tiny island, short distance
