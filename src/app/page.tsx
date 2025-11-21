@@ -1,4 +1,3 @@
-import Hero from "@/components/layout/Hero";
 import Intro from "@/components/Intro/Intro";
 import { SideNav } from "@/components/layout/SideNav";
 import type { Metadata } from "next";
