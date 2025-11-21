@@ -4,8 +4,8 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-border bg-background/90">
-      <div className="mx-auto w-full max-w-[var(--page-max-width)] px-[15px] py-10">
+    <footer className="mt-auto pl-[130px] border-t border-border bg-background/90">
+      <div className="w-full max-w-[var(--page-max-width)]  py-10">
         {/* 3 Spalten auf Desktop, 1 Spalte auf Mobile */}
         <div className="grid gap-8 text-sm text-muted-foreground md:grid-cols-3">
           {/* Spalte 1 – Explore */}

@@ -11,7 +11,7 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-[100%] z-10">
+    <header id="header" className="fixed top-0 w-[100%] max-w-[1600px] z-10">
       <div className="flex items-center p-[15px]">
         {/* Left: Menu, FAQ, Language */}
         <div className="flex items-center flex-1 gap-2 lg:hidden">

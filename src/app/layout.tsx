@@ -27,13 +27,13 @@ export default function RootLayout({
         />
       </head>
       <body className={`${playfair.variable} bg-white`}>
-        <div className="site-wrapper flex justify-center items-center flex-col min-w-[100%] min-h-[100%] mx-auto max-w-[1600px] max-h-[100vh] border-red-600 border-[20px] ">
-          {/* <Hero /> */}
+        <div id="site-wrapper">
+          <Hero />
           <Header />
-         
+
           <main
             id="wrapper"
-            className="max-w-[1200px] border-green-600 border-[20px]"
+            className="relative max-w-[1600px]"
           >
             {children}
           </main>

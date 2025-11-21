@@ -12,9 +12,17 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <div className="home">
-        <SideNav />
+      <SideNav />
+      <div className="home pl-[130px] pt-[100vh] pr-[50px]">
         <Intro />
+        <div>HELLO WORLD</div>
+        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
+        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
+        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
+        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
+        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
+        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
+        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>
       </div>
     </>
   );

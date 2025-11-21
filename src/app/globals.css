@@ -135,12 +135,20 @@ html {
   /* font-size: 62.5%; */
 }
 
+#site-wrapper {
+  margin: 0 auto;
+  max-width: 1600px;
+  display: block;
+}
+
 #wrapper {
-  max-width: var(--page-max-width);
+  /* max-width: var(--page-max-width);
   padding-left: var(--page-padding-x);
   padding-right: var(--page-padding-x);
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* Dark Mode – erstmal Standard lassen, kannst du später anpassen */
