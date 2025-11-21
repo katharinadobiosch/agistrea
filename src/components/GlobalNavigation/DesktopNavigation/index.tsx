@@ -14,14 +14,11 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
   return (
     <div
       className={[
-        // nur Desktop
         "desktop-navigation",
         "hidden lg:block",
-        // Drawer-Container
-        "fixed top-0 left-[80px] h-screen w-[100%] z-40",
+        "fixed top-0 left-[0px] h-screen w-[100%] z-40",
         "bg-slate-900/95 text-white",
-        "pt-[100px] pl-[50px]",
-        // Animation: von links reinsliden
+        "pt-[100px] pl-[130px]",
         "transform transition-transform duration-500 ease-out",
         isOpen ? "translate-x-0" : "-translate-x-full",
       ]

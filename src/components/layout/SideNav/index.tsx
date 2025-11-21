@@ -46,7 +46,6 @@ export function SideNav() {
         </div>
       </aside>
 
-      {/* Desktop-Drawer separat vom mobilen Menü */}
       <DesktopNavigation
         isOpen={isDesktopMenuOpen}
         onClose={closeDesktopMenu}
