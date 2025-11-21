@@ -18,7 +18,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
 }) => {
   return (
     <header id="header" className="fixed top-0 w-full max-w-[1600px] z-50">
-      <div className="flex items-center px-[24px] py-[12px]">
+      <div className="header-bar flex items-center px-[24px] py-[12px]">
         {/* Left: Menu, FAQ, Language */}
         <div className="flex items-center flex-1 gap-2 lg:hidden">
           {/* Menu Button */}

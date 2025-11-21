@@ -15,11 +15,12 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
     <div
       className={[
         // nur Desktop
+        "desktop-navigation",
         "hidden lg:block",
         // Drawer-Container
-        "fixed top-0 left-[100px] h-screen w-[100%] z-40",
+        "fixed top-0 left-[80px] h-screen w-[100%] z-40",
         "bg-slate-900/95 text-white",
-        "pt-[100px] px-8",
+        "pt-[100px] pl-[50px]",
         // Animation: von links reinsliden
         "transform transition-transform duration-500 ease-out",
         isOpen ? "translate-x-0" : "-translate-x-full",
@@ -30,35 +31,35 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
       <nav className="space-y-4 text-lg">
         <Link
           href="/en"
-          className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"
+          className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
           Home
         </Link>
         <Link
           href="/en/about"
-          className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"
+          className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
           About
         </Link>
         <Link
           href="/en/rooms"
-          className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"
+          className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
           Rooms
         </Link>
         <Link
           href="/en/location"
-          className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"
+          className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
           Location
         </Link>
         <Link
           href="/en/contact"
-          className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"
+          className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
           Contact

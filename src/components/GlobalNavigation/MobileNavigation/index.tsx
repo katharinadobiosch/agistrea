@@ -14,6 +14,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
   return (
     <div
       className={[
+        "mobile-navigation",
         "fixed z-40 inset-0",
         "bg-slate-900 text-white",
         "pt-[72px] px-6",
@@ -29,35 +30,35 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
       <nav className="space-y-6 mt-6">
         <Link
           href="/en"
-          className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"
+          className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
           Home
         </Link>
         <Link
           href="/en/about"
-          className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"
+          className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
           About
         </Link>
         <Link
           href="/en/rooms"
-          className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"
+          className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
           Rooms
         </Link>
         <Link
           href="/en/location"
-          className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"
+          className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
           Location
         </Link>
         <Link
           href="/en/contact"
-          className="block uppercase tracking-[0.14em] hover:underline hover:decoration-wavy"
+          className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
           Contact
