@@ -10,12 +10,7 @@ type SideNavProps = {
   onToggleMenu: () => void;
 };
 
-export function SideNav({
-  isLanguageMenuOpen,
-  toggleLanguageMenu,
-  isMenuOpen,
-  onToggleMenu,
-}: SideNavProps) {
+export function SideNav({ isMenuOpen, onToggleMenu }: SideNavProps) {
   const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false);
 
   const toggleDesktopMenu = () => {

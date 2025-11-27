@@ -24,9 +24,6 @@ export default function Home() {
     setIsLanguageMenuOpen(false);
   };
 
-  const closeMainMenu = () => {
-    setIsMenuOpen(false);
-  };
   return (
     <>
       <SideNav
