@@ -3,11 +3,24 @@
 import { useState } from "react";
 import DesktopNavigation from "../../GlobalNavigation/DesktopNavigation";
 
-export function SideNav() {
+type SideNavProps = {
+  isLanguageMenuOpen: boolean;
+  toggleLanguageMenu: () => void;
+  isMenuOpen: boolean;
+  onToggleMenu: () => void;
+};
+
+export function SideNav({
+  isLanguageMenuOpen,
+  toggleLanguageMenu,
+  isMenuOpen,
+  onToggleMenu,
+}: SideNavProps) {
   const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false);
 
   const toggleDesktopMenu = () => {
     setIsDesktopMenuOpen((prev) => !prev);
+    onToggleMenu();
   };
 
   const closeDesktopMenu = () => {
@@ -24,8 +37,19 @@ export function SideNav() {
           </button>
 
           {/* ⭐ Menü-Button: öffnet jetzt den Desktop-Drawer ⭐ */}
-          <button aria-label="Open menu" onClick={toggleDesktopMenu}>
-            <i className="fa-solid fa-bars text-lg text-white" />
+          <button
+            onClick={toggleDesktopMenu}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
+          >
+            {isMenuOpen ? (
+              <i className="fa-solid fa-xmark text-white text-2xl" />
+            ) : (
+              <i className="fa-solid fa-bars text-white text-xl" />
+            )}
+            <span className="sr-only">
+              {isMenuOpen ? "Close menu" : "Open menu"}
+            </span>{" "}
           </button>
         </div>
 
