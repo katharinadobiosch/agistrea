@@ -2,10 +2,7 @@
 import { db } from "@/lib/db";
 
 export default async function ListingsPage() {
-  const listings = await db.listing.findMany({
-    where: { published: true },
-    orderBy: { createdAt: "desc" },
-  });
+  const { data: listings, error } = await db.from("listings").select("*");
 
   return (
     <main className="mx-auto max-w-[960px] px-6 py-10">
@@ -14,7 +11,7 @@ export default async function ListingsPage() {
       </h1>
 
       <div className="grid gap-[24px] sm:grid-cols-2 lg:grid-cols-3">
-        {listings.map((listing) => (
+        {listings?.map((listing) => (
           <a
             key={listing.id}
             href={`/listings/${listing.slug}`}
