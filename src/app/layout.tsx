@@ -1,8 +1,6 @@
 import "./globals.css";
-import { playfair } from "./fonts";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import Hero from "@/components/layout/Hero";
 
 // export const metadata: Metadata = {
 //   title: "Agistrea – handpicked places on a tiny Greek island",
@@ -26,27 +24,12 @@ export default function RootLayout({
           referrerPolicy="no-referrer"
         />
       </head>
-      {/* <body
-        className={`${playfair.variable} bg-white min-h-screen flex flex-col`}
-      >
-        <div id="site-wrapper" className="flex-1 flex flex-col">
-          <Header />
 
-          <main id="wrapper" className="flex-1 relative max-w-[1600px]">
-            <Hero />
-            {children}
-          </main>
-
-          <Footer />
-        </div>
-      </body> */}
       <body className="min-h-screen flex flex-col">
         <div
           id="site-wrapper"
           className="flex-1 flex flex-col mx-auto max-w-[1600px] border-[5px] border-pink-300"
         >
-          {" "}
-          {/* <Hero /> */}
           <Header />
           <main id="wrapper" className="flex-1 border-[5px] border-blue-500">
             {children}

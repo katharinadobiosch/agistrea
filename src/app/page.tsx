@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Intro from "@/components/Intro/Intro";
-import { SideNav } from "@/components/layout/SideNav";
+import Hero from "@/components/layout/Hero";
 // import type { Metadata } from "next";
 
 // export const metadata: Metadata = {
@@ -26,6 +25,8 @@ export default function Home() {
 
   return (
     <>
+      <Hero />
+
       {/* <SideNav
         isLanguageMenuOpen={isLanguageMenuOpen}
         toggleLanguageMenu={toggleLanguageMenu}
