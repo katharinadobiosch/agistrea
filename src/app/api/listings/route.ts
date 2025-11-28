@@ -1,6 +1,6 @@
 // app/api/listings/route.ts
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db"; // Prisma / supabase client etc.
+import { db } from "@/lib/db";
 
 export async function POST(req: Request) {
   const body = await req.json();
