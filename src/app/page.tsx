@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Hero from "@/components/layout/Hero";
+import Intro from "@/components/Intro";
+import { SideNav } from "@/components/layout/SideNav";
 // import type { Metadata } from "next";
 
 // export const metadata: Metadata = {
@@ -25,14 +27,6 @@ export default function Home() {
 
   return (
     <>
-      <Hero />
-
-      {/* <SideNav
-        isLanguageMenuOpen={isLanguageMenuOpen}
-        toggleLanguageMenu={toggleLanguageMenu}
-        isMenuOpen={isMenuOpen}
-        onToggleMenu={toggleMainMenu}
-      />
       <div className="home pl-[24px] pr-[24px] pt-[100vh] lg:pl-[130px] pr-[50px]">
         <Intro />
         <div>HELLO WORLD</div>
@@ -43,7 +37,7 @@ export default function Home() {
         <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
         <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
         <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>
-      </div> */}
+      </div>
     </>
   );
 }

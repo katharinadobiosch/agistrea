@@ -4,7 +4,6 @@ import { useState } from "react";
 import MobileNavigation from "../../GlobalNavigation/MobileNavigation";
 import HeaderBar from "../../GlobalNavigation/MobileNavigation/HeaderBar";
 import { SideNav } from "../SideNav";
-import Hero from "../Hero";
 
 export function Header() {
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
@@ -25,7 +24,6 @@ export function Header() {
 
   return (
     <>
-      {/* <Hero /> */}
       <SideNav
         isLanguageMenuOpen={isLanguageMenuOpen}
         toggleLanguageMenu={toggleLanguageMenu}

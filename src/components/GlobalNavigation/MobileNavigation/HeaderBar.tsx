@@ -17,11 +17,8 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
   onToggleMenu,
 }) => {
   return (
-    <header
-      id="header"
-      className="border-[10px] border-red-500 max-w-[1600px]"
-    >
-      <div className="header-bar flex items-center py-[12px] ">
+    <header id="header" className="max-w-[1600px] py-[12px] px-[24px]">
+      <div className="header-bar flex items-center">
         {/* Left: Menu, FAQ, Language */}
         <div className="flex items-center flex-1 gap-2 lg:hidden">
           {/* Menu Button */}

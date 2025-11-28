@@ -136,21 +136,17 @@ html {
 }
 
 #site-wrapper {
-  width: 100%;
-  border: 5px solid pink;
   margin: 0 auto;
   max-width: 1600px;
+  min-height: 100vh; /* mindestens Bildschirmhöhe */
+  display: flex; /* flex-container */
+  flex-direction: column; /* Header, Main, Footer untereinander */
 }
 
 #wrapper {
-  border: 5px solid blue;
-  padding-top: 105px;
-
-  @media (min-width: 768px) {
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-  }
+  padding-left: 0;
+  padding-right: 0;
+  flex: 1; /* Main füllt den verfügbaren Platz */
 }
 
 /* Dark Mode – erstmal Standard lassen, kannst du später anpassen */
