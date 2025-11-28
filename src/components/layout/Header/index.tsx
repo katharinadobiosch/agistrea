@@ -3,6 +3,8 @@
 import { useState } from "react";
 import MobileNavigation from "../../GlobalNavigation/MobileNavigation";
 import HeaderBar from "../../GlobalNavigation/MobileNavigation/HeaderBar";
+import { SideNav } from "../SideNav";
+import Hero from "../Hero";
 
 export function Header() {
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
@@ -23,13 +25,18 @@ export function Header() {
 
   return (
     <>
+      <SideNav
+        isLanguageMenuOpen={isLanguageMenuOpen}
+        toggleLanguageMenu={toggleLanguageMenu}
+        isMenuOpen={isMenuOpen}
+        onToggleMenu={toggleMainMenu}
+      />
       <HeaderBar
         isLanguageMenuOpen={isLanguageMenuOpen}
         toggleLanguageMenu={toggleLanguageMenu}
         isMenuOpen={isMenuOpen}
         onToggleMenu={toggleMainMenu}
       />
-
       <MobileNavigation isOpen={isMenuOpen} onClose={closeMainMenu} />
     </>
   );

@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <>
-      <SideNav
+      {/* <SideNav
         isLanguageMenuOpen={isLanguageMenuOpen}
         toggleLanguageMenu={toggleLanguageMenu}
         isMenuOpen={isMenuOpen}
@@ -42,7 +42,7 @@ export default function Home() {
         <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
         <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
         <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>
-      </div>
+      </div> */}
     </>
   );
 }

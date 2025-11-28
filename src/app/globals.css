@@ -136,19 +136,36 @@ html {
 }
 
 #site-wrapper {
-  max-width: 1600px;
-  margin: 0 auto;
-  background-color: white;
+  width: 100%;
+  border: 5px solid pink;
+
+  @media (min-width: 768px) {
+    width: 750px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 992px) {
+    width: 970px;
+  }
+
+  @media (min-width: 1200px) {
+    width: 1170px;
+  }
+
+  @media (min-width: 1800px) {
+    width: 1400px;
+  }
 }
 
 #wrapper {
-  /* max-width: var(--page-max-width);
-  padding-left: var(--page-padding-x);
-  padding-right: var(--page-padding-x);
-  margin-left: auto;
-  margin-right: auto; */
-  padding-left: 0;
-  padding-right: 0;
+  border: 5px solid blue;
+  padding-top: 105px;
+
+  @media (min-width: 768px) {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+  }
 }
 
 /* Dark Mode – erstmal Standard lassen, kannst du später anpassen */

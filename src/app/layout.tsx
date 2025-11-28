@@ -26,17 +26,18 @@ export default function RootLayout({
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className={`${playfair.variable} bg-white`}>
-        <div id="site-wrapper">
-          <Hero />
+
+      <body
+        className={`${playfair.variable} bg-white min-h-screen flex flex-col`}
+      >
+        <div id="site-wrapper" className="flex-1 flex flex-col">
           <Header />
 
-          <main
-            id="wrapper"
-            className="relative max-w-[1600px]"
-          >
+          <main id="wrapper" className="flex-1 relative max-w-[1600px]">
+            <Hero />
             {children}
           </main>
+
           <Footer />
         </div>
       </body>
