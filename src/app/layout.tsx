@@ -28,12 +28,10 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         <div
           id="site-wrapper"
-          className="flex-1 flex flex-col mx-auto max-w-[1600px] border-[5px] border-pink-300"
+          className="relative mx-auto w-full border-[6px] border-pink-400"
         >
           <Header />
-          <main id="wrapper" className="flex-1 border-[5px] border-blue-500">
-            {children}
-          </main>
+          <main>{children}</main>
           <Footer />
         </div>
       </body>

@@ -6,13 +6,15 @@ import Image from "next/image";
 export default function Hero() {
   return (
     // auf Mobile: Höhe = viewport - Header (~64px), ab lg = volle Höhe
-    <section className="hero h-[100vh] w-[auto] max-w-[1600px]">
+    <section
+      className="hero w-[auto] h-[calc(100vh-64px)]"
+    >
       <Image
         src="/assets/images/Homepage/hero-agistri-2.jpeg"
         alt="A view of the sea and small Greek houses surrounded by pine trees on Agistri island."
         fill
         priority
-        className="object-cover z-[-10] max-w-[1600px]"
+        className="object-cover z-[-10]"
       />
     </section>
   );

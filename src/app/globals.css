@@ -138,23 +138,8 @@ html {
 #site-wrapper {
   width: 100%;
   border: 5px solid pink;
-
-  @media (min-width: 768px) {
-    width: 750px;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 992px) {
-    width: 970px;
-  }
-
-  @media (min-width: 1200px) {
-    width: 1170px;
-  }
-
-  @media (min-width: 1800px) {
-    width: 1400px;
-  }
+  margin: 0 auto;
+  max-width: 1600px;
 }
 
 #wrapper {
