@@ -28,7 +28,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
         .filter(Boolean)
         .join(" ")}
     >
-      <nav className="space-y-6 mt-6 z-[50]">
+      <nav className="space-y-6 mt-6">
         <Link
           href="/en"
           className="block uppercase tracking-[0.14em] hover:underline"
