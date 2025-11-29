@@ -15,12 +15,14 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
     <div
       className={[
         "desktop-navigation",
-        "hidden lg:block",
-        "fixed top-0 left-[0px] h-screen w-[100%] z-40",
+        "hidden md:flex",
+        "fixed top-0 left-[0px] h-screen w-[100%]",
         "bg-slate-900/95 text-white",
-        "pt-[100px] pl-[130px]",
+        "pt-[100px] pl-[15vw] ml-[80px]",
         "transform transition-transform duration-500 ease-out",
+        "max-w-[600px]",
         isOpen ? "translate-x-0" : "-translate-x-full",
+
       ]
         .filter(Boolean)
         .join(" ")}
@@ -31,7 +33,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
           className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
-          Home
+          Home DESKTOP
         </Link>
         <Link
           href="/en/about"

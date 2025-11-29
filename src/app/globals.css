@@ -187,6 +187,7 @@ html {
 a {
   color: var(--text-accent);
   transition: color 0.15s ease;
+  cursor: pointer;
 }
 
 a:hover {

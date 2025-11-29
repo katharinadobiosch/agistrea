@@ -15,10 +15,11 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
     <div
       className={[
         "mobile-navigation",
-        "fixed z-40 inset-0",
+        "fixed inset-0",
         "bg-slate-900 text-white",
         "pt-[72px] px-6",
         "transform transition-transform duration-500 ease-out",
+        "md:hidden ",
 
         // MOBILE: from top
         // DESKTOP: from left
@@ -27,13 +28,13 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
         .filter(Boolean)
         .join(" ")}
     >
-      <nav className="space-y-6 mt-6">
+      <nav className="space-y-6 mt-6 z-[50]">
         <Link
           href="/en"
           className="block uppercase tracking-[0.14em] hover:underline"
           onClick={onClose}
         >
-          Home
+          Home MOBILE
         </Link>
         <Link
           href="/en/about"
