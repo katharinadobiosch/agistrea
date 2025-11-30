@@ -27,16 +27,10 @@ export default function Home() {
 
   return (
     <>
-      <div className="home pl-[24px] pr-[24px] pt-[100vh] lg:pl-[130px] pr-[50px]">
+      <div className="home md:px-[130px] pt-[97vh] md:pt-[50px">
+        <img src="/assets/images/Homepage/intro.jpeg" className="w-[100vw]" />
         <Intro />
-        <div>HELLO WORLD</div>
-        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
-        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
-        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
-        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
-        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
-        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>{" "}
-        <div>HELLO WORLD</div> <div>HELLO WORLD</div> <div>HELLO WORLD</div>
+        {/* weitere Inhalte */}
       </div>
     </>
   );

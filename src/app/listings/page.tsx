@@ -10,7 +10,7 @@ export default async function ListingsPage() {
         Stays on Agistri
       </h1>
 
-      <div className="grid gap-[24px] sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-[24px] sm:grid-cols-2 md:grid-cols-3">
         {listings?.map((listing) => (
           <a
             key={listing.id}

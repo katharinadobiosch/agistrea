@@ -39,7 +39,7 @@
   --color-card: var(--card);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
+  --radius-md: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
 
@@ -141,13 +141,20 @@ html {
   min-height: 100vh; /* mindestens Bildschirmhöhe */
   display: flex; /* flex-container */
   flex-direction: column; /* Header, Main, Footer untereinander */
+  border: 5px solid blue;
 }
 
 #wrapper {
-  padding-left: 0;
-  padding-right: 0;
   flex: 1; /* Main füllt den verfügbaren Platz */
+  border: 5px solid red;
+  padding-left: 15px;
+  padding-right: 15px;
 }
+
+/* #content-wrapper {
+  padding-left: 15px;
+  padding-right:15px
+} */
 
 /* Dark Mode – erstmal Standard lassen, kannst du später anpassen */
 .dark {

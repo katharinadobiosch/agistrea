@@ -24,7 +24,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
       >
         <div className="header-bar flex items-center z-[50]">
           {/* Left: Menu, FAQ, Language */}
-          <div className="flex items-center flex-1 gap-2 lg:hidden">
+          <div className="flex items-center flex-1 gap-2 md:hidden">
             {/* Menu Button */}
             <button
               type="button"
@@ -121,7 +121,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
           </div>
 
           {/* Right: Cart, Favs, User */}
-          <div className="flex items-center justify-end flex-1 gap-2 lg:hidden">
+          <div className="flex items-center justify-end flex-1 gap-2 md:hidden">
             <button
               type="button"
               className="pt-[5px] pr-[15px]"
