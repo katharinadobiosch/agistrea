@@ -14,7 +14,7 @@ export function SideNav({ isMenuOpen, onToggleMenu }: SideNavProps) {
   const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false)
 
   const toggleDesktopMenu = () => {
-    setIsDesktopMenuOpen((prev) => !prev)
+    setIsDesktopMenuOpen(prev => !prev)
     onToggleMenu()
   }
 
@@ -24,7 +24,7 @@ export function SideNav({ isMenuOpen, onToggleMenu }: SideNavProps) {
 
   return (
     <>
-      <aside className="fixed z-[100] hidden h-[100vh] w-[80px] flex-col items-center justify-between border-r border-slate-200 pt-[24px] pb-[24px] backdrop-blur md:flex">
+      <aside className="fixed z-100 hidden h-screen w-20 flex-col items-center justify-between border-r border-slate-200 pt-6 pb-6 backdrop-blur md:flex">
         {/* Top icons */}
         <div className="mt-4 flex flex-col items-center gap-4 text-slate-700">
           <button aria-label="Home">

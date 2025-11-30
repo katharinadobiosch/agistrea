@@ -18,8 +18,8 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
 }) => {
   return (
     <>
-      <header id="header" className="z-[50] max-w-[1600px] px-[24px] py-[12px] md:hidden">
-        <div className="header-bar z-[50] flex items-center">
+      <header id="header" className="z-50 max-w-[1600px] px-6 py-3 md:hidden">
+        <div className="header-bar z-50 flex items-center">
           {/* Left: Menu, FAQ, Language */}
           <div className="flex flex-1 items-center gap-2 md:hidden">
             {/* Menu Button */}
@@ -47,7 +47,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
             <div className="relative pt-1">
               <button
                 type="button"
-                className="pt-[4px] pb-[4px]"
+                className="pt-1 pb-1"
                 aria-haspopup="menu"
                 aria-expanded={isLanguageMenuOpen}
                 onClick={toggleLanguageMenu}

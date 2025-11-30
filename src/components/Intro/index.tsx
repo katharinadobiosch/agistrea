@@ -2,53 +2,50 @@ import Link from 'next/link'
 
 export default function Intro() {
   return (
-    <section className="intro pb-[32px]">
-      <section className="space-y-[12px]">
+    <section className="intro pt-[97vh] pb-8 md:pt-0">
+      <section className="space-y-3">
         <p className="text-[14px] font-semibold tracking-[2.5px] text-sky-700 uppercase">
           Agistri, Greece
         </p>
         <h1 className="text-[32px] leading-tight font-semibold text-slate-900 sm:text-[32px]">
           Handpicked stays on a small pine-covered island.
         </h1>
-        <p className="max-w-[100%] text-[14px] leading-relaxed text-[var(--color-muted-foreground)]">
+        <p className="ext-muted-foreground max-w-full text-[14px] leading-relaxed">
           Agistrea is a small, curated directory of apartments and rooms on Agistri – from Skala and
           Megalochori to quiet corners near the pine forests and rocky coves. No mass tourism, just
           places we’d stay in ourselves.
         </p>
 
-        <div className="mt-[8px] flex flex-col gap-[8px]">
-          <Link href="/listings" className="text-[16px] font-medium text-[var(--color-accent)]">
+        <div className="mt-2 flex flex-col gap-2">
+          <Link href="/listings" className="text-accent text-[16px] font-medium">
             Browse stays
-            <i className="fa-solid fa-arrow-right pl-[8px]" />
+            <i className="fa-solid fa-arrow-right pl-2" />
           </Link>
-          <Link
-            href="/owners/register"
-            className="text-[16px] font-medium text-[var(--color-accent)]"
-          >
+          <Link href="/owners/register" className="text-accent text-[16px] font-medium">
             List your place
-            <i className="fa-solid fa-arrow-right pl-[8px]" />
+            <i className="fa-solid fa-arrow-right pl-2" />
           </Link>
         </div>
       </section>
 
       {/* Drei kleine Cards */}
-      <section className="grid gap-[32px] pt-[24px] sm:grid-cols-3">
-        <div className="bg-[var(--color-surface)] p-[18px] shadow-sm">
+      <section className="grid gap-8 pt-6 sm:grid-cols-3">
+        <div className="bg-color-surface p-[18px] shadow-sm">
           <h2 className="text-[14px] font-semibold text-slate-900">Tiny island, short distance</h2>
-          <p className="mt-[6px] text-[14px] text-[var(--color-muted-foreground)]">
+          <p className="text-muted-foreground mt-1.5 text-[14px]">
             Just an hour from Athens by boat: pine forests, clear water and small tavernas.
           </p>
         </div>
-        <div className="bg-[var(--color-surface)] p-[18px] shadow-sm">
+        <div className="bg-color-surface p-[18px] shadow-sm">
           <h2 className="text-[14px] font-semibold text-slate-900">Curated, not crowded</h2>
-          <p className="mt-[6px] text-[14px] text-[var(--color-muted-foreground)]">
+          <p className="text-muted-foreground mt-1.5 text-[14px]">
             A small list of places instead of endless scrolling. Every stay is reviewed before it
             goes live.
           </p>
         </div>
-        <div className="bg-[var(--color-surface)] p-[18px] shadow-sm">
+        <div className="bg-color-surface p-[18px] shadow-sm">
           <h2 className="text-[14px] font-semibold text-slate-900">Direct contact with owners</h2>
-          <p className="mt-[6px] text-[14px] text-[var(--color-muted-foreground)]">
+          <p className="text-muted-foreground mt-1.5 text-[14px]">
             Guests book directly with hosts. No opaque platform fees, no middleman.
           </p>
         </div>

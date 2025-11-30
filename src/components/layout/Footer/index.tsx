@@ -9,8 +9,8 @@ export function Footer() {
       <div className="border-border/70 border-t md:w-full" />
 
       {/* alles, was eingerückt neben der Sidebar sein soll */}
-      <div className="px-[15px] md:ml-[80px] md:w-[calc(100%_-_80px)]">
-        <div className="max-w-[var(--page-max-width)] py-10 md:w-full">
+      <div className="px-[15px] md:ml-20 md:w-[calc(100%-80px)]">
+        <div className="max-w-(--page-max-width) py-10 md:w-full">
           {/* 3 Spalten */}
           <div className="text-muted-foreground grid gap-8 text-sm md:grid-cols-3">
             {/* Spalte 1 – Explore */}
