@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function Intro() {
   return (
-    <section className="intro pt-[97vh] pb-8 md:pt-0">
+    <section className="intro bg-background/90 pt-[97vh] pb-8 md:pt-0">
       <section className="space-y-3">
         <p className="text-[14px] font-semibold tracking-[2.5px] text-sky-700 uppercase">
           Agistri, Greece
