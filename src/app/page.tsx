@@ -17,23 +17,22 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const toggleLanguageMenu = () => {
-    setIsLanguageMenuOpen((prev) => !prev)
+    setIsLanguageMenuOpen(prev => !prev)
   }
 
   const toggleMainMenu = () => {
-    setIsMenuOpen((prev) => !prev)
+    setIsMenuOpen(prev => !prev)
     setIsLanguageMenuOpen(false)
   }
 
   return (
-    <div className="home pt-[97vh] md:pt-[50px] md:pt-[97vh]">
-      <div className="border border-red-50">
+    <>
+      <div className="ml-[80px] w-[calc(100%_-_80px)] border border-red-500 pt-[97vh] pr-[15px] pl-[15px] md:pt-[50px] md:pt-[97vh]">
         <Intro />
-        HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD
       </div>
-      <img src="/assets/images/Homepage/intro.jpeg" className="w-screen object-cover" alt="" />
-    </div>
+      <div className="home">
+        <img src="/assets/images/Homepage/intro.jpeg" className="w-screen object-cover" alt="" />
+      </div>
+    </>
   )
 }
-
-// px-[15px] md:px-[130px] h-full w-full max-w-[1600px]
