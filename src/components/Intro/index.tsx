@@ -12,8 +12,8 @@ export default function Intro() {
         </h1>
         <p className="ext-muted-foreground max-w-full text-[14px] leading-relaxed">
           Agistrea is a small, curated directory of apartments and rooms on Agistri – from Skala and
-          Megalochori to quiet corners near the pine forests and rocky coves. No mass tourism, just
-          places we’d stay in ourselves.
+          Megalochori to quiet spots along the pine forests and crystal-clear bays. No mass tourism,
+          just places we’d genuinely stay ourselves.
         </p>
 
         <div className="mt-2 flex flex-col gap-2">

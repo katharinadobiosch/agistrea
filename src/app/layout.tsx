@@ -1,8 +1,8 @@
-import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import Hero from "@/components/layout/Hero";
-import { playfair } from "./fonts";
+import './globals.css'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import Hero from '@/components/layout/Hero'
+import { playfair } from './fonts'
 
 // export const metadata: Metadata = {
 //   title: "Agistrea – handpicked places on a tiny Greek island",
@@ -10,11 +10,7 @@ import { playfair } from "./fonts";
 //     "Curated apartments and rooms on Agistri, Greece. No mass tourism – just small, quiet places to stay.",
 // };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -27,7 +23,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={`${playfair.variable} bg-white min-h-screen`}>
+      <body className={`${playfair.variable} min-h-screen bg-white`}>
         <div id="site-wrapper">
           <Hero />
           <Header />
@@ -38,5 +34,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  );
+  )
 }
