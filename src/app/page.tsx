@@ -27,11 +27,8 @@ export default function Home() {
 
   return (
     <>
-      <div className="pt-0 pr-[15px] pl-[15px] md:ml-20 md:w-[calc(100%-80px)] md:pt-[95vh]">
+      <div className="home pt-0 pr-[15px] pl-[15px] md:ml-20 md:w-[calc(100%-80px)] md:pt-[95vh]">
         <Intro />
-      </div>
-      <div className="home">
-        <img src="/assets/images/Homepage/intro.jpeg" className="w-screen object-cover" alt="" />
       </div>
     </>
   )

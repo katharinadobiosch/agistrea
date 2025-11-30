@@ -12,7 +12,7 @@ export function Footer() {
       <div className="px-[15px] md:ml-20 md:w-[calc(100%-80px)]">
         <div className="max-w-(--page-max-width) py-10 md:w-full">
           {/* 3 Spalten */}
-          <div className="text-muted-foreground grid gap-8 text-sm md:grid-cols-3">
+          <div className="text-muted-foreground grid gap-8 text-sm md:grid-cols-4">
             {/* Spalte 1 – Explore */}
             <div className="space-y-3">
               <h3 className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
@@ -87,21 +87,51 @@ export function Footer() {
                     Sustainability
                   </Link>
                 </li>
-                <li>
-                  <Link href="/partners" className="hover:text-accent">
-                    Hosts &amp; partnerships
-                  </Link>
-                </li>
+
                 <li>
                   <Link href="/contact" className="hover:text-accent">
                     Contact
                   </Link>
                 </li>
-              </ul>
 
+                <li>
+                  <Link href="/contact" className="hover:text-accent">
+                    Imprint
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Spalte 4 – Plan your stay */}
+            <div className="space-y-3">
+              <h3 className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
+                For Hosts
+              </h3>
+              <ul className="space-y-1.5">
+                <li>
+                  <Link href="/owners/register" className="hover:text-accent">
+                    List your place
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/how-it-works" className="hover:text-accent">
+                    Host login
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/faq" className="hover:text-accent">
+                    Partnerships
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/policies" className="hover:text-accent">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
               <div className="mt-4 space-y-1.5">
                 <p className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
-                  Connect
+                  Contact for hosts
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Link href="https://instagram.com" className="hover:text-accent">
