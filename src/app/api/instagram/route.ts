@@ -1,18 +1,22 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+// src/app/api/instagram/route.ts
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const limit = Number(req.query.limit || 6)
+import { NextResponse } from 'next/server'
 
-  const token = process.env.INSTAGRAM_TOKEN // du setzt ihn in .env.local
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url)
+  const limit = Number(searchParams.get('limit') || 6)
+
+  const token = process.env.INSTAGRAM_TOKEN
   const fields = 'id,media_type,media_url,caption,permalink'
 
   try {
     const igRes = await fetch(
       `https://graph.instagram.com/me/media?fields=${fields}&access_token=${token}`
     )
+
     const json = await igRes.json()
 
-    const mapped = json.data
+    const posts = json.data
       .filter((p: any) => ['IMAGE', 'CAROUSEL_ALBUM'].includes(p.media_type))
       .slice(0, limit)
       .map((p: any) => ({
@@ -22,8 +26,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         caption: p.caption,
       }))
 
-    res.status(200).json(mapped)
+    return NextResponse.json(posts)
   } catch (err) {
-    res.status(500).json({ error: 'Failed to load feed' })
+    return NextResponse.json({ error: 'Failed to load Instagram feed' }, { status: 500 })
   }
 }

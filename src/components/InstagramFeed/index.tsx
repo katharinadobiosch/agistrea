@@ -43,7 +43,7 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
   }, [limit])
 
   return (
-    <section className="mt-12 border-t border-slate-200 pt-8">
+    <section className="instagram-feed border-t border-slate-200 pt-6 pb-6">
       <div className="mb-4 flex items-baseline justify-between">
         <div>
           <p className="text-[12px] font-semibold tracking-[2px] text-slate-500 uppercase">

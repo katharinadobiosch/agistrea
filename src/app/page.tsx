@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Hero from '@/components/layout/Hero'
 import Intro from '@/components/Intro'
 import { SideNav } from '@/components/layout/SideNav'
+import InstagramFeed from '@/components/InstagramFeed'
 // import type { Metadata } from "next";
 
 // export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function Home() {
     <>
       <div className="home pt-0 pr-[15px] pl-[15px] md:ml-20 md:w-[calc(100%-80px)] md:pt-[95vh]">
         <Intro />
+        <InstagramFeed username="@agistrea" limit={6} />
       </div>
     </>
   )

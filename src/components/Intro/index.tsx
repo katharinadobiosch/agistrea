@@ -3,8 +3,8 @@ import Image from 'next/image'
 
 export default function Intro() {
   return (
-    <section className="intro bg-background/90 pt-[97vh] pb-8 md:pt-0">
-      <section className="space-y-3">
+    <section className="intro pt-[97vh] pb-8 md:pt-0">
+      <section className="space-y-3 pb-6 md:pt-8 md:pb-8">
         <p className="text-[14px] font-semibold tracking-[2.5px] text-sky-700 uppercase">
           Agistri, Greece
         </p>
@@ -58,17 +58,6 @@ export default function Intro() {
           </p>
         </div>
       </section>
-
-      <div className="relative right-1/2 left-1/2 -mr-[50vw] -ml-[50vw] w-screen">
-        <Image
-          src="/assets/images/Homepage/intro.jpeg"
-          alt="Agistri"
-          width={1920}
-          height={1080}
-          className="h-auto w-screen object-cover"
-          priority
-        />
-      </div>
     </section>
   )
 }
