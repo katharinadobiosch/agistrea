@@ -31,3 +31,5 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: 'Failed to load Instagram feed' }, { status: 500 })
   }
 }
+
+
