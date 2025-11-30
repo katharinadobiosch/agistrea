@@ -26,12 +26,19 @@ export default function Home() {
   };
 
   return (
-    <>
-      <div className="home md:px-[130px] pt-[97vh] md:pt-[50px">
-        <img src="/assets/images/Homepage/intro.jpeg" className="w-[100vw]" />
+    <div className="home pt-[97vh] md:pt-[50px] md:pt-[97vh]">
+      {/* Full-width Image */}
+
+      {/* Content Container */}
+      <div className="px-[15px] md:px-[130px] h-full w-full max-w-[1600px]">
         <Intro />
         {/* weitere Inhalte */}
       </div>
-    </>
+      <img
+        src="/assets/images/Homepage/intro.jpeg"
+        className="w-screen object-cover"
+        alt=""
+      />
+    </div>
   );
 }

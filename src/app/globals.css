@@ -141,20 +141,13 @@ html {
   min-height: 100vh; /* mindestens Bildschirmhöhe */
   display: flex; /* flex-container */
   flex-direction: column; /* Header, Main, Footer untereinander */
-  border: 5px solid blue;
 }
 
 #wrapper {
   flex: 1; /* Main füllt den verfügbaren Platz */
-  border: 5px solid red;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0;
+  padding-right: 0;
 }
-
-/* #content-wrapper {
-  padding-left: 15px;
-  padding-right:15px
-} */
 
 /* Dark Mode – erstmal Standard lassen, kannst du später anpassen */
 .dark {
