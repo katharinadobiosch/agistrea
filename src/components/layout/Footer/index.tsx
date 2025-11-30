@@ -1,16 +1,16 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 export function Footer() {
-  const year = new Date().getFullYear();
+  const year = new Date().getFullYear()
 
   return (
-    <footer className="mt-auto pl-[24px] border-t border-border bg-background/90 md:pl-[130px]">
-      <div className="w-full max-w-[var(--page-max-width)]  py-10">
+    <footer className="border-border bg-background/90 mt-auto border-t pl-[24px] md:pl-[130px]">
+      <div className="w-full max-w-[var(--page-max-width)] py-10">
         {/* 3 Spalten auf Desktop, 1 Spalte auf Mobile */}
-        <div className="grid gap-8 text-sm text-muted-foreground md:grid-cols-3">
+        <div className="text-muted-foreground grid gap-8 text-sm md:grid-cols-3">
           {/* Spalte 1 – Explore */}
           <div className="space-y-3">
-            <h3 className="text-xs font-semibold uppercase tracking-[1.6px] text-foreground">
+            <h3 className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
               Explore
             </h3>
             <ul className="space-y-1.5">
@@ -39,7 +39,7 @@ export function Footer() {
 
           {/* Spalte 2 – Plan your stay */}
           <div className="space-y-3">
-            <h3 className="text-xs font-semibold uppercase tracking-[1.6px] text-foreground">
+            <h3 className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
               Plan your stay
             </h3>
             <ul className="space-y-1.5">
@@ -68,7 +68,7 @@ export function Footer() {
 
           {/* Spalte 3 – About & Connect */}
           <div className="space-y-3">
-            <h3 className="text-xs font-semibold uppercase tracking-[1.6px] text-foreground">
+            <h3 className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
               Agistrea
             </h3>
             <ul className="space-y-1.5">
@@ -95,20 +95,14 @@ export function Footer() {
             </ul>
 
             <div className="mt-4 space-y-1.5">
-              <p className="text-xs font-semibold uppercase tracking-[1.6px] text-foreground">
+              <p className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
                 Connect
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link
-                  href="https://instagram.com"
-                  className="hover:text-accent"
-                >
+                <Link href="https://instagram.com" className="hover:text-accent">
                   <i className="fa-brands fa-square-instagram" />
                 </Link>
-                <Link
-                  href="https://pinterest.com"
-                  className="hover:text-accent"
-                >
+                <Link href="https://pinterest.com" className="hover:text-accent">
                   <i className="fa-brands fa-square-pinterest" />
                 </Link>
                 {/* ggf. später weitere Channels */}
@@ -118,11 +112,8 @@ export function Footer() {
         </div>
 
         {/* Bottom-Bar wie bisher, nur typografisch eingebettet */}
-        <div className="bottom-bar mt-10 border-t border-border/70 pt-4 text-xs text-muted-foreground">
-          <div
-            className="flex flex-col items-center justify-center text-center
-                md:flex-row md:justify-between md:gap-2 md:text-left"
-          >
+        <div className="bottom-bar border-border/70 text-muted-foreground mt-10 border-t pt-4 text-xs">
+          <div className="flex flex-col items-center justify-center text-center md:flex-row md:justify-between md:gap-2 md:text-left">
             <p>© {year} Agistrea – small island stays.</p>
             <div className="flex flex-wrap items-center gap-3">
               <span>Made with ♥ for a tiny Greek island.</span>
@@ -131,5 +122,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

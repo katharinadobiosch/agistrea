@@ -1,71 +1,32 @@
-"use client";
-
-import Link from "next/link";
+'use client'
 
 type DesktopNavigationProps = {
-  isOpen: boolean;
-  onClose: () => void;
-};
+  isOpen: boolean
+  onClose: () => void
+}
 
-const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
-  isOpen,
-  onClose,
-}) => {
+export default function DesktopNavigation({ isOpen, onClose }: DesktopNavigationProps) {
   return (
     <div
-      className={[
-        "desktop-navigation",
-        "hidden md:flex",
-        "fixed top-0 left-[0px] h-screen w-[100%]",
-        "bg-slate-900/95 text-white",
-        "pt-[100px] pl-[15vw] ml-[80px]",
-        "transform transition-transform duration-500 ease-out",
-        "max-w-[600px]",
-        isOpen ? "translate-x-0" : "-translate-x-full",
-
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={`fixed top-0 right-0 left-[80px] z-[90] transform transition-transform duration-300 ease-out ${isOpen ? 'translate-y-0' : '-translate-y-full'} `}
     >
-      <nav className="space-y-4 text-lg">
-        <Link
-          href="/en"
-          className="block uppercase tracking-[0.14em] hover:underline"
-          onClick={onClose}
-        >
-          Home DESKTOP
-        </Link>
-        <Link
-          href="/en/about"
-          className="block uppercase tracking-[0.14em] hover:underline"
-          onClick={onClose}
-        >
-          About
-        </Link>
-        <Link
-          href="/en/rooms"
-          className="block uppercase tracking-[0.14em] hover:underline"
-          onClick={onClose}
-        >
-          Rooms
-        </Link>
-        <Link
-          href="/en/location"
-          className="block uppercase tracking-[0.14em] hover:underline"
-          onClick={onClose}
-        >
-          Location
-        </Link>
-        <Link
-          href="/en/contact"
-          className="block uppercase tracking-[0.14em] hover:underline"
-          onClick={onClose}
-        >
-          Contact
-        </Link>
-      </nav>
-    </div>
-  );
-};
+      <div className="border-b border-slate-800 bg-[#020617]/95 text-white shadow-xl">
+        <div className="flex items-start justify-between px-16 py-10">
+          {/* Links: Menüeinträge */}
+          <nav className="space-y-4 text-xs tracking-[0.25em] text-sky-400 uppercase">
+            <button className="block hover:text-white">Home desktop</button>
+            <button className="block hover:text-white">About</button>
+            <button className="block hover:text-white">Rooms</button>
+            <button className="block hover:text-white">Location</button>
+            <button className="block hover:text-white">Contact</button>
+          </nav>
 
-export default DesktopNavigation;
+          {/* Rechts: Close-Button */}
+          <button onClick={onClose} aria-label="Close menu" className="text-2xl text-white">
+            <i className="fa-solid fa-xmark" />
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}

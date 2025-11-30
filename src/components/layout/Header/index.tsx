@@ -1,26 +1,26 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import MobileNavigation from "../../GlobalNavigation/MobileNavigation";
-import HeaderBar from "../../GlobalNavigation/MobileNavigation/HeaderBar";
-import { SideNav } from "../SideNav";
+import { useState } from 'react'
+import MobileNavigation from '../../GlobalNavigation/MobileNavigation'
+import HeaderBar from '../../GlobalNavigation/MobileNavigation/HeaderBar'
+import { SideNav } from '../SideNav'
 
 export function Header() {
-  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const toggleLanguageMenu = () => {
-    setIsLanguageMenuOpen((prev) => !prev);
-  };
+    setIsLanguageMenuOpen((prev) => !prev)
+  }
 
   const toggleMainMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-    setIsLanguageMenuOpen(false);
-  };
+    setIsMenuOpen((prev) => !prev)
+    setIsLanguageMenuOpen(false)
+  }
 
   const closeMainMenu = () => {
-    setIsMenuOpen(false);
-  };
+    setIsMenuOpen(false)
+  }
 
   return (
     <>
@@ -38,5 +38,5 @@ export function Header() {
       />
       <MobileNavigation isOpen={isMenuOpen} onClose={closeMainMenu} />
     </>
-  );
+  )
 }

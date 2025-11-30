@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import Hero from "@/components/layout/Hero";
-import Intro from "@/components/Intro";
-import { SideNav } from "@/components/layout/SideNav";
+import { useState } from 'react'
+import Hero from '@/components/layout/Hero'
+import Intro from '@/components/Intro'
+import { SideNav } from '@/components/layout/SideNav'
 // import type { Metadata } from "next";
 
 // export const metadata: Metadata = {
@@ -13,32 +13,27 @@ import { SideNav } from "@/components/layout/SideNav";
 // };
 
 export default function Home() {
-  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const toggleLanguageMenu = () => {
-    setIsLanguageMenuOpen((prev) => !prev);
-  };
+    setIsLanguageMenuOpen((prev) => !prev)
+  }
 
   const toggleMainMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-    setIsLanguageMenuOpen(false);
-  };
+    setIsMenuOpen((prev) => !prev)
+    setIsLanguageMenuOpen(false)
+  }
 
   return (
     <div className="home pt-[97vh] md:pt-[50px] md:pt-[97vh]">
-      {/* Full-width Image */}
-
-      {/* Content Container */}
-      <div className="px-[15px] md:px-[130px] h-full w-full max-w-[1600px]">
+      <div className="border border-red-50">
         <Intro />
-        {/* weitere Inhalte */}
+        HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD
       </div>
-      <img
-        src="/assets/images/Homepage/intro.jpeg"
-        className="w-screen object-cover"
-        alt=""
-      />
+      <img src="/assets/images/Homepage/intro.jpeg" className="w-screen object-cover" alt="" />
     </div>
-  );
+  )
 }
+
+// px-[15px] md:px-[130px] h-full w-full max-w-[1600px]

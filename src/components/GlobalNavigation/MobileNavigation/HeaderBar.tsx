@@ -1,14 +1,14 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link'
+import Image from 'next/image'
 
 type HeaderBarProps = {
-  isLanguageMenuOpen: boolean;
-  toggleLanguageMenu: () => void;
-  isMenuOpen: boolean;
-  onToggleMenu: () => void;
-};
+  isLanguageMenuOpen: boolean
+  toggleLanguageMenu: () => void
+  isMenuOpen: boolean
+  onToggleMenu: () => void
+}
 
 const HeaderBar: React.FC<HeaderBarProps> = ({
   isLanguageMenuOpen,
@@ -18,36 +18,27 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
 }) => {
   return (
     <>
-      <header
-        id="header"
-        className="max-w-[1600px] py-[12px] px-[24px] md:hidden z-[50]"
-      >
-        <div className="header-bar flex items-center z-[50]">
+      <header id="header" className="z-[50] max-w-[1600px] px-[24px] py-[12px] md:hidden">
+        <div className="header-bar z-[50] flex items-center">
           {/* Left: Menu, FAQ, Language */}
-          <div className="flex items-center flex-1 gap-2 md:hidden">
+          <div className="flex flex-1 items-center gap-2 md:hidden">
             {/* Menu Button */}
             <button
               type="button"
               className="pt-[5px] pr-[15px]"
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
               onClick={onToggleMenu}
             >
               {isMenuOpen ? (
-                <i className="fa-solid fa-xmark text-white text-2xl" />
+                <i className="fa-solid fa-xmark text-2xl text-white" />
               ) : (
-                <i className="fa-solid fa-bars text-white text-xl" />
+                <i className="fa-solid fa-bars text-xl text-white" />
               )}
-              <span className="sr-only">
-                {isMenuOpen ? "Close menu" : "Open menu"}
-              </span>
+              <span className="sr-only">{isMenuOpen ? 'Close menu' : 'Open menu'}</span>
             </button>
 
-            <button
-              type="button"
-              className="pt-[5px] pr-[15px]"
-              aria-label="Open FAQ"
-            >
+            <button type="button" className="pt-[5px] pr-[15px]" aria-label="Open FAQ">
               <i className="fa-regular fa-circle-question text-white" />
               <span className="sr-only">Open FAQ</span>
             </button>
@@ -71,7 +62,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
               </button>
 
               {isLanguageMenuOpen && (
-                <ul className="absolute left-0 mt-2 w-32 rounded-md bg-white shadow-lg ring-1 ring-white/5 text-sm">
+                <ul className="absolute left-0 mt-2 w-32 rounded-md bg-white text-sm shadow-lg ring-1 ring-white/5">
                   <li>
                     <Link
                       href="/en"
@@ -112,30 +103,20 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
           </div>
 
           {/* Center: Logo (Mobile) */}
-          <div className="flex justify-center flex-1">
+          <div className="flex flex-1 justify-center">
             <Link href="/en">
-              <div className="text-3xl font-serif font-semibold text-white">
-                Agistrea
-              </div>
+              <div className="font-serif text-3xl font-semibold text-white">Agistrea</div>
             </Link>
           </div>
 
           {/* Right: Cart, Favs, User */}
-          <div className="flex items-center justify-end flex-1 gap-2 md:hidden">
-            <button
-              type="button"
-              className="pt-[5px] pr-[15px]"
-              aria-label="Open login fav"
-            >
+          <div className="flex flex-1 items-center justify-end gap-2 md:hidden">
+            <button type="button" className="pt-[5px] pr-[15px]" aria-label="Open login fav">
               <i className="fa-regular fa-heart text-white" />
               <span className="sr-only">Open Login Favorite</span>
             </button>
 
-            <button
-              type="button"
-              className="pt-[5px] pr-[15px]"
-              aria-label="Open login"
-            >
+            <button type="button" className="pt-[5px] pr-[15px]" aria-label="Open login">
               <i className="fa-regular fa-user text-white" />
               <span className="sr-only">Open Login</span>
             </button>
@@ -144,15 +125,13 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
       </header>
 
       {/* Desktop Logo: sichtbar ab 768px */}
-      <div className="hidden md:flex justify-center py-4">
+      <div className="hidden justify-center py-4 md:flex">
         <Link href="/en">
-          <div className="text-3xl font-serif font-semibold text-white">
-            Agistrea
-          </div>
+          <div className="font-serif text-3xl font-semibold text-white">Agistrea</div>
         </Link>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default HeaderBar;
+export default HeaderBar

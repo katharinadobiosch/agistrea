@@ -1,30 +1,30 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import DesktopNavigation from "../../GlobalNavigation/DesktopNavigation";
+import { useState } from 'react'
+import DesktopNavigation from '../../GlobalNavigation/DesktopNavigation'
 
 type SideNavProps = {
-  isLanguageMenuOpen: boolean;
-  toggleLanguageMenu: () => void;
-  isMenuOpen: boolean;
-  onToggleMenu: () => void;
-};
+  isLanguageMenuOpen: boolean
+  toggleLanguageMenu: () => void
+  isMenuOpen: boolean
+  onToggleMenu: () => void
+}
 
 export function SideNav({ isMenuOpen, onToggleMenu }: SideNavProps) {
-  const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false);
+  const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false)
 
   const toggleDesktopMenu = () => {
-    setIsDesktopMenuOpen((prev) => !prev);
-    onToggleMenu();
-  };
+    setIsDesktopMenuOpen((prev) => !prev)
+    onToggleMenu()
+  }
 
   const closeDesktopMenu = () => {
-    setIsDesktopMenuOpen(false);
-  };
+    setIsDesktopMenuOpen(false)
+  }
 
   return (
     <>
-      <aside className="hidden md:flex fixed w-[80px] pt-[24px] pb-[24px] h-[100vh] flex-col items-center justify-between backdrop-blur border-r border-slate-200 z-[100]">
+      <aside className="fixed z-[100] hidden h-[100vh] w-[80px] flex-col items-center justify-between border-r border-slate-200 pt-[24px] pb-[24px] backdrop-blur md:flex">
         {/* Top icons */}
         <div className="mt-4 flex flex-col items-center gap-4 text-slate-700">
           <button aria-label="Home">
@@ -34,17 +34,15 @@ export function SideNav({ isMenuOpen, onToggleMenu }: SideNavProps) {
           {/* ⭐ Menü-Button: öffnet jetzt den Desktop-Drawer ⭐ */}
           <button
             onClick={toggleDesktopMenu}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? (
-              <i className="fa-solid fa-xmark text-white text-2xl" />
+              <i className="fa-solid fa-xmark text-2xl text-white" />
             ) : (
-              <i className="fa-solid fa-bars text-white text-xl" />
+              <i className="fa-solid fa-bars text-xl text-white" />
             )}
-            <span className="sr-only">
-              {isMenuOpen ? "Close menu" : "Open menu"}
-            </span>{" "}
+            <span className="sr-only">{isMenuOpen ? 'Close menu' : 'Open menu'}</span>{' '}
           </button>
         </div>
 
@@ -65,10 +63,7 @@ export function SideNav({ isMenuOpen, onToggleMenu }: SideNavProps) {
         </div>
       </aside>
 
-      <DesktopNavigation
-        isOpen={isDesktopMenuOpen}
-        onClose={closeDesktopMenu}
-      />
+      <DesktopNavigation isOpen={isDesktopMenuOpen} onClose={closeDesktopMenu} />
     </>
-  );
+  )
 }
