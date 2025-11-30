@@ -11,9 +11,9 @@ export default function Intro() {
           Handpicked stays on a small pine-covered island.
         </h1>
         <p className="ext-muted-foreground max-w-full text-[14px] leading-relaxed">
-          Agistrea is a small, curated directory of apartments and rooms on Agistri – from Skala and
-          Megalochori to quiet spots along the pine forests and crystal-clear bays. No mass tourism,
-          just places we’d genuinely stay ourselves.
+          Agistrea is a small, curated directory of apartments and rooms on Agistri. The selection
+          ranges from Skala and Megalochori to quiet corners close to the pine forests and the
+          island’s clear bays. No mass tourism, just places we would genuinely choose for ourselves.
         </p>
 
         <div className="mt-2 flex flex-col gap-2">
@@ -33,20 +33,20 @@ export default function Intro() {
         <div className="bg-color-surface p-[18px] shadow-sm">
           <h2 className="text-[14px] font-semibold text-slate-900">Tiny island, short distance</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px]">
-            Just an hour from Athens by boat: pine forests, clear water and small tavernas.
+            Only an hour from Athens by boat: pine forests, clear water and small tavernas.
           </p>
         </div>
         <div className="bg-color-surface p-[18px] shadow-sm">
           <h2 className="text-[14px] font-semibold text-slate-900">Curated, not crowded</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px]">
-            A small list of places instead of endless scrolling. Every stay is reviewed before it
-            goes live.
+            A small list of places instead of endless scrolling. Every stay is checked carefully
+            before it goes live.
           </p>
         </div>
         <div className="bg-color-surface p-[18px] shadow-sm">
           <h2 className="text-[14px] font-semibold text-slate-900">Direct contact with owners</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px]">
-            Guests book directly with hosts. No opaque platform fees, no middleman.
+            Guests book directly with hosts. No opaque platform fees, no middlemen.
           </p>
         </div>
       </section>

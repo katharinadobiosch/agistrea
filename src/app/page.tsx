@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="w- border border-red-500 pt-0 pr-[15px] pl-[15px] md:ml-20 md:w-[calc(100%-80px)] md:pt-[95vh]">
+      <div className="pt-0 pr-[15px] pl-[15px] md:ml-20 md:w-[calc(100%-80px)] md:pt-[95vh]">
         <Intro />
       </div>
       <div className="home">
