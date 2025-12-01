@@ -5,7 +5,7 @@ export default function Intro() {
   return (
     <section className="intro pt-[100vh] pb-8 md:pt-0">
       {/* Text-Block */}
-      <section className="space-y-3 pt-8 pb-8">
+      <section className="intro-text space-y-3 pt-8 pr-[15px] pb-8 pl-[15px]">
         <p className="text-[12px] font-semibold tracking-[2.5px] text-[var(--color-olive)] uppercase md:text-[13px]">
           Agistri, Greece
         </p>
@@ -43,15 +43,15 @@ export default function Intro() {
       </div> */}
 
       {/* Drei kleine Cards */}
-      <section className="grid gap-8 pt-6 pb-6 sm:grid-cols-3">
-        <div className="border-border bg-card rounded-lg border p-3">
+      <section className="highlights grid gap-8 pt-6 pr-[15px] pb-6 pl-[15px]">
+        <div className="bg-card p-3">
           <h2 className="text-foreground text-[14px] font-semibold">Tiny island, short distance</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px] leading-relaxed">
             Only an hour from Athens by boat: pine forests, clear water and small tavernas.
           </p>
         </div>
 
-        <div className="border-border bg-card rounded-lg border p-3">
+        <div className="bg-card p-3">
           <h2 className="text-foreground text-[14px] font-semibold">Curated, not crowded</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px] leading-relaxed">
             A small list of straightforward island rooms instead of endless scrolling. Every stay is
@@ -59,7 +59,7 @@ export default function Intro() {
           </p>
         </div>
 
-        <div className="border-border bg-card rounded-lg border p-3">
+        <div className="bg-card p-3">
           <h2 className="text-foreground text-[14px] font-semibold">Direct contact with owners</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px] leading-relaxed">
             Guests book directly with owners. No platform fees, no middlemen, just clear, simple

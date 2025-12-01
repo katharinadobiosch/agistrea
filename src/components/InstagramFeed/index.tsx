@@ -44,7 +44,7 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
   const profileUrl = `https://www.instagram.com/${username.replace('@', '')}/`
 
   return (
-    <section className="instagram-feed border-border border-t pt-6 pb-6">
+    <section className="instagram-feed border-border border-t pt-6 pr-[15px] pb-6 pl-[15px]">
       <div className="mb-4 flex items-baseline justify-between">
         <div>
           <p className="text-muted-foreground text-[12px] font-semibold tracking-[2px] uppercase">
@@ -73,7 +73,7 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
       {isLoading && (
         <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {Array.from({ length: limit }).map((_, i) => (
-            <div key={i} className="bg-muted aspect-square w-full animate-pulse rounded-md" />
+            <div key={i} className="bg-muted aspect-square w-full animate-pulse" />
           ))}
         </div>
       )}
@@ -88,7 +88,7 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
               href={post.permalink}
               target="_blank"
               rel="noreferrer"
-              className="group bg-muted relative block aspect-square overflow-hidden rounded-md"
+              className="group bg-muted relative block aspect-square overflow-hidden"
             >
               <Image
                 src={post.imageUrl}
