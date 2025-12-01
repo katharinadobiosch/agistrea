@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="home w-full pt-0   md:pt-[95vh]">
+      <div className="home w-full pt-0 md:pt-[93vh]">
         <Intro />
         <InstagramFeed username="@agistrea" limit={6} />
       </div>

@@ -44,7 +44,7 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
   const profileUrl = `https://www.instagram.com/${username.replace('@', '')}/`
 
   return (
-    <section className="instagram-feed border-border border-t pt-6 pr-[15px] pb-6 pl-[15px]">
+    <section className="instagram-feed border-border border-t pt-6 pr-[15px] pb-6 pl-[15px] md:pt-8 md:pb-8 md:pl-[85px]">
       <div className="mb-4 flex items-baseline justify-between">
         <div>
           <p className="text-muted-foreground text-[12px] font-semibold tracking-[2px] uppercase">
@@ -59,19 +59,10 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
             {username}
           </Link>
         </div>
-
-        <Link
-          href={profileUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="text-[12px] font-medium text-[var(--color-sea)] hover:text-[var(--text-accent-hover)]"
-        >
-          View on Instagram →
-        </Link>
       </div>
 
       {isLoading && (
-        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:grid-cols-5">
           {Array.from({ length: limit }).map((_, i) => (
             <div key={i} className="bg-muted aspect-square w-full animate-pulse" />
           ))}
@@ -81,7 +72,7 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
       {!isLoading && error && <p className="text-muted-foreground text-[13px]">{error}</p>}
 
       {!isLoading && !error && posts.length > 0 && (
-        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:grid-cols-5">
           {posts.map(post => (
             <Link
               key={post.id}
@@ -103,6 +94,14 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
           ))}
         </div>
       )}
+      <Link
+        href={profileUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="flex justify-end text-[12px] font-medium text-[var(--color-sea)] hover:text-[var(--text-accent-hover)]"
+      >
+        View on Instagram →
+      </Link>
     </section>
   )
 }

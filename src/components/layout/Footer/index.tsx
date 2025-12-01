@@ -4,7 +4,7 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="mt-auto bg-[var(--bg-section)]">
+    <footer className="footer mt-auto bg-(--bg-section) md:pl-[85px]">
       {/* durchgehende Linie über die ganze Seite */}
       <div className="border-border/70 w-full border-t" />
 
@@ -22,7 +22,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/stays/agistri"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="hover:text(--color-ink-strong) text-(--color-ink) transition-colors"
                   >
                     Stays on Agistri
                   </Link>
@@ -30,7 +30,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/experiences"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Experiences
                   </Link>
@@ -38,7 +38,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/journal"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text--color-ink) hover:text--color-ink-strong) transition-colors"
                   >
                     Journal
                   </Link>
@@ -46,7 +46,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/guides"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Local Guides
                   </Link>
@@ -63,7 +63,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/trip-planning"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Personal travel advice
                   </Link>
@@ -71,7 +71,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/how-it-works"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     How booking works
                   </Link>
@@ -79,7 +79,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/faq"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     FAQ
                   </Link>
@@ -87,7 +87,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/policies"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Policies &amp; terms
                   </Link>
@@ -104,7 +104,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/about"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     About
                   </Link>
@@ -112,7 +112,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/sustainability"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Sustainability
                   </Link>
@@ -120,7 +120,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/contact"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Contact
                   </Link>
@@ -128,7 +128,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/imprint"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Imprint
                   </Link>
@@ -145,7 +145,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/owners/register"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     List your place
                   </Link>
@@ -153,7 +153,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/hosts/login"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Host login
                   </Link>
@@ -161,7 +161,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/hosts/partnerships"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Partnerships
                   </Link>
@@ -169,7 +169,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/hosts/contact"
-                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                    className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Contact
                   </Link>
@@ -180,16 +180,16 @@ export function Footer() {
                 <p className="text-foreground/80 text-xs font-semibold tracking-[1.6px] uppercase">
                   Contact for hosts
                 </p>
-                <div className="flex flex-wrap gap-3 text-[var(--color-sea)]">
+                <div className="flex flex-wrap gap-3 text-(--color-sea)">
                   <Link
                     href="https://instagram.com"
-                    className="transition-colors hover:text-[var(--text-accent-hover)]"
+                    className="transition-colors hover:text-(--text-accent-hover)"
                   >
                     <i className="fa-brands fa-square-instagram" />
                   </Link>
                   <Link
                     href="https://pinterest.com"
-                    className="transition-colors hover:text-[var(--text-accent-hover)]"
+                    className="transition-colors hover:text-(--text-accent-hover)"
                   >
                     <i className="fa-brands fa-square-pinterest" />
                   </Link>
