@@ -44,14 +44,14 @@ export default function Intro() {
 
       {/* Drei kleine Cards */}
       <section className="highlights grid gap-8 pt-6 pr-[15px] pb-6 pl-[15px]">
-        <div className="bg-card p-3">
+        <div className="bg-card">
           <h2 className="text-foreground text-[14px] font-semibold">Tiny island, short distance</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px] leading-relaxed">
             Only an hour from Athens by boat: pine forests, clear water and small tavernas.
           </p>
         </div>
 
-        <div className="bg-card p-3">
+        <div className="bg-card">
           <h2 className="text-foreground text-[14px] font-semibold">Curated, not crowded</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px] leading-relaxed">
             A small list of straightforward island rooms instead of endless scrolling. Every stay is
@@ -59,7 +59,7 @@ export default function Intro() {
           </p>
         </div>
 
-        <div className="bg-card p-3">
+        <div className="bg-card">
           <h2 className="text-foreground text-[14px] font-semibold">Direct contact with owners</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px] leading-relaxed">
             Guests book directly with owners. No platform fees, no middlemen, just clear, simple
