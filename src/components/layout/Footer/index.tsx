@@ -20,22 +20,34 @@ export function Footer() {
               </h3>
               <ul className="space-y-1.5">
                 <li>
-                  <Link href="/stays/agistri" className="transition-colors">
+                  <Link
+                    href="/stays/agistri"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Stays on Agistri
                   </Link>
                 </li>
                 <li>
-                  <Link href="/experiences" className="transition-colors">
+                  <Link
+                    href="/experiences"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Experiences
                   </Link>
                 </li>
                 <li>
-                  <Link href="/journal" className="transition-colors">
+                  <Link
+                    href="/journal"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Journal
                   </Link>
                 </li>
                 <li>
-                  <Link href="/guides" className="transition-colors">
+                  <Link
+                    href="/guides"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Local Guides
                   </Link>
                 </li>
@@ -49,22 +61,34 @@ export function Footer() {
               </h3>
               <ul className="space-y-1.5">
                 <li>
-                  <Link href="/trip-planning" className="transition-colors">
+                  <Link
+                    href="/trip-planning"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Personal travel advice
                   </Link>
                 </li>
                 <li>
-                  <Link href="/how-it-works" className="transition-colors">
+                  <Link
+                    href="/how-it-works"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     How booking works
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="transition-colors">
+                  <Link
+                    href="/faq"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link href="/policies" className="transition-colors">
+                  <Link
+                    href="/policies"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Policies &amp; terms
                   </Link>
                 </li>
@@ -78,22 +102,34 @@ export function Footer() {
               </h3>
               <ul className="space-y-1.5">
                 <li>
-                  <Link href="/about" className="transition-colors">
+                  <Link
+                    href="/about"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link href="/sustainability" className="transition-colors">
+                  <Link
+                    href="/sustainability"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Sustainability
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="transition-colors">
+                  <Link
+                    href="/contact"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Contact
                   </Link>
                 </li>
                 <li>
-                  <Link href="/imprint" className="transition-colors">
+                  <Link
+                    href="/imprint"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Imprint
                   </Link>
                 </li>
@@ -107,22 +143,34 @@ export function Footer() {
               </h3>
               <ul className="space-y-1.5">
                 <li>
-                  <Link href="/owners/register" className="transition-colors">
+                  <Link
+                    href="/owners/register"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     List your place
                   </Link>
                 </li>
                 <li>
-                  <Link href="/hosts/login" className="transition-colors">
+                  <Link
+                    href="/hosts/login"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Host login
                   </Link>
                 </li>
                 <li>
-                  <Link href="/hosts/partnerships" className="transition-colors">
+                  <Link
+                    href="/hosts/partnerships"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Partnerships
                   </Link>
                 </li>
                 <li>
-                  <Link href="/hosts/contact" className="transition-colors">
+                  <Link
+                    href="/hosts/contact"
+                    className="text-[var(--color-ink)] transition-colors hover:text-[var(--color-ink-strong)]"
+                  >
                     Contact
                   </Link>
                 </li>
