@@ -135,7 +135,7 @@ html {
 
 #site-wrapper {
   margin: 0 auto;
-  max-width: 1600px;
+  max-width: 100vw;
   min-height: 100vh; /* mindestens Bildschirmhöhe */
   display: flex; /* flex-container */
   flex-direction: column; /* Header, Main, Footer untereinander */

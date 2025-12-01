@@ -23,7 +23,7 @@ export default function Intro() {
       </section>
 
       {/* Bild über volle Breite */}
-      <div className="relative right-1/2 left-1/2 -mr-[50vw] -ml-[50vw] w-screen">
+      <div className="relative w-screen">
         <Image
           src="/assets/images/Homepage/intro.jpeg"
           alt="Agistri"

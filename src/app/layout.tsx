@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div id="site-wrapper">
           <Hero />
           <Header />
-          <main id="wrapper" className="relative max-w-[1600px]">
+          <main id="wrapper" className="relative max-w-[100vw]">
             {children}
           </main>
           <Footer />
