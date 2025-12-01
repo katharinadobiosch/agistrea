@@ -11,13 +11,14 @@ export default function Intro() {
         </p>
 
         <h1 className="text-foreground text-[32px] leading-tight font-semibold sm:text-[32px]">
-          Handpicked stays on a small pine-covered island.
+          A small pine-covered island with clear water, quiet corners and a very relaxed rhythm.
         </h1>
 
         <p className="text-muted-foreground max-w-full text-[14px] leading-relaxed">
-          Agistrea is a small, curated directory of apartments and rooms on Agistri. The selection
-          ranges from Skala and Megalochori to quiet corners close to the pine forests and the
-          island’s clear bays. No mass tourism, just places we would genuinely choose for ourselves.
+          Agistri is small and easy. Pine forests, clear bays, short paths and a gentle everyday
+          pace. Most stays are local, family-run apartments and rooms close to beaches and tavernas.
+          Some are set in quieter spots near the pines. Agistrea brings together a small and curated
+          selection of places that are welcoming, well located and run by kind local hosts.
         </p>
       </section>
 
@@ -53,15 +54,16 @@ export default function Intro() {
         <div className="border-border bg-card rounded-lg border p-3">
           <h2 className="text-foreground text-[14px] font-semibold">Curated, not crowded</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px] leading-relaxed">
-            A small list of places instead of endless scrolling. Every stay is checked carefully
-            before it goes live.
+            A small list of straightforward island rooms instead of endless scrolling. Every stay is
+            checked carefully before it goes live.
           </p>
         </div>
 
         <div className="border-border bg-card rounded-lg border p-3">
           <h2 className="text-foreground text-[14px] font-semibold">Direct contact with owners</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px] leading-relaxed">
-            Guests book directly with hosts. No opaque platform fees, no middlemen.
+            Guests book directly with owners. No platform fees, no middlemen, just clear, simple
+            communication.
           </p>
         </div>
       </section>

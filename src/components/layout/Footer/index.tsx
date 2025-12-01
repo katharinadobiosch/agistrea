@@ -4,38 +4,38 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-background/90 mt-auto">
+    <footer className="mt-auto bg-[var(--bg-section)]">
       {/* durchgehende Linie über die ganze Seite */}
-      <div className="border-border/70 border-t md:w-full" />
+      <div className="border-border/70 w-full border-t" />
 
       {/* alles, was eingerückt neben der Sidebar sein soll */}
       <div className="px-[15px] md:ml-20 md:w-[calc(100%-80px)]">
         <div className="max-w-(--page-max-width) py-10 md:w-full">
-          {/* 3 Spalten */}
+          {/* 4 Spalten */}
           <div className="text-muted-foreground grid gap-8 text-sm md:grid-cols-4">
             {/* Spalte 1 – Explore */}
             <div className="space-y-3">
-              <h3 className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
+              <h3 className="text-foreground/80 text-xs font-semibold tracking-[1.6px] uppercase">
                 Explore
               </h3>
               <ul className="space-y-1.5">
                 <li>
-                  <Link href="/stays/agistri" className="hover:text-accent">
+                  <Link href="/stays/agistri" className="transition-colors">
                     Stays on Agistri
                   </Link>
                 </li>
                 <li>
-                  <Link href="/experiences" className="hover:text-accent">
+                  <Link href="/experiences" className="transition-colors">
                     Experiences
                   </Link>
                 </li>
                 <li>
-                  <Link href="/journal" className="hover:text-accent">
+                  <Link href="/journal" className="transition-colors">
                     Journal
                   </Link>
                 </li>
                 <li>
-                  <Link href="/guides" className="hover:text-accent">
+                  <Link href="/guides" className="transition-colors">
                     Local Guides
                   </Link>
                 </li>
@@ -44,100 +44,105 @@ export function Footer() {
 
             {/* Spalte 2 – Plan your stay */}
             <div className="space-y-3">
-              <h3 className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
+              <h3 className="text-foreground/80 text-xs font-semibold tracking-[1.6px] uppercase">
                 Plan your stay
               </h3>
               <ul className="space-y-1.5">
                 <li>
-                  <Link href="/trip-planning" className="hover:text-accent">
+                  <Link href="/trip-planning" className="transition-colors">
                     Personal travel advice
                   </Link>
                 </li>
                 <li>
-                  <Link href="/how-it-works" className="hover:text-accent">
+                  <Link href="/how-it-works" className="transition-colors">
                     How booking works
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="hover:text-accent">
+                  <Link href="/faq" className="transition-colors">
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link href="/policies" className="hover:text-accent">
+                  <Link href="/policies" className="transition-colors">
                     Policies &amp; terms
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Spalte 3 – About & Connect */}
+            {/* Spalte 3 – Agistrea */}
             <div className="space-y-3">
-              <h3 className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
+              <h3 className="text-foreground/80 text-xs font-semibold tracking-[1.6px] uppercase">
                 Agistrea
               </h3>
               <ul className="space-y-1.5">
                 <li>
-                  <Link href="/about" className="hover:text-accent">
+                  <Link href="/about" className="transition-colors">
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link href="/sustainability" className="hover:text-accent">
+                  <Link href="/sustainability" className="transition-colors">
                     Sustainability
                   </Link>
                 </li>
-
                 <li>
-                  <Link href="/contact" className="hover:text-accent">
+                  <Link href="/contact" className="transition-colors">
                     Contact
                   </Link>
                 </li>
-
                 <li>
-                  <Link href="/contact" className="hover:text-accent">
+                  <Link href="/imprint" className="transition-colors">
                     Imprint
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Spalte 4 – Plan your stay */}
+            {/* Spalte 4 – For hosts */}
             <div className="space-y-3">
-              <h3 className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
-                For Hosts
+              <h3 className="text-foreground/80 text-xs font-semibold tracking-[1.6px] uppercase">
+                For hosts
               </h3>
               <ul className="space-y-1.5">
                 <li>
-                  <Link href="/owners/register" className="hover:text-accent">
+                  <Link href="/owners/register" className="transition-colors">
                     List your place
                   </Link>
                 </li>
                 <li>
-                  <Link href="/how-it-works" className="hover:text-accent">
+                  <Link href="/hosts/login" className="transition-colors">
                     Host login
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="hover:text-accent">
+                  <Link href="/hosts/partnerships" className="transition-colors">
                     Partnerships
                   </Link>
                 </li>
                 <li>
-                  <Link href="/policies" className="hover:text-accent">
+                  <Link href="/hosts/contact" className="transition-colors">
                     Contact
                   </Link>
                 </li>
               </ul>
+
               <div className="mt-4 space-y-1.5">
-                <p className="text-foreground text-xs font-semibold tracking-[1.6px] uppercase">
+                <p className="text-foreground/80 text-xs font-semibold tracking-[1.6px] uppercase">
                   Contact for hosts
                 </p>
-                <div className="flex flex-wrap gap-3">
-                  <Link href="https://instagram.com" className="hover:text-accent">
+                <div className="flex flex-wrap gap-3 text-[var(--color-sea)]">
+                  <Link
+                    href="https://instagram.com"
+                    className="transition-colors hover:text-[var(--text-accent-hover)]"
+                  >
                     <i className="fa-brands fa-square-instagram" />
                   </Link>
-                  <Link href="https://pinterest.com" className="hover:text-accent">
+                  <Link
+                    href="https://pinterest.com"
+                    className="transition-colors hover:text-[var(--text-accent-hover)]"
+                  >
                     <i className="fa-brands fa-square-pinterest" />
                   </Link>
                 </div>
@@ -145,7 +150,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Bottom-Bar, jetzt ohne border-t (die ist oben schon full-width) */}
+          {/* Bottom-Bar */}
           <div className="bottom-bar text-muted-foreground mt-10 text-xs">
             <div className="flex flex-col items-center justify-center text-center md:flex-row md:justify-between md:gap-2 md:text-left">
               <p>© {year} Agistrea – small island stays.</p>
