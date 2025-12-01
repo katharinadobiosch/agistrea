@@ -1,4 +1,3 @@
-// components/InstagramFeed.tsx
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -42,28 +41,30 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
     load()
   }, [limit])
 
+  const profileUrl = `https://www.instagram.com/${username.replace('@', '')}/`
+
   return (
-    <section className="instagram-feed border-t border-slate-200 pt-6 pb-6">
+    <section className="instagram-feed border-border border-t pt-6 pb-6">
       <div className="mb-4 flex items-baseline justify-between">
         <div>
-          <p className="text-[12px] font-semibold tracking-[2px] text-slate-500 uppercase">
+          <p className="text-muted-foreground text-[12px] font-semibold tracking-[2px] uppercase">
             On Instagram
           </p>
           <Link
-            href={`https://www.instagram.com/${username.replace('@', '')}/`}
+            href={profileUrl}
             target="_blank"
             rel="noreferrer"
-            className="text-[14px] font-medium text-slate-900 hover:underline"
+            className="text-foreground text-[14px] font-medium hover:text-[var(--color-sea)]"
           >
             {username}
           </Link>
         </div>
 
         <Link
-          href={`https://www.instagram.com/${username.replace('@', '')}/`}
+          href={profileUrl}
           target="_blank"
           rel="noreferrer"
-          className="text-[12px] font-medium text-slate-500 hover:text-slate-800"
+          className="text-[12px] font-medium text-[var(--color-sea)] hover:text-[var(--text-accent-hover)]"
         >
           View on Instagram →
         </Link>
@@ -72,12 +73,12 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
       {isLoading && (
         <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {Array.from({ length: limit }).map((_, i) => (
-            <div key={i} className="aspect-square w-full animate-pulse bg-slate-100" />
+            <div key={i} className="bg-muted aspect-square w-full animate-pulse rounded-md" />
           ))}
         </div>
       )}
 
-      {!isLoading && error && <p className="text-[13px] text-slate-500">{error}</p>}
+      {!isLoading && error && <p className="text-muted-foreground text-[13px]">{error}</p>}
 
       {!isLoading && !error && posts.length > 0 && (
         <div className="grid grid-cols-3 gap-2 sm:gap-3">
@@ -87,7 +88,7 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
               href={post.permalink}
               target="_blank"
               rel="noreferrer"
-              className="group relative block aspect-square overflow-hidden bg-slate-100"
+              className="group bg-muted relative block aspect-square overflow-hidden rounded-md"
             >
               <Image
                 src={post.imageUrl}

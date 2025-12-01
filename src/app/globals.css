@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -38,7 +38,6 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
@@ -48,85 +47,84 @@
   --page-max-width: 1270px;
   --page-padding-x: 24px;
 
-  /* Brand – Natur & Pinien */
-  --color-pine-brown: #7b5f3a; /* Primary */
-  --color-pine-green: #3f5a45; /* Secondary accent */
+  /* Brand – Honest Mediterranean */
+  --color-terracotta: #b97a5a; /* Primary CTA / Buttons */
+  --color-olive: #6e775e; /* Natural accent (Pins, Pflanzen) */
+  --color-sea: #7a90a8; /* Meer / Links, Icons */
+  --color-sand: #cbbba4; /* Soft backgrounds, Chips */
 
-  /* Insellicht – warme Akzente */
-  --color-summer-gold: #d3a96f; /* Highlight / Buttons */
-  --color-sandstone: #e6ddcf; /* Soft section background */
-
-  /* Meer – subtile Akzente */
-  --color-aegean: #5e7f9a; /* Links, Icons */
-
-  /* Neutrals */
-  --color-slate: #2a2f38; /* Footer / strong text */
-  --color-soft-white: #faf9f6; /* Background */
+  /* Neutrals & Struktur */
+  --color-soft-white: #faf7f2; /* Haupt-Background */
+  /* Textfarben */
+  --color-ink-strong: #4a463f; /* Headlines */
+  --color-ink: #5a564e; /* Body */
+  --color-muted-ink: #8c8982; /* Muted */
+  --color-border-soft: #e3ded7;
   --color-white: #ffffff;
   --color-black: #000000;
 
   /* Semantic — eigene Tokens */
   --bg-base: var(--color-soft-white);
-  --bg-section: var(--color-sandstone);
-  --bg-card: var(--color-pine-brown);
+  --bg-section: color-mix(in srgb, var(--color-soft-white) 70%, var(--color-sand) 30%);
+  --bg-card: var(--color-white);
 
-  --text-main: var(--color-slate);
+  --text-main: var(--color-ink);
   --text-light: var(--color-soft-white);
-  --text-accent: var(--color-aegean);
-  --text-accent-hover: #4b6880; /* etwas dunkler, harmonisch */
+  --text-accent: var(--color-sea);
+  --text-accent-hover: #637894; /* etwas dunkler als --color-sea */
 
-  --btn-primary-bg: var(--color-summer-gold);
-  --btn-primary-text: var(--color-white);
-  --btn-primary-hover-bg: #c4995b; /* leicht dunkler */
+  --btn-primary-bg: var(--color-terracotta);
+  --btn-primary-text: var(--color-soft-white);
+  --btn-primary-hover-bg: #a6684c; /* leicht dunkler */
 
-  --border-light: rgba(0, 0, 0, 0.1);
+  --border-light: var(--color-border-soft);
   --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
 
-  --font-serif: "Playfair Display", serif;
+  --font-serif: 'Playfair Display', serif;
 
   /* Mapping auf Tailwind/Shadcn-Design-Tokens */
   --background: var(--bg-base);
   --foreground: var(--text-main);
 
   --card: var(--bg-card);
-  --card-foreground: var(--text-light);
+  --card-foreground: var(--text-main);
 
   --popover: var(--bg-base);
   --popover-foreground: var(--text-main);
 
-  --primary: var(--color-pine-brown);
+  --primary: var(--color-terracotta);
   --primary-foreground: var(--text-light);
 
-  --secondary: var(--color-sandstone);
+  --secondary: var(--color-sand);
   --secondary-foreground: var(--text-main);
 
-  --muted: var(--color-sandstone);
-  --muted-foreground: oklch(0.556 0 0); /* leicht abgeschwächter Text */
+  --muted: var(--color-sand);
+  --muted-foreground: var(--color-muted-ink);
 
-  --accent: var(--text-accent);
+  --accent: var(--color-sea);
   --accent-foreground: var(--text-light);
 
   --destructive: oklch(0.577 0.245 27.325);
 
   --border: var(--border-light);
   --input: var(--border-light);
-  --ring: var(--color-aegean);
+  --ring: var(--color-sea);
 
-  /* Charts kannst du später bei Bedarf anpassen */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* Charts grob angepasst, kannst du später feintunen */
+  --chart-1: var(--color-terracotta);
+  --chart-2: var(--color-olive);
+  --chart-3: var(--color-sea);
+  --chart-4: var(--color-sand);
+  --chart-5: #8c5a3f;
 
   --sidebar: var(--bg-base);
   --sidebar-foreground: var(--text-main);
-  --sidebar-primary: var(--color-pine-brown);
+  --sidebar-primary: var(--color-terracotta);
   --sidebar-primary-foreground: var(--text-light);
-  --sidebar-accent: var(--color-sandstone);
+  --sidebar-accent: var(--color-sand);
   --sidebar-accent-foreground: var(--text-main);
   --sidebar-border: var(--border-light);
-  --sidebar-ring: var(--color-aegean);
+  --sidebar-ring: var(--color-sea);
 }
 
 /*  1rem = 10px */
@@ -184,21 +182,46 @@ html {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-a {
-  color: var(--text-accent);
-  transition: color 0.15s ease;
-  cursor: pointer;
-}
-
-a:hover {
-  color: var(--text-accent-hover);
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--color-ink-strong);
+  }
+
+  p,
+  li,
+  span {
+    color: var(--color-ink);
+  }
+
+  strong,
+  b {
+    color: var(--color-ink-strong);
+    font-weight: 600;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--text-accent);
+    transition: color 0.15s ease;
+    cursor: pointer;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 }
