@@ -6,6 +6,10 @@ import Image from 'next/image'
 import { playfair } from './fonts'
 import Link from 'next/link'
 
+export const metadata = {
+  title: 'Agistrea • Coming Soon',
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const isProd = process.env.NEXT_PUBLIC_AGISTREA_ENV === 'production'
 
@@ -39,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             fill
             className="object-cover"
           />
+
           <div className="header absolute z-100 flex w-screen justify-center py-3">
             <Link href="/en">
               <div className="font-serif text-3xl font-semibold text-white">Agistrea</div>
@@ -49,10 +54,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <h2 className="text-[18px] font-semibold tracking-[0.5px] text-neutral-900">
               Be part of Agistrea
             </h2>
+
             <p className="mt-3 text-[14px] leading-relaxed text-neutral-700">
               A small curated guide to quiet places on Agistri is coming soon. If you’d like to stay
               there or list your place, leave your email address and we’ll get in touch.
             </p>
+
             <form
               action="https://formsubmit.co/katharinadobiosch@gmail.com"
               method="POST"
@@ -62,8 +69,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_subject" value="New interest on Agistrea" />
               <input type="hidden" name="_template" value="box" />
-              {/* Checkboxen: Host / Traveller */}
-              <div className="flex flex-col gap-1">
+
+              {/* Checkbox-Gruppe */}
+              <div className="role-group flex flex-col gap-1">
                 <label className="flex items-center gap-2 text-[13px] text-neutral-700">
                   <input
                     type="checkbox"
@@ -73,6 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   />
                   <span>I’m a host</span>
                 </label>
+
                 <label className="flex items-center gap-2 text-[13px] text-neutral-700">
                   <input
                     type="checkbox"
@@ -83,7 +92,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <span>I’m looking for a quiet place to stay</span>
                 </label>
               </div>
-              {/* E-Mail-Feld */}
+
+              {/* Email */}
               <input
                 type="email"
                 name="email"
@@ -91,6 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 placeholder="Your email address"
                 className="mt-3 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-[14px] text-neutral-900 placeholder-neutral-400 focus:border-neutral-500 focus:outline-none"
               />
+
               {/* Button */}
               <button
                 type="submit"
@@ -100,6 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </button>
             </form>
           </div>
+
           <div className="absolute inset-x-0 bottom-6 flex items-center justify-center gap-1 text-white">
             <a
               href="https://www.instagram.com/agistrea"
@@ -111,6 +123,33 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span className="font-weight text-white">agistrea</span>
             </a>
           </div>
+
+          {/* Validation Script */}
+          <script>
+            {`
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const checkboxes = form.querySelectorAll("input[type='checkbox']");
+
+        form.addEventListener("submit", function (e) {
+          const oneChecked = Array.from(checkboxes).some(cb => cb.checked);
+
+          if (!oneChecked) {
+            e.preventDefault();
+
+            let error = document.getElementById("role-error");
+            if (!error) {
+              error = document.createElement("p");
+              error.id = "role-error";
+              error.textContent = "Please select at least one option.";
+              error.className = "text-red-600 text-[13px] mt-1";
+              form.querySelector(".role-group").appendChild(error);
+            }
+          }
+        });
+      });
+    `}
+          </script>
         </body>
       )}
     </html>
