@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer'
 import Hero from '@/components/layout/Hero'
 import Image from 'next/image'
 import { playfair } from './fonts'
+import Link from 'next/link'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const isProd = process.env.NEXT_PUBLIC_AGISTREA_ENV === 'production'
@@ -20,6 +21,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       {isProd ? (
+        <body className={`${playfair.variable} min-h-screen bg-white`}>
+          <div id="site-wrapper">
+            <Hero />
+            <Header />
+            <main id="wrapper" className="relative max-w-[100vw]">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </body>
+      ) : (
         <body className="h-screen w-screen overflow-hidden">
           <Image
             src="/assets/images/Homepage/hero-agistri-2.jpeg"
@@ -27,6 +39,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             fill
             className="object-cover"
           />
+          <div className="header z-100 flex flex-1 justify-center">
+            <Link href="/en">
+              <div className="font-serif text-3xl font-semibold text-white">Agistrea</div>
+            </Link>
+          </div>
 
           <div className="absolute top-1/2 left-1/2 w-[90%] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white/90 px-6 py-6 text-center">
             <h2 className="text-[18px] font-semibold tracking-[0.5px] text-neutral-900">
@@ -93,17 +110,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <i className="fa-brands fa-instagram text-[16px] text-white"></i>
               <span className="font-weight text-white">agistrea</span>
             </a>
-          </div>
-        </body>
-      ) : (
-        <body className={`${playfair.variable} min-h-screen bg-white`}>
-          <div id="site-wrapper">
-            <Hero />
-            <Header />
-            <main id="wrapper" className="relative max-w-[100vw]">
-              {children}
-            </main>
-            <Footer />
           </div>
         </body>
       )}
