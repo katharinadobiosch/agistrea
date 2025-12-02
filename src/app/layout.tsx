@@ -56,8 +56,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </h2>
 
             <p className="mt-3 text-[14px] leading-relaxed text-neutral-700">
-              A small curated guide to quiet places on Agistri is coming soon. If you’d like to stay
-              there or list your place, leave your email address and we’ll get in touch.
+              A small curated guide to quiet, locally run stays on Agistri is coming soon. If you’d
+              like to stay there or list your place, leave your email and we’ll get in touch.
             </p>
 
             <form
@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     value="guest"
                     className="h-4 w-4 rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900"
                   />
-                  <span>I’m looking for a quiet place to stay</span>
+                  <span>I’m looking for a locally run place to stay</span>
                 </label>
               </div>
 
