@@ -16,6 +16,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "2c56b7c7f3c54e73848abcf385da94d0"}'
+        />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
