@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             fill
             className="object-cover"
           />
-          <div className="header z-100 flex flex-1 justify-center">
+          <div className="header absolute z-100 flex w-screen justify-center py-3">
             <Link href="/en">
               <div className="font-serif text-3xl font-semibold text-white">Agistrea</div>
             </Link>
