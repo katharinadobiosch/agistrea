@@ -59,12 +59,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <h2 className="text-[18px] font-semibold tracking-[0.5px] text-neutral-900">
               Be part of Agistrea
             </h2>
-
             <p className="mt-3 text-[14px] leading-relaxed text-neutral-700">
-              A small curated guide to quiet, locally run stays on Agistri is coming soon. If you’d
-              like to stay there or list your place, leave your email and we’ll get in touch.
+              Direct bookings for locally-run stays on Agistri. <br /> No platform fees. No
+              commissions. Hosts keep 100%. Travelers pay fair prices. Money stays on the island.
+              <br />
+              Launching February 2025.
             </p>
-
             <form
               action="https://formsubmit.co/katharinadobiosch@gmail.com"
               method="POST"
@@ -84,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     value="host"
                     className="h-4 w-4 rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900"
                   />
-                  <span>I’m a host</span>
+                  <span>I’m a host on Agistri</span>
                 </label>
 
                 <label className="flex items-center gap-2 text-[13px] text-neutral-700">
@@ -94,7 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     value="guest"
                     className="h-4 w-4 rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900"
                   />
-                  <span>I’m looking for a locally run place to stay</span>
+                  <span>I’m looking for a place to stay</span>
                 </label>
               </div>
 
@@ -103,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 type="email"
                 name="email"
                 required
-                placeholder="Your email address"
+                placeholder="your@email.com"
                 className="mt-3 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-[14px] text-neutral-900 placeholder-neutral-400 focus:border-neutral-500 focus:outline-none"
               />
 
@@ -115,6 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 Notify me
               </button>
             </form>
+            <p className="pt-[12px] text-[12px]"> Built with ♥ from Agistri for Agistri</p>
           </div>
 
           <div className="absolute inset-x-0 bottom-6 flex items-center justify-center gap-1 text-white">
@@ -125,7 +126,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               className="flex items-center gap-2 text-[14px] tracking-[0.3px]"
             >
               <i className="fa-brands fa-instagram text-[16px] text-white"></i>
-              <span className="font-weight text-white">agistrea</span>
+              <span className="font-weight text-white">Follow the journey → @agistrea</span>
             </a>
           </div>
 
