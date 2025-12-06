@@ -30,17 +30,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       {isProd ? (
-        <body className={`${playfair.variable} min-h-screen bg-white`}>
-          <div id="site-wrapper">
-            <Hero />
-            <Header />
-            <main id="wrapper" className="relative max-w-[100vw]">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </body>
-      ) : (
         <body className="h-screen w-screen overflow-hidden">
           <Image
             src="/assets/images/Homepage/hero-agistri-2.jpeg"
@@ -156,6 +145,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       });
     `}
           </script>
+        </body>
+      ) : (
+        <body className={`${playfair.variable} min-h-screen bg-white`}>
+          <div id="site-wrapper">
+            <Hero />
+            <Header />
+            <main id="wrapper" className="relative max-w-[100vw]">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </body>
       )}
     </html>
