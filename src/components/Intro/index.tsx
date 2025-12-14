@@ -9,6 +9,7 @@ export default function Intro() {
         <p className="text-[12px] font-semibold tracking-[2.5px] text-(--color-olive) uppercase md:text-[13px]">
           Agistri, Greece
         </p>
+        <Link href="/test-supabase">Go to test</Link>
 
         <h1 className="text-foreground text-[32px] leading-tight font-semibold sm:text-[32px]">
           A small pine-covered island with clear water, quiet corners and a very relaxed rhythm.
