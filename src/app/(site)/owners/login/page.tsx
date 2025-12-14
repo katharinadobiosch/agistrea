@@ -38,17 +38,19 @@ export default function OwnerLoginPage() {
       <div className="login__left w-1/2">
         <Image
           src="/assets/images/login/AdobeStock_300660678_Preview.jpeg"
-          alt="A view of the sea and small Greek houses surrounded by pine trees on Agistri island."
+          alt="..."
           width={2400}
           height={1600}
           sizes="100vh"
-          className="left h-full w-auto object-cover object-[77%_50%]"
+          className="h-full w-auto object-cover object-[77%_50%]"
         />
       </div>
+
       <div className="login__right flex w-1/2 items-center">
-        <div className="center flex w-full flex-col items-center">
+        <div className="center flex w-full flex-col items-center gap-2">
           <h1 className="text-xl font-semibold">Host Login</h1>
-          <div>
+
+          <div className="text-sm text-[var(--color-muted-ink)]">
             New to Agistrea?{' '}
             <Link
               href="/owners/register"
@@ -57,15 +59,17 @@ export default function OwnerLoginPage() {
               Create an account
             </Link>
           </div>
+
           <form
             onSubmit={onSubmit}
-            className="flex w-[60%] max-w-sm flex-col gap-3 rounded-xl bg-white px-8 py-6 shadow-[var(--shadow-soft)]"
+            className="mt-2 flex w-[60%] max-w-sm flex-col gap-3 rounded-xl bg-white px-8 py-6 shadow-[var(--shadow-soft)]"
           >
             <input
               type="email"
               placeholder="Email"
               value={email}
               onChange={e => setEmail(e.target.value)}
+              autoComplete="email"
               className="w-full rounded-md border border-[var(--border-light)] bg-[var(--bg-base)] px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--ring)]"
             />
 
@@ -74,6 +78,7 @@ export default function OwnerLoginPage() {
               placeholder="Password"
               value={password}
               onChange={e => setPassword(e.target.value)}
+              autoComplete="current-password"
               className="w-full rounded-md border border-[var(--border-light)] bg-[var(--bg-base)] px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--ring)]"
             />
 
