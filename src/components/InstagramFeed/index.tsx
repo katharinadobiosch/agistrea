@@ -22,23 +22,42 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    setIsLoading(true)
-    setError(null)
+    let isMounted = true
+    const controller = new AbortController()
+
     const load = async () => {
+      setIsLoading(true)
+      setError(null)
+
       try {
-        const res = await fetch(`/api/instagram?limit=${limit}`)
+        const res = await fetch(`/api/instagram?limit=${limit}`, {
+          signal: controller.signal,
+          cache: 'no-store',
+        })
+
+        if (!res.ok) {
+          throw new Error(`Instagram API route returned ${res.status}`)
+        }
 
         const data = (await res.json()) as InstagramPost[]
-        setPosts(data)
-      } catch (err) {
+        if (isMounted) setPosts(Array.isArray(data) ? data : [])
+      } catch (err: any) {
+        // Wichtig: Abort passiert bei Route change / dev restart → nicht als Error zeigen
+        if (err?.name === 'AbortError') return
+
         console.error(err)
-        setError('Instagram feed is currently unavailable.')
+        if (isMounted) setError('Instagram feed is currently unavailable.')
       } finally {
-        setIsLoading(false)
+        if (isMounted) setIsLoading(false)
       }
     }
 
     load()
+
+    return () => {
+      isMounted = false
+      controller.abort()
+    }
   }, [limit])
 
   const profileUrl = `https://www.instagram.com/${username.replace('@', '')}/`
