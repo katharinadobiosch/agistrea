@@ -18,8 +18,6 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onClose }) 
         'transform transition-transform duration-500 ease-out',
         'md:hidden',
 
-        // MOBILE: from top
-        // DESKTOP: from left
         isOpen ? 'translate-y-0' : '-translate-y-full',
       ]
         .filter(Boolean)

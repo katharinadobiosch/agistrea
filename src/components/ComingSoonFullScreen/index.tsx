@@ -11,7 +11,7 @@ export default function ComingSoonFullScreen() {
         priority
         sizes="100vw"
         unoptimized
-        className="object-cover"
+        className="-z-10 object-cover"
       />
 
       <div className="header absolute z-100 flex w-screen justify-center py-3">

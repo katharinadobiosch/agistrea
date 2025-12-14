@@ -1,4 +1,3 @@
-// src/app/(home)/page.tsx
 import Intro from '@/components/Intro'
 import InstagramFeed from '@/components/InstagramFeed'
 

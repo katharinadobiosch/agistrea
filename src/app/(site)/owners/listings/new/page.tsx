@@ -21,12 +21,10 @@ export default function NewListingPage() {
       body: JSON.stringify(body),
     });
 
-    // optional: redirect, toast etc.
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Beispiel-Felder */}
       <div>
         <label className="block text-sm text-[var(--text-main)]">Title</label>
         <input

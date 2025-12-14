@@ -1,11 +1,9 @@
-// app/listings/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
 
 type Props = { params: { slug: string } };
 
 export default async function ListingPage({ params }: Props) {
-  // EIN Listing anhand des Slugs laden
   const { data: listing, error } = await db
     .from("listings")
     .select("*")
@@ -31,7 +29,6 @@ export default async function ListingPage({ params }: Props) {
         {listing.description}
       </p>
 
-      {/* Hier später Bilder, Preise, Features */}
     </main>
   );
 }

@@ -36,7 +36,6 @@ export default function OwnerRegisterPage() {
 
     setLoading(true)
 
-    // returnTo unterstützen (optional)
     const params = new URLSearchParams(window.location.search)
     const returnTo = params.get('returnTo') ?? '/owners/properties'
 
@@ -44,7 +43,6 @@ export default function OwnerRegisterPage() {
       email,
       password,
       options: {
-        // nach Email-confirmation landet der User hier (prod: deine Domain)
         emailRedirectTo:
           typeof window !== 'undefined' ? `${window.location.origin}${returnTo}` : undefined,
       },
@@ -56,15 +54,12 @@ export default function OwnerRegisterPage() {
       return
     }
 
-    // Falls Supabase "Email confirmation" aktiviert hat,
-    // ist data.session oft null => User muss erst bestätigen.
     if (!data.session) {
       setLoading(false)
       setSuccess('Account created! Please check your email to confirm your account.')
       return
     }
 
-    // Falls sofort eingeloggt (email confirm aus):
     setLoading(false)
     router.push(returnTo)
     router.refresh()

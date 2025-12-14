@@ -1,4 +1,3 @@
-// app/env-test/page.tsx
 export default function EnvTestPage() {
   return (
     <pre>

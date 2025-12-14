@@ -12,8 +12,8 @@ type InstagramPost = {
 }
 
 type InstagramFeedProps = {
-  username: string // nur fürs UI („@agistrea“)
-  limit?: number // wie viele Posts anzeigen
+  username: string
+  limit?: number
 }
 
 export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProps) {
@@ -42,7 +42,6 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
         const data = (await res.json()) as InstagramPost[]
         if (isMounted) setPosts(Array.isArray(data) ? data : [])
       } catch (err: any) {
-        // Wichtig: Abort passiert bei Route change / dev restart → nicht als Error zeigen
         if (err?.name === 'AbortError') return
 
         console.error(err)

@@ -3,7 +3,6 @@ import type { NextRequest } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
 export async function middleware(req: NextRequest) {
-  // wichtig: res ist das Response-Objekt, auf dem Supabase Cookies setzt
   const res = NextResponse.next()
 
   const supabase = createServerClient(
@@ -31,17 +30,14 @@ export async function middleware(req: NextRequest) {
   const isAuthRoute = path.startsWith('/owners/login') || path.startsWith('/owners/register')
 
   if (isOwnerRoute) {
-    // 🔒 Schutz: nicht eingeloggt -> redirect zu /owners/login
     if (!user && !isAuthRoute) {
       const redirectUrl = req.nextUrl.clone()
       redirectUrl.pathname = '/owners/login'
-      // optional: returnTo mitgeben
       redirectUrl.searchParams.set('returnTo', path)
 
       return NextResponse.redirect(redirectUrl)
     }
 
-    // ✅ Profil sicherstellen (nur wenn eingeloggt)
     if (user) {
       await supabase.from('profiles').upsert({
         id: user.id,
@@ -51,7 +47,6 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  // wichtig: immer res zurückgeben, damit cookie changes erhalten bleiben
   return res
 }
 

@@ -68,7 +68,6 @@ export default async function OwnerPropertiesPage() {
 
     if (error) throw error
 
-    // Features + Prices direkt mit anlegen (MVP)
     await supabase.from('property_features').insert({
       property_id: inserted.id,
       features: {},

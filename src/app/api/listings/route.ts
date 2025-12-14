@@ -1,8 +1,6 @@
-// src/app/api/listings/route.ts
 import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 
-// kleine Helper-Funktion für Slugs
 function slugify(input: string): string {
   return input
     .toLowerCase()
@@ -21,7 +19,6 @@ export async function POST(req: Request) {
 
     const slug = body.slug ? slugify(body.slug) : slugify(body.title)
 
-    // Supabase-Insert statt Prisma .listing.create
     const { data, error } = await db
       .from('listings')
       .insert({
