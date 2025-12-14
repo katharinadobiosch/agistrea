@@ -35,7 +35,7 @@ export default async function OwnerPropertiesPage() {
     return (
       <div>
         <p>Bitte einloggen.</p>
-        <Link href="/owners/login">Zum Login</Link>
+        <Link href="/hosts/login">Zum Login</Link>
       </div>
     )
   }
@@ -78,7 +78,7 @@ export default async function OwnerPropertiesPage() {
       min_nights: 1,
     })
 
-    revalidatePath('/owners/properties')
+    revalidatePath('/hosts/properties')
   }
 
   const { data: properties, error } = await supabase
@@ -100,7 +100,7 @@ export default async function OwnerPropertiesPage() {
       <ul>
         {(properties ?? []).map(p => (
           <li key={p.id}>
-            <Link href={`/owners/properties/${p.id}/edit`}>
+            <Link href={`/hosts/properties/${p.id}/edit`}>
               {p.title} ({p.status})
             </Link>
             <span>/stays/{p.slug}</span>

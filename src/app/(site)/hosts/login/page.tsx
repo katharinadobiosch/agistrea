@@ -9,7 +9,7 @@ export default function OwnerAuthPage() {
   const router = useRouter()
 
   const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null
-  const returnTo = useMemo(() => params?.get('returnTo') ?? '/owners/properties', [params])
+  const returnTo = useMemo(() => params?.get('returnTo') ?? '/hosts/properties', [params])
 
   const [mode, setMode] = useState<'login' | 'register'>('login')
 
@@ -59,7 +59,7 @@ export default function OwnerAuthPage() {
 
     setLoading(true)
 
-    const redirectTo = `${window.location.origin}/owners/login?returnTo=${encodeURIComponent(
+    const redirectTo = `${window.location.origin}/hosts/login?returnTo=${encodeURIComponent(
       returnTo
     )}`
 

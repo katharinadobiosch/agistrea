@@ -41,8 +41,8 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
 
     if (error) throw error
 
-    revalidatePath(`/owners/properties/${params.id}/edit`)
-    revalidatePath('/owners/properties')
+    revalidatePath(`/hosts/properties/${params.id}/edit`)
+    revalidatePath('/hosts/properties')
   }
 
   return (

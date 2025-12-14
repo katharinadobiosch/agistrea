@@ -26,13 +26,13 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getUser()
 
   const path = req.nextUrl.pathname
-  const isOwnerRoute = path.startsWith('/owners')
-  const isAuthRoute = path.startsWith('/owners/login') || path.startsWith('/owners/register')
+  const isOwnerRoute = path.startsWith('/hosts')
+  const isAuthRoute = path.startsWith('/hosts/login') || path.startsWith('/hosts/register')
 
   if (isOwnerRoute) {
     if (!user && !isAuthRoute) {
       const redirectUrl = req.nextUrl.clone()
-      redirectUrl.pathname = '/owners/login'
+      redirectUrl.pathname = '/hosts/login'
       redirectUrl.searchParams.set('returnTo', path)
 
       return NextResponse.redirect(redirectUrl)
@@ -51,5 +51,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/owners/:path*'],
+  matcher: ['/hosts/:path*'],
 }
