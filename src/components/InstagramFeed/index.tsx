@@ -22,12 +22,12 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    setIsLoading(true)
+    setError(null)
     const load = async () => {
       try {
         const res = await fetch(`/api/instagram?limit=${limit}`)
-        if (!res.ok) {
-          throw new Error('Failed to load Instagram posts')
-        }
+
         const data = (await res.json()) as InstagramPost[]
         setPosts(data)
       } catch (err) {
@@ -90,17 +90,14 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
         href={profileUrl}
         target="_blank"
         rel="noreferrer"
-        className="flex justify-end text-[12px] font-medium text-[var(--color-sea)] hover:text-[var(--text-accent-hover)]"
+        className="flex justify-end gap-2 text-[12px] font-medium"
       >
-        View on Instagram →
-        <Link
-          href={profileUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="text-foreground text-[14px] font-medium hover:text-[var(--color-sea)]"
-        >
+        <span className="text-[var(--color-sea)] hover:text-[var(--text-accent-hover)]">
+          View on Instagram →
+        </span>
+        <span className="text-foreground text-[14px] hover:text-[var(--color-sea)]">
           {username}
-        </Link>
+        </span>
       </Link>
     </section>
   )

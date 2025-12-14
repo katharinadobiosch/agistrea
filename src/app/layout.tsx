@@ -119,7 +119,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </a>
           </div>
 
-
           {/* Validation Script */}
           <script>
             {`
@@ -150,7 +149,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       ) : (
         <body className={`${playfair.variable} min-h-screen bg-white`}>
           <div id="site-wrapper">
-            {/* <Hero /> */}
+            <Hero />
             <Header />
 
             <main id="wrapper" className="relative max-w-[100vw]">
