@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 type DesktopNavigationProps = {
   isOpen: boolean
   onClose: () => void
@@ -19,6 +21,10 @@ export default function DesktopNavigation({ isOpen, onClose }: DesktopNavigation
             <button className="block hover:text-white">Rooms</button>
             <button className="block hover:text-white">Location</button>
             <button className="block hover:text-white">Contact</button>
+            <button className="block hover:text-white">
+              {' '}
+              <Link href="/owners/login">Zum Login</Link>
+            </button>
           </nav>
 
           {/* Rechts: Close-Button */}

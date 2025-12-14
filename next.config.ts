@@ -5,7 +5,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'scontent-*.cdninstagram.com',
+        // Instagram serves images from many regional subdomains (e.g. scontent-fra5-2.cdninstagram.com)
+        hostname: '*.cdninstagram.com',
       },
     ],
   },

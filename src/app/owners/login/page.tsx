@@ -42,6 +42,13 @@ export default function OwnerLoginPage() {
     <div className="space-y-4 px-[15px] pt-6 pb-6 md:pt-8 md:pl-[85px]">
       <h1 className="text-xl font-semibold">Owner Login</h1>
 
+      <div>
+        New to Agistrea?{' '}
+        <a href="/owners/register" className="text-blue-600 hover:underline">
+          Create an account
+        </a>
+      </div>
+
       <form onSubmit={onSubmit} className="grid max-w-sm gap-3">
         <input
           type="email"

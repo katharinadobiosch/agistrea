@@ -50,14 +50,6 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
           <p className="text-muted-foreground text-[12px] font-semibold tracking-[2px] uppercase">
             On Instagram
           </p>
-          <Link
-            href={profileUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="text-foreground text-[14px] font-medium hover:text-[var(--color-sea)]"
-          >
-            {username}
-          </Link>
         </div>
       </div>
 
@@ -101,6 +93,14 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
         className="flex justify-end text-[12px] font-medium text-[var(--color-sea)] hover:text-[var(--text-accent-hover)]"
       >
         View on Instagram →
+        <Link
+          href={profileUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="text-foreground text-[14px] font-medium hover:text-[var(--color-sea)]"
+        >
+          {username}
+        </Link>
       </Link>
     </section>
   )
