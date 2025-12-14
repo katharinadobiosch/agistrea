@@ -33,7 +33,6 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
   }, [])
 
   const fg = onHero ? 'text-white/90' : 'text-[var(--color-ink-strong)]'
-  const icon = onHero ? 'text-white/90' : 'text-[var(--color-sea)]'
   const headerBg = onHero
     ? 'bg-transparent'
     : 'bg-[var(--color-soft-white)]/85 backdrop-blur-md border-b border-black/5'
