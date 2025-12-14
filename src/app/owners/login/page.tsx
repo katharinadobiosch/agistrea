@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function OwnerLoginPage() {
   const router = useRouter()
@@ -16,25 +17,18 @@ export default function OwnerLoginPage() {
     setError(null)
     setLoading(true)
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
-      setLoading(false)
       setError(error.message)
+      setLoading(false)
       return
     }
 
-    await supabase.from('profiles').upsert({
-      id: data.user.id,
-      email: data.user.email,
-      role: 'host',
-    })
-
     setLoading(false)
-    router.push('/owners/properties')
+    const params = new URLSearchParams(window.location.search)
+    const returnTo = params.get('returnTo') ?? '/owners/properties'
+    router.push(returnTo)
     router.refresh()
   }
 
@@ -44,9 +38,9 @@ export default function OwnerLoginPage() {
 
       <div>
         New to Agistrea?{' '}
-        <a href="/owners/register" className="text-blue-600 hover:underline">
+        <Link href="/owners/register" className="text-blue-600 hover:underline">
           Create an account
-        </a>
+        </Link>
       </div>
 
       <form onSubmit={onSubmit} className="grid max-w-sm gap-3">
@@ -55,7 +49,7 @@ export default function OwnerLoginPage() {
           placeholder="Email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-black focus:outline-none"
+          className="bg:[var(--color-soft-white)] rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-black focus:outline-none"
         />
 
         <input
