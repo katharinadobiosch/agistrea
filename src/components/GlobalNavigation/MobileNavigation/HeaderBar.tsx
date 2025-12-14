@@ -125,9 +125,9 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
       </header>
 
       {/* Desktop Logo: sichtbar ab 768px */}
-      <div className="hidden justify-center py-4 md:flex">
+      <div className="fixed hidden w-full justify-center py-4 md:flex">
         <Link href="/en">
-          <div className="font-serif text-3xl font-semibold text-white">Agistrea</div>
+          <div className="z-100 font-serif text-3xl font-semibold text-white">Agistrea</div>
         </Link>
       </div>
     </>

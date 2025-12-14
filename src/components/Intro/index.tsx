@@ -29,7 +29,7 @@ export default function Intro() {
           alt="Agistri"
           width={1920}
           height={1080}
-          className="h-auto w-screen object-cover"
+          className="-z-100 h-auto w-screen object-cover"
           priority
         />
       </div>
