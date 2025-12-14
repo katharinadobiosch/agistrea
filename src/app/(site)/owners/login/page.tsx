@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function OwnerLoginPage() {
   const router = useRouter()
@@ -33,43 +34,63 @@ export default function OwnerLoginPage() {
   }
 
   return (
-    <div className="space-y-4 px-[15px] pt-6 pb-6 md:pt-8 md:pl-[85px]">
-      <h1 className="text-xl font-semibold">Owner Login</h1>
-
-      <div>
-        New to Agistrea?{' '}
-        <Link href="/owners/register" className="text-blue-600 hover:underline">
-          Create an account
-        </Link>
+    <div className="login flex h-screen w-full md:pl-[55px]">
+      <div className="login__left w-1/2">
+        <Image
+          src="/assets/images/login/AdobeStock_300660678_Preview.jpeg"
+          alt="A view of the sea and small Greek houses surrounded by pine trees on Agistri island."
+          width={2400}
+          height={1600}
+          sizes="100vh"
+          className="left h-full w-auto object-cover object-[77%_50%]"
+        />
       </div>
+      <div className="login__right flex w-1/2 items-center">
+        <div className="center flex w-full flex-col items-center">
+          <h1 className="text-xl font-semibold">Host Login</h1>
+          <div>
+            New to Agistrea?{' '}
+            <Link
+              href="/owners/register"
+              className="text-[var(--text-accent)] hover:text-[var(--text-accent-hover)]"
+            >
+              Create an account
+            </Link>
+          </div>
+          <form
+            onSubmit={onSubmit}
+            className="flex w-[60%] max-w-sm flex-col gap-3 rounded-xl bg-white px-8 py-6 shadow-[var(--shadow-soft)]"
+          >
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              className="w-full rounded-md border border-[var(--border-light)] bg-[var(--bg-base)] px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--ring)]"
+            />
 
-      <form onSubmit={onSubmit} className="grid max-w-sm gap-3">
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          className="bg:[var(--color-soft-white)] rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-black focus:outline-none"
-        />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              className="w-full rounded-md border border-[var(--border-light)] bg-[var(--bg-base)] px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--ring)]"
+            />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-black focus:outline-none"
-        />
+            <button
+              type="submit"
+              disabled={loading}
+              className="mt-1 w-full rounded-md bg-[var(--btn-primary-bg)] px-4 py-2 text-sm text-[var(--btn-primary-text)] transition hover:bg-[var(--btn-primary-hover-bg)] disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {loading ? '…' : 'Login'}
+            </button>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="rounded-md bg-black px-4 py-2 text-sm text-white transition disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {loading ? '…' : 'Login'}
-        </button>
-
-        {error && <p className="text-sm text-red-600">{error}</p>}
-      </form>
+            {error && (
+              <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>
+            )}
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

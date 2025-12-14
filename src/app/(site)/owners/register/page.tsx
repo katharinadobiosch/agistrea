@@ -39,14 +39,16 @@ export default function OwnerRegisterPage() {
     const params = new URLSearchParams(window.location.search)
     const returnTo = params.get('returnTo') ?? '/owners/properties'
 
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo:
-          typeof window !== 'undefined' ? `${window.location.origin}${returnTo}` : undefined,
-      },
-    })
+    try {
+      const { data, error } = await supabase.auth.signUp({ email, password })
+      console.log('signup data', data)
+      if (error) throw error
+    } catch (e) {
+      console.error('signup failed', e)
+      setError(e instanceof Error ? e.message : 'Signup failed')
+    } finally {
+      setLoading(false)
+    }
 
     if (error) {
       setLoading(false)
