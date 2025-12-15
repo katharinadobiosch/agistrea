@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { createSupabaseServer } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
+import type { SupabaseClient } from '@supabase/supabase-js'
 
 function slugify(input: string) {
   return input
@@ -10,7 +11,7 @@ function slugify(input: string) {
     .replace(/(^-|-$)/g, '')
 }
 
-async function ensureUniqueSlug(supabase: any, base: string) {
+async function ensureUniqueSlug(supabase: SupabaseClient, base: string) {
   const slug = base || 'property'
   for (let i = 0; i < 50; i++) {
     const candidate = i === 0 ? slug : `${slug}-${i + 1}`
