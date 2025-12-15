@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error('Supabase env vars are missing for middleware')
+    return res
   }
 
   const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {

@@ -36,7 +36,11 @@ export default function OwnerAuthPage() {
 
   const returnTo = useMemo(() => safeInternalPath(params?.get('returnTo')), [params])
 
-  const [mode, setMode] = useState<'login' | 'register'>('login')
+  const initialMode = useMemo(
+    () => (params?.get('mode') === 'register' ? 'register' : 'login'),
+    [params]
+  )
+  const [mode, setMode] = useState<'login' | 'register'>(initialMode)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -90,9 +94,7 @@ export default function OwnerAuthPage() {
     setLoading(true)
 
     try {
-      const redirectTo = `${window.location.origin}/hosts/login?returnTo=${encodeURIComponent(
-        returnTo
-      )}`
+      const redirectTo = `${window.location.origin}/hosts/login?mode=login&returnTo=${encodeURIComponent(returnTo)}`
 
       const { data, error: signUpError } = await supabase.auth.signUp({
         email,
