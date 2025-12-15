@@ -81,11 +81,12 @@ export default async function OwnerPropertiesPage() {
     revalidatePath('/hosts/properties')
   }
 
-  const { data: properties, error } = await supabase
+  const { data: property, error } = await supabase
     .from('properties')
-    .select('id,title,slug,status,updated_at')
+    .select('*')
+    .eq('id', params.id)
     .eq('host_id', user.id)
-    .order('updated_at', { ascending: false })
+    .single()
 
   return (
     <div>

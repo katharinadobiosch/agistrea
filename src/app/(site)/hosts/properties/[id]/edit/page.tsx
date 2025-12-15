@@ -51,9 +51,16 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
       updated_at: new Date().toISOString(),
     }
 
-    const { error } = await supabase.from('properties').update(payload).eq('id', params.id)
+    const { error } = await supabase
+      .from('properties')
+      .update(payload)
+      .eq('id', params.id)
+      .eq('host_id', user.id)
 
-    if (error) throw error
+    if (error) {
+      console.error(error)
+      throw new Error('Update failed. Please try again later.')
+    }
 
     revalidatePath(`/hosts/properties/${params.id}/edit`)
     revalidatePath('/hosts/properties')

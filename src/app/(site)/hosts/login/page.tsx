@@ -27,9 +27,8 @@ export default function OwnerAuthPage() {
   const router = useRouter()
 
   const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null
-  function safeInternalPath(p: string | null) {
+  function safeInternalPath(p?: string | null) {
     if (!p) return '/hosts/properties'
-    // nur interne Pfade erlauben
     if (p.startsWith('/') && !p.startsWith('//')) return p
     return '/hosts/properties'
   }
