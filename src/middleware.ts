@@ -12,21 +12,17 @@ export async function middleware(req: NextRequest) {
     throw new Error('Supabase env vars are missing for middleware')
   }
 
-  const supabase = createServerClient(
-    supabaseUrl,
-    supabaseAnonKey,
-    {
-      cookies: {
-        get: name => req.cookies.get(name)?.value,
-        set: (name, value, options) => {
-          res.cookies.set({ name, value, ...options })
-        },
-        remove: (name, options) => {
-          res.cookies.set({ name, value: '', ...options, maxAge: 0 })
-        },
+  const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
+    cookies: {
+      get: name => req.cookies.get(name)?.value,
+      set: (name, value, options) => {
+        res.cookies.set({ name, value, ...options })
       },
-    }
-  )
+      remove: (name, options) => {
+        res.cookies.set({ name, value: '', ...options, maxAge: 0 })
+      },
+    },
+  })
 
   const {
     data: { user },
@@ -44,18 +40,6 @@ export async function middleware(req: NextRequest) {
       redirectUrl.searchParams.set('returnTo', path)
 
       return NextResponse.redirect(redirectUrl)
-    }
-
-    if (user && !userError) {
-      try {
-        await supabase.from('profiles').upsert({
-          id: user.id,
-          email: user.email,
-          role: 'host',
-        })
-      } catch (err) {
-        console.error('Failed to upsert profile in middleware', err)
-      }
     }
   }
 
