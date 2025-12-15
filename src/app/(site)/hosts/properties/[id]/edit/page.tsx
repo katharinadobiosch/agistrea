@@ -16,13 +16,27 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
     .from('properties')
     .select('*')
     .eq('id', params.id)
+    .eq('host_id', user.id)
     .single()
 
   if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>
+  if (!property) return <div>Nicht gefunden oder keine Berechtigung.</div>
 
   async function updateBasicsAction(formData: FormData) {
     'use server'
     const supabase = await createSupabaseServer()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { data: ownership } = await supabase
+      .from('properties')
+      .select('host_id')
+      .eq('id', params.id)
+      .maybeSingle()
+
+    if (!ownership || ownership.host_id !== user.id) return
 
     const payload = {
       title: String(formData.get('title') ?? ''),

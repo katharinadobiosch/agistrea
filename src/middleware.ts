@@ -5,9 +5,16 @@ import { createServerClient } from '@supabase/ssr'
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
 
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('Supabase env vars are missing for middleware')
+  }
+
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    supabaseUrl,
+    supabaseAnonKey,
     {
       cookies: {
         get: name => req.cookies.get(name)?.value,
@@ -23,6 +30,7 @@ export async function middleware(req: NextRequest) {
 
   const {
     data: { user },
+    error: userError,
   } = await supabase.auth.getUser()
 
   const path = req.nextUrl.pathname
@@ -38,12 +46,16 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(redirectUrl)
     }
 
-    if (user) {
-      await supabase.from('profiles').upsert({
-        id: user.id,
-        email: user.email,
-        role: 'host',
-      })
+    if (user && !userError) {
+      try {
+        await supabase.from('profiles').upsert({
+          id: user.id,
+          email: user.email,
+          role: 'host',
+        })
+      } catch (err) {
+        console.error('Failed to upsert profile in middleware', err)
+      }
     }
   }
 

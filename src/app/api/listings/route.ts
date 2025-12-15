@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { createSupabaseServer } from '@/lib/supabase/server'
 
 function slugify(input: string): string {
   return input
@@ -11,6 +12,16 @@ function slugify(input: string): string {
 
 export async function POST(req: Request) {
   try {
+    const supabase = await createSupabaseServer()
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser()
+
+    if (userError || !user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
     const body = await req.json()
 
     if (!body.title) {
@@ -28,7 +39,7 @@ export async function POST(req: Request) {
         description: body.description ?? null,
         nightly_price: body.nightly_price ?? null,
         published: body.published ?? false,
-        // host_id: später mit Auth
+        host_id: user.id,
       })
       .select('*')
       .single()

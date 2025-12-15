@@ -5,11 +5,36 @@ import { supabase } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
+const authServiceOfflineMessage =
+  'Could not reach the authentication service. Please try again in a moment. If this keeps happening, check the Supabase URL/key configuration.'
+
+function formatAuthError(error: unknown) {
+  const message =
+    error instanceof Error
+      ? error.message
+      : typeof error === 'string'
+        ? error
+        : 'Something went wrong. Please try again.'
+
+  if (message.toLowerCase().includes('failed to fetch')) {
+    return authServiceOfflineMessage
+  }
+
+  return message
+}
+
 export default function OwnerAuthPage() {
   const router = useRouter()
 
   const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null
-  const returnTo = useMemo(() => params?.get('returnTo') ?? '/hosts/properties', [params])
+  function safeInternalPath(p: string | null) {
+    if (!p) return '/hosts/properties'
+    // nur interne Pfade erlauben
+    if (p.startsWith('/') && !p.startsWith('//')) return p
+    return '/hosts/properties'
+  }
+
+  const returnTo = useMemo(() => safeInternalPath(params?.get('returnTo')), [params])
 
   const [mode, setMode] = useState<'login' | 'register'>('login')
 
@@ -27,16 +52,21 @@ export default function OwnerAuthPage() {
     setSuccess(null)
     setLoading(true)
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password })
 
-    setLoading(false)
-    if (error) {
-      setError(error.message)
-      return
+      if (error) {
+        setError(formatAuthError(error))
+        return
+      }
+
+      router.push(returnTo)
+      router.refresh()
+    } catch (err) {
+      setError(formatAuthError(err))
+    } finally {
+      setLoading(false)
     }
-
-    router.push(returnTo)
-    router.refresh()
   }
 
   async function onRegister(e: React.FormEvent) {
@@ -59,31 +89,35 @@ export default function OwnerAuthPage() {
 
     setLoading(true)
 
-    const redirectTo = `${window.location.origin}/hosts/login?returnTo=${encodeURIComponent(
-      returnTo
-    )}`
+    try {
+      const redirectTo = `${window.location.origin}/hosts/login?returnTo=${encodeURIComponent(
+        returnTo
+      )}`
 
-    const { data, error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { emailRedirectTo: redirectTo },
-    })
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: { emailRedirectTo: redirectTo },
+      })
 
-    setLoading(false)
+      if (signUpError) {
+        setError(formatAuthError(signUpError))
+        return
+      }
 
-    if (signUpError) {
-      setError(signUpError.message)
-      return
+      // Email confirmation enabled -> session is often null
+      if (!data.session) {
+        setSuccess('Account created! Please check your email to confirm your account.')
+        return
+      }
+
+      router.push(returnTo)
+      router.refresh()
+    } catch (err) {
+      setError(formatAuthError(err))
+    } finally {
+      setLoading(false)
     }
-
-    // Email confirmation enabled -> session is often null
-    if (!data.session) {
-      setSuccess('Account created! Please check your email to confirm your account.')
-      return
-    }
-
-    router.push(returnTo)
-    router.refresh()
   }
 
   return (
@@ -123,7 +157,7 @@ export default function OwnerAuthPage() {
         </div>
 
         {/* FORM COLUMN */}
-        <div className="flex w-full z-[100] items-start justify-center px-4 pb-10 md:w-[30%] md:items-center md:px-0 md:py-0">
+        <div className="z-[100] flex w-full items-start justify-center px-4 pb-10 md:w-[30%] md:items-center md:px-0 md:py-0">
           {/* Auf Mobile wird die Card leicht in den Hero „reingeschoben“ */}
           <div className="-mt-12 w-full max-w-md md:mt-0">
             <div className="flex flex-col items-center gap-2 px-2 md:px-6">
