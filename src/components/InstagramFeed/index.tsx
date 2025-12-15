@@ -12,8 +12,8 @@ type InstagramPost = {
 }
 
 type InstagramFeedProps = {
-  username: string // nur fürs UI („@agistrea“)
-  limit?: number // wie viele Posts anzeigen
+  username: string
+  limit?: number
 }
 
 export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProps) {
@@ -22,23 +22,41 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    let isMounted = true
+    const controller = new AbortController()
+
     const load = async () => {
+      setIsLoading(true)
+      setError(null)
+
       try {
-        const res = await fetch(`/api/instagram?limit=${limit}`)
+        const res = await fetch(`/api/instagram?limit=${limit}`, {
+          signal: controller.signal,
+          cache: 'no-store',
+        })
+
         if (!res.ok) {
-          throw new Error('Failed to load Instagram posts')
+          throw new Error(`Instagram API route returned ${res.status}`)
         }
+
         const data = (await res.json()) as InstagramPost[]
-        setPosts(data)
-      } catch (err) {
+        if (isMounted) setPosts(Array.isArray(data) ? data : [])
+      } catch (err: any) {
+        if (err?.name === 'AbortError') return
+
         console.error(err)
-        setError('Instagram feed is currently unavailable.')
+        if (isMounted) setError('Instagram feed is currently unavailable.')
       } finally {
-        setIsLoading(false)
+        if (isMounted) setIsLoading(false)
       }
     }
 
     load()
+
+    return () => {
+      isMounted = false
+      controller.abort()
+    }
   }, [limit])
 
   const profileUrl = `https://www.instagram.com/${username.replace('@', '')}/`
@@ -50,14 +68,6 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
           <p className="text-muted-foreground text-[12px] font-semibold tracking-[2px] uppercase">
             On Instagram
           </p>
-          <Link
-            href={profileUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="text-foreground text-[14px] font-medium hover:text-[var(--color-sea)]"
-          >
-            {username}
-          </Link>
         </div>
       </div>
 
@@ -98,9 +108,14 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
         href={profileUrl}
         target="_blank"
         rel="noreferrer"
-        className="flex justify-end text-[12px] font-medium text-[var(--color-sea)] hover:text-[var(--text-accent-hover)]"
+        className="flex justify-end gap-2 text-[12px] font-medium"
       >
-        View on Instagram →
+        <span className="text-[var(--color-sea)] hover:text-[var(--text-accent-hover)]">
+          View on Instagram →
+        </span>
+        <span className="text-foreground text-[14px] hover:text-[var(--color-sea)]">
+          {username}
+        </span>
       </Link>
     </section>
   )

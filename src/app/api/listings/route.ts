@@ -1,29 +1,37 @@
-// src/app/api/listings/route.ts
-import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { NextResponse } from 'next/server'
+import { db } from '@/lib/db'
+import { createSupabaseServer } from '@/lib/supabase/server'
 
-// kleine Helper-Funktion für Slugs
 function slugify(input: string): string {
   return input
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)+/g, "");
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)+/g, '')
 }
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const supabase = await createSupabaseServer()
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser()
 
-    if (!body.title) {
-      return NextResponse.json({ error: "Title is required" }, { status: 400 });
+    if (userError || !user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const slug = body.slug ? slugify(body.slug) : slugify(body.title);
+    const body = await req.json()
 
-    // Supabase-Insert statt Prisma .listing.create
+    if (!body.title) {
+      return NextResponse.json({ error: 'Title is required' }, { status: 400 })
+    }
+
+    const slug = body.slug ? slugify(body.slug) : slugify(body.title)
+
     const { data, error } = await db
-      .from("listings")
+      .from('listings')
       .insert({
         title: body.title,
         slug,
@@ -31,43 +39,40 @@ export async function POST(req: Request) {
         description: body.description ?? null,
         nightly_price: body.nightly_price ?? null,
         published: body.published ?? false,
-        // host_id: später mit Auth
+        host_id: user.id,
       })
-      .select("*")
-      .single();
+      .select('*')
+      .single()
 
     if (error) {
-      console.error("Supabase insert error", error);
+      console.error('Supabase insert error', error)
       return NextResponse.json(
-        { error: "Failed to create listing", details: error.message },
+        { error: 'Failed to create listing', details: error.message },
         { status: 500 }
-      );
+      )
     }
 
-    return NextResponse.json(data, { status: 201 });
+    return NextResponse.json(data, { status: 201 })
   } catch (err) {
-    console.error("POST /api/listings error", err);
-    return NextResponse.json(
-      { error: "Invalid request body" },
-      { status: 400 }
-    );
+    console.error('POST /api/listings error', err)
+    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 })
   }
 }
 
 export async function GET() {
   const { data, error } = await db
-    .from("listings")
-    .select("*")
-    .eq("published", true)
-    .order("created_at", { ascending: false });
+    .from('listings')
+    .select('*')
+    .eq('published', true)
+    .order('created_at', { ascending: false })
 
   if (error) {
-    console.error("Supabase select error", error);
+    console.error('Supabase select error', error)
     return NextResponse.json(
-      { error: "Failed to fetch listings", details: error.message },
+      { error: 'Failed to fetch listings', details: error.message },
       { status: 500 }
-    );
+    )
   }
 
-  return NextResponse.json(data ?? [], { status: 200 });
+  return NextResponse.json(data ?? [], { status: 200 })
 }

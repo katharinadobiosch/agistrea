@@ -29,7 +29,7 @@ export default function Intro() {
           alt="Agistri"
           width={1920}
           height={1080}
-          className="h-auto w-screen object-cover"
+          className="z-0 h-auto w-screen object-cover"
           priority
         />
       </div>
@@ -60,9 +60,9 @@ export default function Intro() {
         </div>
 
         <div className="bg-card">
-          <h2 className="text-foreground text-[14px] font-semibold">Direct contact with owners</h2>
+          <h2 className="text-foreground text-[14px] font-semibold">Direct contact with hosts</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px] leading-relaxed">
-            Guests book directly with owners. No platform fees, no middlemen, just clear, simple
+            Guests book directly with hosts. No platform fees, no middlemen, just clear, simple
             communication.
           </p>
         </div>

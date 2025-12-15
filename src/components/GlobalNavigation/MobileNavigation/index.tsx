@@ -18,8 +18,6 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onClose }) 
         'transform transition-transform duration-500 ease-out',
         'md:hidden',
 
-        // MOBILE: from top
-        // DESKTOP: from left
         isOpen ? 'translate-y-0' : '-translate-y-full',
       ]
         .filter(Boolean)
@@ -68,6 +66,13 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onClose }) 
           onClick={onClose}
         >
           Contact
+        </Link>
+        <Link
+          href="/hosts/login"
+          className="block tracking-[0.14em] uppercase hover:underline"
+          onClick={onClose}
+        >
+          Log In
         </Link>
       </nav>
     </div>
