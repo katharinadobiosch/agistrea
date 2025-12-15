@@ -2,12 +2,17 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
-export async function middleware(req: NextRequest) {
+export const config = {
+  matcher: ['/hosts/:path*'],
+}
+
+export default async function proxy(req: NextRequest) {
   const res = NextResponse.next()
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
+  // If env is missing, skip auth gate but keep request flowing
   if (!supabaseUrl || !supabaseAnonKey) {
     return res
   }
@@ -43,9 +48,9 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  return res
-}
+  if (userError) {
+    console.error('Proxy auth error', userError)
+  }
 
-export const config = {
-  matcher: ['/hosts/:path*'],
+  return res
 }
