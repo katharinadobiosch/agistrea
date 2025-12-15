@@ -66,7 +66,10 @@ export default async function OwnerPropertiesPage() {
       .select('id')
       .single()
 
-    if (error) throw error
+    if (error) {
+      console.error('createPropertyAction insert failed', error)
+      throw new Error('Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.')
+    }
 
     await supabase.from('property_features').insert({
       property_id: inserted.id,
@@ -81,12 +84,10 @@ export default async function OwnerPropertiesPage() {
     revalidatePath('/hosts/properties')
   }
 
-  const { data: property, error } = await supabase
+  const { data: properties, error } = await supabase
     .from('properties')
     .select('*')
-    .eq('id', params.id)
     .eq('host_id', user.id)
-    .single()
 
   return (
     <div>
