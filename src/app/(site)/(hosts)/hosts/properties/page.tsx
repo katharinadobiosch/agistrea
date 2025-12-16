@@ -93,6 +93,11 @@ export default async function OwnerPropertiesPage() {
     <div>
       <h1>Meine Unterkünfte</h1>
 
+      <div className="rounded-2xl border border-black/10 bg-white p-6">
+        <h1 className="text-xl font-semibold">My properties</h1>
+        <p className="mt-2 text-sm text-black/60">Layout steht ✅</p>
+      </div>
+
       <form action={createPropertyAction}>
         <button type="submit">+ Neue Unterkunft</button>
       </form>
