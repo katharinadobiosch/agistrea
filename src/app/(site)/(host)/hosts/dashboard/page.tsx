@@ -52,19 +52,12 @@ export default async function OwnerdashboardPage() {
     const baseSlug = slugify(title)
     const slug = await ensureUniqueSlug(supabase, baseSlug)
 
-    const { data: inserted, error } = await supabase
-      .from('dashboard')
-      .insert({
-        host_id: user.id,
-        title,
-        slug,
-        location_text: 'Agistri',
-        guests: 2,
-        bedrooms: 1,
-        bathrooms: 1,
-      })
-      .select('id')
-      .single()
+  const { data: inserted, error } = await supabase
+  .from('properties')
+  .insert({ ... })
+  .select('id')
+  .single()
+
 
     if (error) {
       console.error('createPropertyAction insert failed', error)
@@ -84,8 +77,8 @@ export default async function OwnerdashboardPage() {
     revalidatePath('/hosts/dashboard')
   }
 
-  const { data: dashboard, error } = await supabase
-    .from('dashboard')
+  const { data: properties, error } = await supabase
+    .from('properties')
     .select('*')
     .eq('host_id', user.id)
 
