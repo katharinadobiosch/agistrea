@@ -15,10 +15,11 @@ async function ensureUniqueSlug(supabase: any, base: string) {
   for (let i = 0; i < 50; i++) {
     const candidate = i === 0 ? slug : `${slug}-${i + 1}`
     const { data } = await supabase
-      .from('dashboard')
+      .from('properties')
       .select('id')
       .eq('slug', candidate)
       .maybeSingle()
+
     if (!data) return candidate
   }
   return `${slug}-${Date.now()}`
@@ -52,12 +53,19 @@ export default async function OwnerdashboardPage() {
     const baseSlug = slugify(title)
     const slug = await ensureUniqueSlug(supabase, baseSlug)
 
-  const { data: inserted, error } = await supabase
-  .from('properties')
-  .insert({ ... })
-  .select('id')
-  .single()
-
+    const { data: inserted, error } = await supabase
+      .from('properties')
+      .insert({
+        host_id: user.id,
+        title,
+        slug,
+        location_text: 'Agistri',
+        guests: 2,
+        bedrooms: 1,
+        bathrooms: 1,
+      })
+      .select('id')
+      .single()
 
     if (error) {
       console.error('createPropertyAction insert failed', error)
@@ -98,7 +106,7 @@ export default async function OwnerdashboardPage() {
       {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
 
       <ul>
-        {(dashboard ?? []).map(p => (
+        {(properties ?? []).map(p => (
           <li key={p.id}>
             <Link href={`/hosts/dashboard/${p.id}/edit`}>
               {p.title} ({p.status})

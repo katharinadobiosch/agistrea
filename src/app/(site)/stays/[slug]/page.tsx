@@ -2,9 +2,9 @@ import { createSupabaseServer } from '@/lib/supabase/server'
 
 export default async function StayPage({ params }: { params: { slug: string } }) {
   const supabase = await createSupabaseServer()
-
+  
   const { data: property, error } = await supabase
-    .from('dashboard')
+    .from('properties')
     .select('*')
     .eq('slug', params.slug)
     .eq('status', 'published')

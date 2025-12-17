@@ -1,4 +1,4 @@
-import HostShell from '@/components/hosts/HostShell'
+import HostShell from '@/components/Hosts/HostShell'
 
 export default function HostsLayout({ children }: { children: React.ReactNode }) {
   return <HostShell>{children}</HostShell>

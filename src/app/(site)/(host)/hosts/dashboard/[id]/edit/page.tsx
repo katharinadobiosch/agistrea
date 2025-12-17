@@ -13,7 +13,7 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
   }
 
   const { data: property, error } = await supabase
-    .from('dashboard')
+    .from('properties')
     .select('*')
     .eq('id', params.id)
     .eq('host_id', user.id)
@@ -31,7 +31,7 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
     if (!user) return
 
     const { data: ownership } = await supabase
-      .from('dashboard')
+      .from('properties')
       .select('host_id')
       .eq('id', params.id)
       .maybeSingle()
@@ -52,7 +52,7 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
     }
 
     const { error } = await supabase
-      .from('dashboard')
+      .from('properties')
       .update(payload)
       .eq('id', params.id)
       .eq('host_id', user.id)

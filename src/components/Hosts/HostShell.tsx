@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import HostTopbar from './HostTopbar'
-import HostSidebar from './HostSidebar'
+import HostTopbar from '@/components/Hosts/HostTopbar'
+import HostSidebar from '@/components/Hosts/HostSidebar'
 
 export default function HostShell({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
