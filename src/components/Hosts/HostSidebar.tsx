@@ -33,7 +33,7 @@ export default function HostSidebar({ onNavigate }: { onNavigate?: () => void })
   const pathname = usePathname()
 
   return (
-    <aside className="flex h-full flex-col">
+    <aside className="host-sidebar flex h-full flex-col pl-[60px]">
       <div className="flex h-14 items-center justify-between border-b border-black/10 px-4">
         <div className="font-semibold">Agistrea</div>
         <div className="text-xs text-black/50">Hosts</div>
@@ -41,9 +41,9 @@ export default function HostSidebar({ onNavigate }: { onNavigate?: () => void })
 
       <nav className="flex flex-1 flex-col gap-1 p-3">
         <NavItem
-          href="/hosts/properties"
-          label="My properties"
-          active={pathname?.startsWith('/hosts/properties') ?? false}
+          href="/hosts/dashboard"
+          label="My dashboard"
+          active={pathname?.startsWith('/hosts/dashboard') ?? false}
           onClick={onNavigate}
         />
         <NavItem

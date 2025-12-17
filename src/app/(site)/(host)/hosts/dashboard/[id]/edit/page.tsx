@@ -13,7 +13,7 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
   }
 
   const { data: property, error } = await supabase
-    .from('properties')
+    .from('dashboard')
     .select('*')
     .eq('id', params.id)
     .eq('host_id', user.id)
@@ -31,7 +31,7 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
     if (!user) return
 
     const { data: ownership } = await supabase
-      .from('properties')
+      .from('dashboard')
       .select('host_id')
       .eq('id', params.id)
       .maybeSingle()
@@ -52,7 +52,7 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
     }
 
     const { error } = await supabase
-      .from('properties')
+      .from('dashboard')
       .update(payload)
       .eq('id', params.id)
       .eq('host_id', user.id)
@@ -62,8 +62,8 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
       throw new Error('Update failed. Please try again later.')
     }
 
-    revalidatePath(`/hosts/properties/${params.id}/edit`)
-    revalidatePath('/hosts/properties')
+    revalidatePath(`/hosts/dashboard/${params.id}/edit`)
+    revalidatePath('/hosts/dashboard')
   }
 
   return (

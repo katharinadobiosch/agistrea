@@ -15,7 +15,7 @@ async function ensureUniqueSlug(supabase: any, base: string) {
   for (let i = 0; i < 50; i++) {
     const candidate = i === 0 ? slug : `${slug}-${i + 1}`
     const { data } = await supabase
-      .from('properties')
+      .from('dashboard')
       .select('id')
       .eq('slug', candidate)
       .maybeSingle()
@@ -24,7 +24,7 @@ async function ensureUniqueSlug(supabase: any, base: string) {
   return `${slug}-${Date.now()}`
 }
 
-export default async function OwnerPropertiesPage() {
+export default async function OwnerdashboardPage() {
   const supabase = await createSupabaseServer()
 
   const {
@@ -53,7 +53,7 @@ export default async function OwnerPropertiesPage() {
     const slug = await ensureUniqueSlug(supabase, baseSlug)
 
     const { data: inserted, error } = await supabase
-      .from('properties')
+      .from('dashboard')
       .insert({
         host_id: user.id,
         title,
@@ -81,11 +81,11 @@ export default async function OwnerPropertiesPage() {
       min_nights: 1,
     })
 
-    revalidatePath('/hosts/properties')
+    revalidatePath('/hosts/dashboard')
   }
 
-  const { data: properties, error } = await supabase
-    .from('properties')
+  const { data: dashboard, error } = await supabase
+    .from('dashboard')
     .select('*')
     .eq('host_id', user.id)
 
@@ -94,7 +94,7 @@ export default async function OwnerPropertiesPage() {
       <h1>Meine Unterkünfte</h1>
 
       <div className="rounded-2xl border border-black/10 bg-white p-6">
-        <h1 className="text-xl font-semibold">My properties</h1>
+        <h1 className="text-xl font-semibold">My dashboard</h1>
         <p className="mt-2 text-sm text-black/60">Layout steht ✅</p>
       </div>
 
@@ -105,9 +105,9 @@ export default async function OwnerPropertiesPage() {
       {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
 
       <ul>
-        {(properties ?? []).map(p => (
+        {(dashboard ?? []).map(p => (
           <li key={p.id}>
-            <Link href={`/hosts/properties/${p.id}/edit`}>
+            <Link href={`/hosts/dashboard/${p.id}/edit`}>
               {p.title} ({p.status})
             </Link>
             <span>/stays/{p.slug}</span>

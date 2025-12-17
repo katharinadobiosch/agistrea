@@ -4,7 +4,7 @@ export default async function StayPage({ params }: { params: { slug: string } })
   const supabase = await createSupabaseServer()
 
   const { data: property, error } = await supabase
-    .from('properties')
+    .from('dashboard')
     .select('*')
     .eq('slug', params.slug)
     .eq('status', 'published')
