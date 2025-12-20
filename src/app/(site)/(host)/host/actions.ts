@@ -41,7 +41,7 @@ export async function createPropertyAction() {
     redirect('/host/login')
   }
 
-  const title = 'Neue Unterkunft'
+  const title = 'New listing'
   const baseSlug = slugify(title)
   const slug = await ensureUniqueSlug(supabase, baseSlug)
 
@@ -62,14 +62,10 @@ export async function createPropertyAction() {
 
   if (insertError || !inserted?.id) {
     console.error('createPropertyAction insert/return failed', { insertError, inserted })
-    throw new Error('Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.')
+    return { ok: false, message: 'Could not create the listing. Please try again later.' }
   }
 
   const propertyId = inserted.id
-  if (!propertyId) {
-    console.error('createPropertyAction missing id (likely missing SELECT RLS on properties)')
-    return { ok: false, message: 'Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.' }
-  }
 
   const { error: featuresError } = await supabase.from('property_features').insert({
     property_id: propertyId,
@@ -77,7 +73,7 @@ export async function createPropertyAction() {
   })
   if (featuresError) {
     console.error('property_features insert failed', featuresError)
-    return { ok: false, message: 'Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.' }
+    return { ok: false, message: 'Could not create the listing. Please try again later.' }
   }
 
   const { error: pricesError } = await supabase.from('property_prices').insert({
@@ -87,7 +83,7 @@ export async function createPropertyAction() {
   })
   if (pricesError) {
     console.error('property_prices insert failed', pricesError)
-    return { ok: false, message: 'Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.' }
+    return { ok: false, message: 'Could not create the listing. Please try again later.' }
   }
 
   revalidatePath('/host/properties')
@@ -204,7 +200,7 @@ export async function uploadPropertyImageAction(formData: FormData) {
   }
 
   if (!file) {
-    throw new Error('Bitte wähle ein Bild aus.')
+    throw new Error('Please choose an image.')
   }
 
   const { data: ownership } = await supabase
@@ -251,7 +247,7 @@ export async function uploadPropertyImageAction(formData: FormData) {
 
   if (insertError) {
     console.error(insertError)
-    throw new Error('Konnte Bildreferenz nicht speichern.')
+    throw new Error('Could not save image reference.')
   }
 
   revalidatePath(`/host/properties/${propertyId}/edit`)

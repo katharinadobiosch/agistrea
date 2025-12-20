@@ -12,8 +12,8 @@ export default async function OwnerdashboardPage() {
   if (!user) {
     return (
       <div>
-        <p>Bitte einloggen.</p>
-        <Link href="/host/login">Zum Login</Link>
+        <p>Please log in.</p>
+        <Link href="/host/login">Go to login</Link>
       </div>
     )
   }
@@ -25,15 +25,15 @@ export default async function OwnerdashboardPage() {
 
   return (
     <div>
-      <h1>Meine Unterkünfte</h1>
+      <h1>My listings</h1>
 
       <div className="rounded-2xl border border-black/10 bg-white p-6">
         <h1 className="text-xl font-semibold">My dashboard</h1>
-        <p className="mt-2 text-sm text-black/60">Layout steht ✅</p>
+        <p className="mt-2 text-sm text-black/60">Layout ready ✅</p>
       </div>
 
       <form action={createPropertyAction}>
-        <button type="submit">+ Neue Unterkunft</button>
+        <button type="submit">+ New listing</button>
       </form>
 
       {error && <pre>{JSON.stringify(error, null, 2)}</pre>}

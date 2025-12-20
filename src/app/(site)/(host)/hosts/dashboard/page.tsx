@@ -35,8 +35,8 @@ export default async function OwnerdashboardPage() {
   if (!user) {
     return (
       <div>
-        <p>Bitte einloggen.</p>
-        <Link href="/hosts/login">Zum Login</Link>
+        <p>Please log in.</p>
+        <Link href="/hosts/login">Go to login</Link>
       </div>
     )
   }
@@ -49,7 +49,7 @@ export default async function OwnerdashboardPage() {
     } = await supabase.auth.getUser()
     if (!user) return
 
-    const title = 'Neue Unterkunft'
+    const title = 'New listing'
     const baseSlug = slugify(title)
     const slug = await ensureUniqueSlug(supabase, baseSlug)
 
@@ -69,7 +69,7 @@ export default async function OwnerdashboardPage() {
 
     if (error) {
       console.error('createPropertyAction insert failed', error)
-      throw new Error('Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.')
+      throw new Error('Could not create the listing. Please try again later.')
     }
 
     await supabase.from('property_features').insert({
@@ -92,15 +92,15 @@ export default async function OwnerdashboardPage() {
 
   return (
     <div>
-      <h1>Meine Unterkünfte</h1>
+      <h1>My listings</h1>
 
       <div className="rounded-2xl border border-black/10 bg-white p-6">
         <h1 className="text-xl font-semibold">My dashboard</h1>
-        <p className="mt-2 text-sm text-black/60">Layout steht ✅</p>
+        <p className="mt-2 text-sm text-black/60">Layout ready ✅</p>
       </div>
 
       <form action={createPropertyAction}>
-        <button type="submit">+ Neue Unterkunft</button>
+        <button type="submit">+ New listing</button>
       </form>
 
       {error && <pre>{JSON.stringify(error, null, 2)}</pre>}

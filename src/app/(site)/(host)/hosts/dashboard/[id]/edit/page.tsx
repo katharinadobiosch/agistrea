@@ -9,18 +9,18 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
   } = await supabase.auth.getUser()
 
   if (!user) {
-    return <div>Bitte einloggen.</div>
+    return <div>Please log in.</div>
   }
 
   const { data: property, error } = await supabase
     .from('properties')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', id)
     .eq('host_id', user.id)
     .single()
 
   if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>
-  if (!property) return <div>Nicht gefunden oder keine Berechtigung.</div>
+  if (!property) return <div>Not found or not allowed.</div>
 
   async function updateBasicsAction(formData: FormData) {
     'use server'
@@ -33,7 +33,7 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
     const { data: ownership } = await supabase
       .from('properties')
       .select('host_id')
-      .eq('id', params.id)
+      .eq('id', id)
       .maybeSingle()
 
     if (!ownership || ownership.host_id !== user.id) return
@@ -54,7 +54,7 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
     const { error } = await supabase
       .from('properties')
       .update(payload)
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('host_id', user.id)
 
     if (error) {
@@ -62,47 +62,47 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
       throw new Error('Update failed. Please try again later.')
     }
 
-    revalidatePath(`/hosts/dashboard/${params.id}/edit`)
+    revalidatePath(`/hosts/dashboard/${id}/edit`)
     revalidatePath('/hosts/dashboard')
   }
 
   return (
     <div>
-      <h1>Unterkunft bearbeiten</h1>
+      <h1>Edit listing</h1>
       <p>ID: {property.id}</p>
 
       <form action={updateBasicsAction}>
         <label>
-          Titel
+          Title
           <input name="title" defaultValue={property.title ?? ''} />
         </label>
 
         <label>
-          Beschreibung
+          Description
           <textarea name="description" defaultValue={property.description ?? ''} rows={6} />
         </label>
 
         <label>
-          Location (Text)
+          Location (text)
           <input name="location_text" defaultValue={property.location_text ?? ''} />
         </label>
 
         <div>
           <label>
-            Personen
+            Guests
             <input name="guests" type="number" defaultValue={property.guests ?? 1} />
           </label>
           <label>
-            Schlafzimmer
+            Bedrooms
             <input name="bedrooms" type="number" defaultValue={property.bedrooms ?? 0} />
           </label>
           <label>
-            Bäder
+            Bathrooms
             <input name="bathrooms" type="number" defaultValue={property.bathrooms ?? 0} />
           </label>
         </div>
 
-        <h3>Kontakt</h3>
+        <h3>Contact</h3>
         <label>
           Name
           <input name="contact_name" defaultValue={property.contact_name ?? ''} />
@@ -116,12 +116,12 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
           <input name="contact_phone" defaultValue={property.contact_phone ?? ''} />
         </label>
 
-        <button type="submit">Speichern</button>
+        <button type="submit">Save</button>
       </form>
 
       <div>
         <a href={`/stays/${property.slug}`} target="_blank" rel="noreferrer">
-          Public Preview öffnen
+          Open public preview
         </a>
       </div>
     </div>

@@ -1,4 +1,20 @@
+'use client'
+
 import { createPropertyAction } from '../../actions'
+import { useFormStatus } from 'react-dom'
+
+function SubmitButton() {
+  const { pending } = useFormStatus()
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="inline-flex items-center rounded-full bg-[var(--btn-primary-bg)] px-4 py-2 text-sm font-medium text-[var(--btn-primary-text)] hover:bg-[var(--btn-primary-hover-bg)]"
+    >
+      {pending ? 'Erstelle…' : 'Create listing'}
+    </button>
+  )
+}
 
 export default function NewListingPage() {
   return (
@@ -8,12 +24,7 @@ export default function NewListingPage() {
       </p>
 
       <form action={createPropertyAction}>
-        <button
-          type="submit"
-          className="inline-flex items-center rounded-full bg-[var(--btn-primary-bg)] px-4 py-2 text-sm font-medium text-[var(--btn-primary-text)] hover:bg-[var(--btn-primary-hover-bg)]"
-        >
-          Create listing
-        </button>
+        <SubmitButton />
       </form>
     </div>
   )

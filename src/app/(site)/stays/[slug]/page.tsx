@@ -1,17 +1,23 @@
 import { createSupabaseServer } from '@/lib/supabase/server'
 
-export default async function StayPage({ params }: { params: { slug: string } }) {
+type PageProps = {
+  params: Promise<{ slug: string }>
+}
+
+export default async function StayPage({ params }: PageProps) {
+  const { slug } = await params
+
   const supabase = await createSupabaseServer()
-  
+
   const { data: property, error } = await supabase
     .from('properties')
     .select('*')
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .eq('status', 'published')
     .maybeSingle()
 
   if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>
-  if (!property) return <div>Nicht gefunden / nicht veröffentlicht</div>
+  if (!property) return <div>Not found / not published</div>
 
   const { data: images } = await supabase
     .from('property_images')
@@ -50,9 +56,9 @@ export default async function StayPage({ params }: { params: { slug: string } })
       )}
 
       <ul>
-        <li>Gäste: {property.guests}</li>
-        <li>Schlafzimmer: {property.bedrooms}</li>
-        <li>Bäder: {property.bathrooms}</li>
+        <li>Guests: {property.guests}</li>
+        <li>Bedrooms: {property.bedrooms}</li>
+        <li>Bathrooms: {property.bathrooms}</li>
       </ul>
     </div>
   )
