@@ -9,7 +9,7 @@ export default function HostTopbar({ onOpenSidebar }: { onOpenSidebar: () => voi
   async function onLogout() {
     console.log('Logout button clicked')
     await supabase.auth.signOut()
-    router.push('/hosts/login')
+    router.push('/host/login')
     router.refresh()
   }
 

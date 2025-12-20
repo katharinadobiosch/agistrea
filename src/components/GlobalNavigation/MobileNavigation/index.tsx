@@ -68,7 +68,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onClose }) 
           Contact
         </Link>
         <Link
-          href="/hosts/login"
+          href="/host/login"
           className="block tracking-[0.14em] uppercase hover:underline"
           onClick={onClose}
         >

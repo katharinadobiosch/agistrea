@@ -2,6 +2,252 @@
 
 import { createSupabaseServer } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
+import { randomUUID } from 'crypto'
+
+const PROPERTY_IMAGE_BUCKET = 'property-images'
+
+function slugify(input: string) {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/(^-|-$)/g, '')
+}
+
+async function ensureUniqueSlug(supabase: any, base: string) {
+  const slug = base || 'property'
+  for (let i = 0; i < 50; i++) {
+    const candidate = i === 0 ? slug : `${slug}-${i + 1}`
+    const { data } = await supabase
+      .from('properties')
+      .select('id')
+      .eq('slug', candidate)
+      .maybeSingle()
+
+    if (!data) return candidate
+  }
+  return `${slug}-${Date.now()}`
+}
+
+export async function createPropertyAction() {
+  const supabase = await createSupabaseServer()
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect('/host/login')
+  }
+
+  const title = 'Neue Unterkunft'
+  const baseSlug = slugify(title)
+  const slug = await ensureUniqueSlug(supabase, baseSlug)
+
+  const { data: inserted, error } = await supabase
+    .from('properties')
+    .insert({
+      host_id: user!.id,
+      title,
+      status: 'draft',
+      slug,
+      location_text: 'Agistri',
+      guests: 2,
+      bedrooms: 1,
+      bathrooms: 1,
+    })
+    .select('id')
+    .single()
+
+  if (error || !inserted) {
+    console.error('createPropertyAction insert failed', error)
+    throw new Error('Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.')
+  }
+
+  await supabase.from('property_features').insert({
+    property_id: inserted.id,
+    features: {},
+  })
+  await supabase.from('property_prices').insert({
+    property_id: inserted.id,
+    base_per_night: 0,
+    min_nights: 1,
+  })
+
+  revalidatePath('/host/properties')
+  revalidatePath('/host/dashboard')
+
+  redirect(`/host/properties/${inserted.id}/edit`)
+}
+
+export async function updatePropertyAction(formData: FormData) {
+  const supabase = await createSupabaseServer()
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  const propertyId = String(formData.get('property_id') ?? '')
+
+  if (!user || !propertyId) {
+    redirect('/host/login')
+  }
+
+  const { data: ownership } = await supabase
+    .from('properties')
+    .select('host_id')
+    .eq('id', propertyId)
+    .maybeSingle()
+
+  if (!ownership || ownership.host_id !== user!.id) {
+    throw new Error('Not allowed to edit this property.')
+  }
+
+  const payload = {
+    title: String(formData.get('title') ?? ''),
+    description: String(formData.get('description') ?? ''),
+    location_text: String(formData.get('location_text') ?? ''),
+    guests: Number(formData.get('guests') ?? 1),
+    bedrooms: Number(formData.get('bedrooms') ?? 0),
+    bathrooms: Number(formData.get('bathrooms') ?? 0),
+    contact_name: String(formData.get('contact_name') ?? ''),
+    contact_email: String(formData.get('contact_email') ?? ''),
+    contact_phone: String(formData.get('contact_phone') ?? ''),
+    updated_at: new Date().toISOString(),
+  }
+
+  const { error } = await supabase.from('properties').update(payload).eq('id', propertyId)
+
+  if (error) {
+    console.error(error)
+    throw new Error('Update failed. Please try again later.')
+  }
+
+  revalidatePath(`/host/properties/${propertyId}/edit`)
+  revalidatePath('/host/dashboard')
+  revalidatePath('/host/properties')
+
+  redirect(`/host/properties/${propertyId}/edit`)
+}
+
+export async function publishPropertyAction(formData: FormData) {
+  const supabase = await createSupabaseServer()
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  const propertyId = String(formData.get('property_id') ?? '')
+
+  if (!user || !propertyId) {
+    redirect('/host/login')
+  }
+
+  const { data: ownership } = await supabase
+    .from('properties')
+    .select('host_id, status, slug')
+    .eq('id', propertyId)
+    .maybeSingle()
+
+  if (!ownership || ownership.host_id !== user!.id) {
+    throw new Error('Not allowed to publish this property.')
+  }
+
+  const { error } = await supabase
+    .from('properties')
+    .update({ status: 'published', updated_at: new Date().toISOString() })
+    .eq('id', propertyId)
+
+  if (error) {
+    console.error(error)
+    throw new Error('Publishing failed. Please try again later.')
+  }
+
+  revalidatePath(`/host/properties/${propertyId}/edit`)
+  revalidatePath('/host/dashboard')
+  revalidatePath('/host/properties')
+  if (ownership.slug) {
+    revalidatePath(`/stays/${ownership.slug}`)
+  }
+
+  redirect(`/host/properties/${propertyId}/edit`)
+}
+
+export async function uploadPropertyImageAction(formData: FormData) {
+  const supabase = await createSupabaseServer()
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  const propertyId = String(formData.get('property_id') ?? '')
+  const file = formData.get('file') as File | null
+
+  if (!user || !propertyId) {
+    redirect('/host/login')
+  }
+
+  if (!file) {
+    throw new Error('Bitte wähle ein Bild aus.')
+  }
+
+  const { data: ownership } = await supabase
+    .from('properties')
+    .select('host_id, slug')
+    .eq('id', propertyId)
+    .maybeSingle()
+
+  if (!ownership || ownership.host_id !== user!.id) {
+    throw new Error('Not allowed to add images to this property.')
+  }
+
+  const fileExt = file.name.split('.').pop()
+  const path = `${propertyId}/${randomUUID()}${fileExt ? `.${fileExt}` : ''}`
+
+  const { error: uploadError } = await supabase.storage
+    .from(PROPERTY_IMAGE_BUCKET)
+    .upload(path, file, {
+      cacheControl: '3600',
+      upsert: false,
+      contentType: file.type || undefined,
+    })
+
+  if (uploadError) {
+    console.error(uploadError)
+    throw new Error('Upload failed. Please try again later.')
+  }
+
+  const { data: last } = await supabase
+    .from('property_images')
+    .select('sort_order')
+    .eq('property_id', propertyId)
+    .order('sort_order', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+
+  const sortOrder = (last?.sort_order ?? 0) + 1
+
+  const { error: insertError } = await supabase.from('property_images').insert({
+    property_id: propertyId,
+    path,
+    sort_order: sortOrder,
+  })
+
+  if (insertError) {
+    console.error(insertError)
+    throw new Error('Konnte Bildreferenz nicht speichern.')
+  }
+
+  revalidatePath(`/host/properties/${propertyId}/edit`)
+  revalidatePath('/host/dashboard')
+  revalidatePath('/host/properties')
+  if (ownership.slug) {
+    revalidatePath(`/stays/${ownership.slug}`)
+  }
+
+  redirect(`/host/properties/${propertyId}/edit`)
+}
 
 export async function logoutAction() {
   console.log('button clicked')

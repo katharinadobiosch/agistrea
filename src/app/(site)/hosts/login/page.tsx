@@ -29,18 +29,20 @@ export default function OwnerAuthPage() {
   const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null
 
   function safeInternalPath(p?: string | null) {
-    if (!p) return '/hosts/dashboard'
+    if (!p) return '/host/dashboard'
 
     // Normalize legacy paths to the new dashboard route
     const legacyMap: Record<string, string> = {
-      '/hosts/properties': '/hosts/dashboard',
-      '/host/dashboard': '/hosts/dashboard',
+      '/hosts/dashboard': '/host/dashboard',
+      '/hosts/properties': '/host/properties',
+      '/host/properties': '/host/properties',
+      '/host/dashboard': '/host/dashboard',
     }
 
     const normalized = legacyMap[p] ?? p
 
     if (normalized.startsWith('/') && !normalized.startsWith('//')) return normalized
-    return '/hosts/dashboard'
+    return '/host/dashboard'
   }
 
   const returnTo = useMemo(() => safeInternalPath(params?.get('returnTo')), [params])

@@ -144,7 +144,7 @@ export function Footer() {
               <ul className="space-y-1.5">
                 <li>
                   <Link
-                    href="/hosts/login"
+                    href="/host/login"
                     className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     List your place
@@ -152,7 +152,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/hosts/login"
+                    href="/host/login"
                     className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Host login

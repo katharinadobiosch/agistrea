@@ -23,7 +23,7 @@ export default function DesktopNavigation({ isOpen, onClose }: DesktopNavigation
             <button className="block hover:text-white">Contact</button>
             <button className="block hover:text-white">
               {' '}
-              <Link href="/hosts/login">Zum Login</Link>
+              <Link href="/host/login">Zum Login</Link>
             </button>
           </nav>
 

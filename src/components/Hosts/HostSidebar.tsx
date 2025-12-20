@@ -41,15 +41,21 @@ export default function HostSidebar({ onNavigate }: { onNavigate?: () => void })
 
       <nav className="flex flex-1 flex-col gap-1 p-3">
         <NavItem
-          href="/hosts/dashboard"
-          label="My dashboard"
-          active={pathname?.startsWith('/hosts/dashboard') ?? false}
+          href="/host/dashboard"
+          label="Dashboard"
+          active={pathname?.startsWith('/host/dashboard') ?? false}
           onClick={onNavigate}
         />
         <NavItem
-          href="/hosts/listings/new"
+          href="/host/properties"
+          label="Listings"
+          active={pathname?.startsWith('/host/properties') ?? false}
+          onClick={onNavigate}
+        />
+        <NavItem
+          href="/host/properties/new"
           label="Create listing"
-          active={pathname === '/hosts/listings/new'}
+          active={pathname === '/host/properties/new'}
           onClick={onNavigate}
         />
 

@@ -1,5 +1,11 @@
 import { createSupabaseServer } from '@/lib/supabase/server'
-import { revalidatePath } from 'next/cache'
+import {
+  publishPropertyAction,
+  updatePropertyAction,
+  uploadPropertyImageAction,
+} from '../../../actions'
+
+const PROPERTY_IMAGE_BUCKET = 'property-images'
 
 export default async function OwnerPropertyEditPage({ params }: { params: { id: string } }) {
   const supabase = await createSupabaseServer()
@@ -22,56 +28,83 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
   if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>
   if (!property) return <div>Nicht gefunden oder keine Berechtigung.</div>
 
-  async function updateBasicsAction(formData: FormData) {
-    'use server'
-    const supabase = await createSupabaseServer()
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-    if (!user) return
+  const { data: images } = await supabase
+    .from('property_images')
+    .select('id, path, sort_order')
+    .eq('property_id', params.id)
+    .order('sort_order', { ascending: true })
 
-    const { data: ownership } = await supabase
-      .from('properties')
-      .select('host_id')
-      .eq('id', params.id)
-      .maybeSingle()
-
-    if (!ownership || ownership.host_id !== user.id) return
-
-    const payload = {
-      title: String(formData.get('title') ?? ''),
-      description: String(formData.get('description') ?? ''),
-      location_text: String(formData.get('location_text') ?? ''),
-      guests: Number(formData.get('guests') ?? 1),
-      bedrooms: Number(formData.get('bedrooms') ?? 0),
-      bathrooms: Number(formData.get('bathrooms') ?? 0),
-      contact_name: String(formData.get('contact_name') ?? ''),
-      contact_email: String(formData.get('contact_email') ?? ''),
-      contact_phone: String(formData.get('contact_phone') ?? ''),
-      updated_at: new Date().toISOString(),
-    }
-
-    const { error } = await supabase
-      .from('properties')
-      .update(payload)
-      .eq('id', params.id)
-      .eq('host_id', user.id)
-
-    if (error) {
-      console.error(error)
-      throw new Error('Update failed. Please try again later.')
-    }
-
-    revalidatePath(`/host/dashboard/${params.id}/edit`)
-    revalidatePath('/host/dashboard')
-  }
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const buildImageUrl = (path: string) =>
+    supabaseUrl
+      ? `${supabaseUrl}/storage/v1/object/public/${PROPERTY_IMAGE_BUCKET}/${path}`
+      : null
 
   return (
     <div>
-      <h1>Unterkunft bearbeiten</h1>
+      <div className="flex items-center gap-3">
+        <h1>Unterkunft bearbeiten</h1>
+        <span className="rounded-full bg-black/5 px-3 py-1 text-xs uppercase text-black/60">
+          {property.status ?? 'draft'}
+        </span>
+      </div>
       <p>ID: {property.id}</p>
 
-      <form action={updateBasicsAction}>
+      <section className="mt-4 space-y-3">
+        <h2 className="text-lg font-semibold">Bilder</h2>
+
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+          {(images ?? []).map(img => {
+            const src = img.path ? buildImageUrl(img.path) : null
+            return (
+              <div
+                key={img.id}
+                className="relative aspect-video overflow-hidden rounded-lg border border-black/10 bg-white"
+              >
+                {src ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={src} alt="" className="h-full w-full object-cover" />
+                ) : (
+                  <div className="flex h-full items-center justify-center text-sm text-black/40">
+                    No image
+                  </div>
+                )}
+                <div className="absolute left-2 top-2 rounded-full bg-black/70 px-2 py-[2px] text-[11px] text-white">
+                  #{img.sort_order ?? 0}
+                </div>
+              </div>
+            )
+          })}
+          {(images ?? []).length === 0 && (
+            <div className="col-span-2 text-sm text-black/50 md:col-span-3">
+              Noch keine Bilder hochgeladen.
+            </div>
+          )}
+        </div>
+
+        <form action={uploadPropertyImageAction} encType="multipart/form-data" className="space-y-2">
+          <input type="hidden" name="property_id" value={property.id} />
+          <label className="block text-sm text-black/70">
+            Neues Bild hochladen
+            <input
+              type="file"
+              name="file"
+              accept="image/*"
+              className="mt-1 block w-full rounded border border-black/10 bg-white px-3 py-2 text-sm"
+              required
+            />
+          </label>
+          <button
+            type="submit"
+            className="inline-flex items-center rounded-full bg-[var(--btn-primary-bg)] px-4 py-2 text-sm font-medium text-[var(--btn-primary-text)] hover:bg-[var(--btn-primary-hover-bg)]"
+          >
+            Hochladen
+          </button>
+        </form>
+      </section>
+
+      <form action={updatePropertyAction}>
+        <input type="hidden" name="property_id" value={property.id} />
         <label>
           Titel
           <input name="title" defaultValue={property.title ?? ''} />
@@ -118,6 +151,13 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
 
         <button type="submit">Speichern</button>
       </form>
+
+      {property.status !== 'published' && (
+        <form action={publishPropertyAction} className="mt-4">
+          <input type="hidden" name="property_id" value={property.id} />
+          <button type="submit">Publish listing</button>
+        </form>
+      )}
 
       <div>
         <a href={`/stays/${property.slug}`} target="_blank" rel="noreferrer">
