@@ -4,25 +4,29 @@ import {
   updatePropertyAction,
   uploadPropertyImageAction,
 } from '../../../actions'
+import { redirect } from 'next/navigation'
 
 const PROPERTY_IMAGE_BUCKET = 'property-images'
 
-export default async function OwnerPropertyEditPage({ params }: { params: { id: string } }) {
-  const supabase = await createSupabaseServer()
+type PageProps = {
+  params: Promise<{ id: string }>
+}
 
+export default async function OwnerPropertyEditPage({ params }: PageProps) {
+  const { id } = await params
+
+  const supabase = await createSupabaseServer()
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
-  if (!user) {
-    return <div>Bitte einloggen.</div>
-  }
+  if (!user) redirect('/host/login')
+  const authedUser = user
 
   const { data: property, error } = await supabase
     .from('properties')
     .select('*')
-    .eq('id', params.id)
-    .eq('host_id', user.id)
+    .eq('id', id)
+    .eq('host_id', user?.id)
     .single()
 
   if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>
@@ -30,21 +34,19 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
 
   const { data: images } = await supabase
     .from('property_images')
-    .select('id, path, sort_order')
-    .eq('property_id', params.id)
+    .select('id, storage_path, sort_order')
+    .eq('property_id', id) // <-- wichtig: id, nicht params.id
     .order('sort_order', { ascending: true })
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const buildImageUrl = (path: string) =>
-    supabaseUrl
-      ? `${supabaseUrl}/storage/v1/object/public/${PROPERTY_IMAGE_BUCKET}/${path}`
-      : null
+    supabaseUrl ? `${supabaseUrl}/storage/v1/object/public/${PROPERTY_IMAGE_BUCKET}/${path}` : null
 
   return (
     <div>
       <div className="flex items-center gap-3">
         <h1>Unterkunft bearbeiten</h1>
-        <span className="rounded-full bg-black/5 px-3 py-1 text-xs uppercase text-black/60">
+        <span className="rounded-full bg-black/5 px-3 py-1 text-xs text-black/60 uppercase">
           {property.status ?? 'draft'}
         </span>
       </div>
@@ -55,7 +57,7 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
 
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
           {(images ?? []).map(img => {
-            const src = img.path ? buildImageUrl(img.path) : null
+            const src = img?.storage_path ? buildImageUrl(img.storage_path) : null
             return (
               <div
                 key={img.id}
@@ -69,7 +71,7 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
                     No image
                   </div>
                 )}
-                <div className="absolute left-2 top-2 rounded-full bg-black/70 px-2 py-[2px] text-[11px] text-white">
+                <div className="absolute top-2 left-2 rounded-full bg-black/70 px-2 py-[2px] text-[11px] text-white">
                   #{img.sort_order ?? 0}
                 </div>
               </div>
@@ -82,7 +84,11 @@ export default async function OwnerPropertyEditPage({ params }: { params: { id: 
           )}
         </div>
 
-        <form action={uploadPropertyImageAction} encType="multipart/form-data" className="space-y-2">
+        <form
+          action={uploadPropertyImageAction}
+          encType="multipart/form-data"
+          className="space-y-2"
+        >
           <input type="hidden" name="property_id" value={property.id} />
           <label className="block text-sm text-black/70">
             Neues Bild hochladen

@@ -60,12 +60,12 @@ export async function createPropertyAction() {
     .select('id, slug')
     .single()
 
-  if (insertError) {
-    console.error('createPropertyAction insert failed', insertError)
-    return { ok: false, message: 'Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.' }
+  if (insertError || !inserted?.id) {
+    console.error('createPropertyAction insert/return failed', { insertError, inserted })
+    throw new Error('Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.')
   }
 
-  const propertyId = inserted?.id
+  const propertyId = inserted.id
   if (!propertyId) {
     console.error('createPropertyAction missing id (likely missing SELECT RLS on properties)')
     return { ok: false, message: 'Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.' }
