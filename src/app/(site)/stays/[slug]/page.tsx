@@ -21,7 +21,7 @@ export default async function StayPage({ params }: PageProps) {
 
   const { data: images } = await supabase
     .from('property_images')
-    .select('id, path, sort_order')
+    .select('id, storage_path, sort_order')
     .eq('property_id', property.id)
     .order('sort_order', { ascending: true })
 
@@ -38,7 +38,7 @@ export default async function StayPage({ params }: PageProps) {
       {(images?.length ?? 0) > 0 && (
         <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3">
           {images?.map(img => {
-            const src = img.path ? buildImageUrl(img.path) : null
+            const src = img.storage_path ? buildImageUrl(img.storage_path) : null
             return (
               <div key={img.id} className="relative aspect-video overflow-hidden rounded-lg">
                 {src ? (

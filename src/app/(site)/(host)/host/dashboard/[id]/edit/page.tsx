@@ -76,7 +76,7 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
     .single()
 
   if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>
-  if (!property) return <div>Nicht gefunden oder keine Berechtigung.</div>
+  if (!property) return <div>Not found or not allowed.</div>
 
   const { data: images } = await supabase
     .from('property_images')
@@ -94,7 +94,7 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-semibold text-black/85">Unterkunft bearbeiten</h1>
+            <h1 className="text-2xl font-semibold text-black/85">Edit listing</h1>
             <span className="rounded-full bg-black/5 px-3 py-1 text-xs font-medium text-black/60 uppercase">
               {property.status ?? 'draft'}
             </span>
@@ -120,7 +120,7 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
         <div className="md:col-span-3">
           <Card>
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-base font-semibold text-black/80">Bilder</h2>
+              <h2 className="text-base font-semibold text-black/80">Images</h2>
             </div>
 
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
@@ -148,7 +148,7 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
 
               {(images ?? []).length === 0 && (
                 <div className="col-span-2 rounded-xl border border-dashed border-black/15 bg-black/[0.02] p-6 text-sm text-black/50 md:col-span-3">
-                  Noch keine Bilder hochgeladen.
+                  No images uploaded yet.
                 </div>
               )}
             </div>
@@ -161,12 +161,12 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
                 <input type="hidden" name="property_id" value={property.id} />
 
                 <div className="w-full">
-                  <Label>Neues Bild</Label>
+                  <Label>New image</Label>
                   <Input type="file" name="file" accept="image/*" required />
                 </div>
 
                 <Button type="submit" className="md:w-[180px]">
-                  Hochladen
+                  Upload
                 </Button>
               </form>
             </div>
@@ -176,28 +176,28 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
         {/* Details */}
         <div className="space-y-6 md:col-span-2">
           <Card>
-            <h2 className="mb-4 text-base font-semibold text-black/80">Basisdaten</h2>
+            <h2 className="mb-4 text-base font-semibold text-black/80">Basics</h2>
 
             <form action={updatePropertyAction} className="space-y-4">
               <input type="hidden" name="property_id" value={property.id} />
 
               <div>
-                <Label>Titel</Label>
+                <Label>Title</Label>
                 <Input name="title" defaultValue={property.title ?? ''} />
               </div>
 
               <div>
-                <Label>Location (Text)</Label>
+                <Label>Location (text)</Label>
                 <Input name="location_text" defaultValue={property.location_text ?? ''} />
               </div>
 
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <Label>Gäste</Label>
+                  <Label>Guests</Label>
                   <Input name="guests" type="number" defaultValue={property.guests ?? 1} min={1} />
                 </div>
                 <div>
-                  <Label>Schlafzimmer</Label>
+                  <Label>Bedrooms</Label>
                   <Input
                     name="bedrooms"
                     type="number"
@@ -206,7 +206,7 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
                   />
                 </div>
                 <div>
-                  <Label>Bäder</Label>
+                  <Label>Bathrooms</Label>
                   <Input
                     name="bathrooms"
                     type="number"
@@ -217,18 +217,18 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
               </div>
 
               <div>
-                <Label>Beschreibung</Label>
+                <Label>Description</Label>
                 <Textarea name="description" defaultValue={property.description ?? ''} rows={6} />
               </div>
 
               <div className="flex items-center justify-end gap-2 pt-2">
-                <Button type="submit">Speichern</Button>
+                <Button type="submit">Save</Button>
               </div>
             </form>
           </Card>
 
           <Card>
-            <h2 className="mb-4 text-base font-semibold text-black/80">Kontakt</h2>
+            <h2 className="mb-4 text-base font-semibold text-black/80">Contact</h2>
 
             <form action={updatePropertyAction} className="space-y-4">
               <input type="hidden" name="property_id" value={property.id} />
@@ -248,21 +248,22 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
                 <Input name="contact_phone" defaultValue={property.contact_phone ?? ''} />
               </div>
 
-              <div className="flex items-center justify-between pt-2">
-                {property.status !== 'published' ? (
-                  <form action={publishPropertyAction}>
-                    <input type="hidden" name="property_id" value={property.id} />
-                    <Button type="submit" variant="secondary">
-                      Publish
-                    </Button>
-                  </form>
-                ) : (
-                  <span className="text-xs text-black/50">Bereits veröffentlicht</span>
-                )}
-
-                <Button type="submit">Speichern</Button>
+              <div className="flex items-center justify-end pt-2">
+                <Button type="submit">Save</Button>
               </div>
             </form>
+          </Card>
+
+          <Card>
+            <h2 className="mb-4 text-base font-semibold text-black/80">Publish</h2>
+            {property.status !== 'published' && (
+              <form action={publishPropertyAction} className="space-y-3">
+                <input type="hidden" name="property_id" value={property.id} />
+                <Button type="submit" variant="secondary" className="w-full">
+                  Publish listing
+                </Button>
+              </form>
+            )}
           </Card>
         </div>
       </div>
