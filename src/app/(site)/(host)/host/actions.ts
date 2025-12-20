@@ -45,7 +45,7 @@ export async function createPropertyAction() {
   const baseSlug = slugify(title)
   const slug = await ensureUniqueSlug(supabase, baseSlug)
 
-  const { data: inserted, error } = await supabase
+  const { data: inserted, error: insertError } = await supabase
     .from('properties')
     .insert({
       host_id: user!.id,
@@ -57,28 +57,43 @@ export async function createPropertyAction() {
       bedrooms: 1,
       bathrooms: 1,
     })
-    .select('id')
+    .select('id, slug')
     .single()
 
-  if (error || !inserted) {
-    console.error('createPropertyAction insert failed', error)
-    throw new Error('Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.')
+  if (insertError) {
+    console.error('createPropertyAction insert failed', insertError)
+    return { ok: false, message: 'Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.' }
   }
 
-  await supabase.from('property_features').insert({
-    property_id: inserted.id,
+  const propertyId = inserted?.id
+  if (!propertyId) {
+    console.error('createPropertyAction missing id (likely missing SELECT RLS on properties)')
+    return { ok: false, message: 'Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.' }
+  }
+
+  const { error: featuresError } = await supabase.from('property_features').insert({
+    property_id: propertyId,
     features: {},
   })
-  await supabase.from('property_prices').insert({
-    property_id: inserted.id,
+  if (featuresError) {
+    console.error('property_features insert failed', featuresError)
+    return { ok: false, message: 'Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.' }
+  }
+
+  const { error: pricesError } = await supabase.from('property_prices').insert({
+    property_id: propertyId,
     base_per_night: 0,
     min_nights: 1,
   })
+  if (pricesError) {
+    console.error('property_prices insert failed', pricesError)
+    return { ok: false, message: 'Konnte Unterkunft nicht anlegen. Bitte später erneut versuchen.' }
+  }
 
   revalidatePath('/host/properties')
   revalidatePath('/host/dashboard')
 
-  redirect(`/host/properties/${inserted.id}/edit`)
+  redirect(`/host/properties/${propertyId}/edit`)
 }
 
 export async function updatePropertyAction(formData: FormData) {
