@@ -203,6 +203,10 @@ export async function uploadPropertyImageAction(formData: FormData) {
     throw new Error('Please choose an image.')
   }
 
+  if (file.size > 8 * 1024 * 1024) {
+    throw new Error('Image too large. Please choose a file smaller than 8 MB.')
+  }
+
   const { data: ownership } = await supabase
     .from('properties')
     .select('host_id, slug')
@@ -225,8 +229,17 @@ export async function uploadPropertyImageAction(formData: FormData) {
     })
 
   if (uploadError) {
-    console.error(uploadError)
-    throw new Error('Upload failed. Please try again later.')
+    console.error('STORAGE UPLOAD ERROR', {
+      name: uploadError.name,
+      message: uploadError.message,
+      statusCode: (uploadError as any).statusCode,
+      error: uploadError,
+      bucket: PROPERTY_IMAGE_BUCKET,
+      path,
+      contentType: file.type,
+      size: file.size,
+    })
+    throw new Error(uploadError.message || 'Upload failed. Please try again later.')
   }
 
   const { data: last } = await supabase
@@ -241,7 +254,7 @@ export async function uploadPropertyImageAction(formData: FormData) {
 
   const { error: insertError } = await supabase.from('property_images').insert({
     property_id: propertyId,
-    path,
+    storage_path: path,
     sort_order: sortOrder,
   })
 
