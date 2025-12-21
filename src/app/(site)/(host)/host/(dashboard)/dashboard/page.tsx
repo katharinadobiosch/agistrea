@@ -15,30 +15,36 @@ export default async function OwnerdashboardPage() {
     .eq('host_id', user.id)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[var(--color-soft-white)] via-[var(--color-soft-white)] to-[color-mix(in_srgb,var(--color-sand)_15%,var(--color-soft-white))]">
-      {/* Top Navigation Bar - horizontal statt Sidebar */}
-    
-
+    <>
       {/* Main Content */}
       <div className="mx-auto max-w-[1200px] px-6 py-12">
         {/* Hero Header mit mediterranem Touch */}
         <div className="relative mb-12">
-          {/* Decorative element - subtle terracotta arc */}
-          <div className="absolute top-0 -left-12 h-32 w-32 rounded-full bg-[var(--color-terracotta)] opacity-[0.04] blur-3xl" />
-          <div className="absolute top-8 -right-8 h-24 w-24 rounded-full bg-[var(--color-sea)] opacity-[0.05] blur-2xl" />
+          {/* Decorative elements - vibrant tangerine and sage */}
+          <div
+            className="absolute top-0 -left-12 h-32 w-32 rounded-full blur-3xl"
+            style={{ backgroundColor: '#d97346', opacity: 0.08 }}
+          />
+          <div
+            className="absolute top-8 -right-8 h-24 w-24 rounded-full blur-2xl"
+            style={{ backgroundColor: '#93a485', opacity: 0.1 }}
+          />
 
           <div className="relative flex items-end justify-between gap-8">
             <div className="max-w-[600px]">
               <div className="mb-2 flex items-center gap-2">
-                <div className="h-px w-12 bg-[var(--color-terracotta)] opacity-40" />
-                <span className="text-xs tracking-wider text-[var(--color-terracotta)] uppercase opacity-60">
+                <div className="h-px w-12" style={{ backgroundColor: '#d97346', opacity: 0.6 }} />
+                <span
+                  className="text-xs tracking-wider uppercase"
+                  style={{ color: '#d97346', opacity: 0.75 }}
+                >
                   Your hosting space
                 </span>
               </div>
-              <h1 className="font-serif text-5xl leading-tight text-[var(--color-ink-strong)]">
+              <h1 className="font-serif text-5xl leading-tight" style={{ color: '#3a3632' }}>
                 Welcome back
               </h1>
-              <p className="mt-3 text-lg leading-relaxed text-[var(--color-muted-ink)]">
+              <p className="mt-3 text-lg leading-relaxed" style={{ color: '#8a8178' }}>
                 A calm space to manage your stays on Agistri. Take your time,
                 <br />
                 everything has its season.
@@ -48,7 +54,7 @@ export default async function OwnerdashboardPage() {
             <form action={createPropertyAction}>
               <button
                 type="submit"
-                className="group relative overflow-hidden rounded-2xl bg-[var(--color-terracotta)] px-8 py-4 font-medium text-[var(--color-soft-white)] shadow-[0_8px_24px_rgba(185,122,90,0.22)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_12px_32px_rgba(185,122,90,0.28)]"
+                className="add-stay-button group relative overflow-hidden rounded-2xl px-8 py-4 font-medium text-white transition-all duration-300 hover:scale-[1.02]"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <svg
@@ -66,39 +72,62 @@ export default async function OwnerdashboardPage() {
                   </svg>
                   Add a new stay
                 </span>
-                <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-[100%]" />
               </button>
             </form>
           </div>
         </div>
 
-        {/* Quick Stats - optional, gibt Kontext */}
+        {/* Quick Stats - mit lebendigen Farben */}
         <div className="mb-10 grid grid-cols-3 gap-6">
-          <div className="group relative overflow-hidden rounded-3xl border border-[color-mix(in_srgb,var(--color-olive)_18%,transparent)] bg-gradient-to-br from-white/80 to-white/40 p-6 backdrop-blur-sm transition-all hover:shadow-[0_8px_32px_rgba(110,119,94,0.08)]">
-            <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-[var(--color-olive)] opacity-[0.03] blur-2xl transition-opacity group-hover:opacity-[0.06]" />
+          <div
+            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
+            style={{ border: '1px solid rgba(147, 164, 133, 0.25)' }}
+          >
+            <div
+              className="absolute top-0 right-0 h-24 w-24 rounded-full blur-2xl transition-opacity group-hover:opacity-[0.12]"
+              style={{ backgroundColor: '#93a485', opacity: 0.06 }}
+            />
             <div className="relative">
-              <div className="mb-1 text-sm text-[var(--color-muted-ink)]">Active stays</div>
-              <div className="font-serif text-3xl text-[var(--color-ink-strong)]">
+              <div className="mb-1 text-sm" style={{ color: '#8a8178' }}>
+                Active stays
+              </div>
+              <div className="font-serif text-3xl" style={{ color: '#93a485' }}>
                 {properties?.filter(p => p.status === 'published').length ?? 0}
               </div>
             </div>
           </div>
 
-          <div className="group relative overflow-hidden rounded-3xl border border-[color-mix(in_srgb,var(--color-sea)_18%,transparent)] bg-gradient-to-br from-white/80 to-white/40 p-6 backdrop-blur-sm transition-all hover:shadow-[0_8px_32px_rgba(122,144,168,0.08)]">
-            <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-[var(--color-sea)] opacity-[0.03] blur-2xl transition-opacity group-hover:opacity-[0.06]" />
+          <div
+            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
+            style={{ border: '1px solid rgba(244, 165, 125, 0.25)' }}
+          >
+            <div
+              className="absolute top-0 right-0 h-24 w-24 rounded-full blur-2xl transition-opacity group-hover:opacity-[0.12]"
+              style={{ backgroundColor: '#f4a57d', opacity: 0.06 }}
+            />
             <div className="relative">
-              <div className="mb-1 text-sm text-[var(--color-muted-ink)]">In progress</div>
-              <div className="font-serif text-3xl text-[var(--color-ink-strong)]">
+              <div className="mb-1 text-sm" style={{ color: '#8a8178' }}>
+                In progress
+              </div>
+              <div className="font-serif text-3xl" style={{ color: '#f4a57d' }}>
                 {properties?.filter(p => p.status === 'draft').length ?? 0}
               </div>
             </div>
           </div>
 
-          <div className="group relative overflow-hidden rounded-3xl border border-[color-mix(in_srgb,var(--color-terracotta)_18%,transparent)] bg-gradient-to-br from-white/80 to-white/40 p-6 backdrop-blur-sm transition-all hover:shadow-[0_8px_32px_rgba(185,122,90,0.08)]">
-            <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-[var(--color-terracotta)] opacity-[0.03] blur-2xl transition-opacity group-hover:opacity-[0.06]" />
+          <div
+            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
+            style={{ border: '1px solid rgba(217, 115, 70, 0.25)' }}
+          >
+            <div
+              className="absolute top-0 right-0 h-24 w-24 rounded-full blur-2xl transition-opacity group-hover:opacity-[0.12]"
+              style={{ backgroundColor: '#d97346', opacity: 0.06 }}
+            />
             <div className="relative">
-              <div className="mb-1 text-sm text-[var(--color-muted-ink)]">Total properties</div>
-              <div className="font-serif text-3xl text-[var(--color-ink-strong)]">
+              <div className="mb-1 text-sm" style={{ color: '#8a8178' }}>
+                Total properties
+              </div>
+              <div className="font-serif text-3xl" style={{ color: '#d97346' }}>
                 {properties?.length ?? 0}
               </div>
             </div>
@@ -107,23 +136,38 @@ export default async function OwnerdashboardPage() {
 
         {/* Section Header */}
         <div className="mb-6 flex items-center gap-3">
-          <h2 className="font-serif text-2xl text-[var(--color-ink-strong)]">Your properties</h2>
-          <div className="h-px flex-1 bg-gradient-to-r from-[var(--border-light)] to-transparent" />
+          <h2 className="font-serif text-2xl" style={{ color: '#3a3632' }}>
+            Your properties
+          </h2>
+          <div
+            className="h-px flex-1"
+            style={{ background: 'linear-gradient(to right, #e0d8cc, transparent)' }}
+          />
         </div>
 
-        {/* Properties Grid - nicht Liste, Grid für mehr visuelles Interesse */}
+        {/* Properties Grid */}
         {error && (
-          <pre className="mb-8 rounded-2xl border border-red-200 bg-red-50 p-4 text-xs text-red-600">
+          <pre
+            className="mb-8 rounded-2xl p-4 text-xs"
+            style={{ border: '1px solid #fca5a5', backgroundColor: '#fef2f2', color: '#dc2626' }}
+          >
             {JSON.stringify(error, null, 2)}
           </pre>
         )}
 
         {!properties || properties.length === 0 ? (
-          <div className="flex min-h-[400px] items-center justify-center rounded-3xl border-2 border-dashed border-[var(--border-light)] bg-white/40">
+          <div
+            className="flex min-h-[400px] items-center justify-center rounded-3xl border-2 border-dashed bg-white/40"
+            style={{ borderColor: '#e0d8cc' }}
+          >
             <div className="max-w-md text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--color-sand)_30%,transparent)]">
+              <div
+                className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full"
+                style={{ backgroundColor: 'rgba(147, 164, 133, 0.15)' }}
+              >
                 <svg
-                  className="h-8 w-8 text-[var(--color-olive)]"
+                  className="h-8 w-8"
+                  style={{ color: '#93a485' }}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -136,10 +180,10 @@ export default async function OwnerdashboardPage() {
                   />
                 </svg>
               </div>
-              <h3 className="mb-2 font-serif text-xl text-[var(--color-ink-strong)]">
+              <h3 className="mb-2 font-serif text-xl" style={{ color: '#3a3632' }}>
                 No stays yet
               </h3>
-              <p className="text-[var(--color-muted-ink)]">
+              <p style={{ color: '#8a8178' }}>
                 Start by adding your first property to Agistrea.
                 <br />
                 Take it slow, one step at a time.
@@ -149,28 +193,28 @@ export default async function OwnerdashboardPage() {
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {properties.map(p => {
-              // Status Styling
+              // Status Styling mit lebendigen Farben
               const statusConfig = {
                 draft: {
                   emoji: '🌱',
                   label: 'Growing',
-                  bg: 'bg-[color-mix(in_srgb,var(--color-olive)_12%,transparent)]',
-                  border: 'border-[color-mix(in_srgb,var(--color-olive)_20%,transparent)]',
-                  text: 'text-[var(--color-olive)]',
+                  bg: 'rgba(147, 164, 133, 0.15)',
+                  border: 'rgba(147, 164, 133, 0.28)',
+                  text: '#93a485',
                 },
                 published: {
                   emoji: '☀️',
                   label: 'Live',
-                  bg: 'bg-[color-mix(in_srgb,var(--color-terracotta)_12%,transparent)]',
-                  border: 'border-[color-mix(in_srgb,var(--color-terracotta)_20%,transparent)]',
-                  text: 'text-[var(--color-terracotta)]',
+                  bg: 'rgba(217, 115, 70, 0.15)',
+                  border: 'rgba(217, 115, 70, 0.28)',
+                  text: '#d97346',
                 },
                 pending: {
                   emoji: '🌊',
                   label: 'In review',
-                  bg: 'bg-[color-mix(in_srgb,var(--color-sea)_12%,transparent)]',
-                  border: 'border-[color-mix(in_srgb,var(--color-sea)_20%,transparent)]',
-                  text: 'text-[var(--color-sea)]',
+                  bg: 'rgba(244, 165, 125, 0.15)',
+                  border: 'rgba(244, 165, 125, 0.28)',
+                  text: '#f4a57d',
                 },
               }
 
@@ -181,10 +225,17 @@ export default async function OwnerdashboardPage() {
                 <Link
                   key={p.id}
                   href={`/host/properties/${p.id}/edit`}
-                  className="group relative overflow-hidden rounded-3xl border border-[var(--border-light)] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_48px_rgba(0,0,0,0.08)]"
+                  className="group relative overflow-hidden rounded-3xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  style={{ border: '1px solid #e0d8cc' }}
                 >
-                  {/* Image Area - Placeholder if no image */}
-                  <div className="relative h-48 overflow-hidden bg-gradient-to-br from-[color-mix(in_srgb,var(--color-sand)_30%,transparent)] via-[color-mix(in_srgb,var(--color-sea)_8%,transparent)] to-[color-mix(in_srgb,var(--color-olive)_12%,transparent)]">
+                  {/* Image Area mit lebendigen Farben */}
+                  <div
+                    className="relative h-48 overflow-hidden"
+                    style={{
+                      background:
+                        'linear-gradient(135deg, rgba(245, 196, 163, 0.4), rgba(165, 181, 192, 0.25), rgba(147, 164, 133, 0.3))',
+                    }}
+                  >
                     {p.image_url ? (
                       <img
                         src={p.image_url}
@@ -194,7 +245,8 @@ export default async function OwnerdashboardPage() {
                     ) : (
                       <div className="flex h-full items-center justify-center">
                         <svg
-                          className="h-16 w-16 text-[var(--color-muted-ink)] opacity-20"
+                          className="h-16 w-16 opacity-20"
+                          style={{ color: '#8a8178' }}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -211,20 +263,32 @@ export default async function OwnerdashboardPage() {
 
                     {/* Status Badge */}
                     <div
-                      className={`absolute top-3 right-3 flex items-center gap-1.5 rounded-full border ${status.border} ${status.bg} px-3 py-1.5 backdrop-blur-sm`}
+                      className="absolute top-3 right-3 flex items-center gap-1.5 rounded-full px-3 py-1.5 backdrop-blur-sm"
+                      style={{
+                        backgroundColor: status.bg,
+                        border: `1px solid ${status.border}`,
+                      }}
                     >
                       <span className="text-sm">{status.emoji}</span>
-                      <span className={`text-xs font-medium ${status.text}`}>{status.label}</span>
+                      <span className="text-xs font-medium" style={{ color: status.text }}>
+                        {status.label}
+                      </span>
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-5">
-                    <h3 className="mb-2 font-serif text-xl leading-snug text-[var(--color-ink-strong)] transition-colors group-hover:text-[var(--color-terracotta)]">
+                    <h3
+                      className="mb-2 font-serif text-xl leading-snug transition-colors group-hover:text-[var(--color-tangerine)]"
+                      style={{ color: '#3a3632' }}
+                    >
                       {p.title || 'Untitled stay'}
                     </h3>
 
-                    <div className="mb-3 flex items-center gap-2 text-sm text-[var(--color-muted-ink)]">
+                    <div
+                      className="mb-3 flex items-center gap-2 text-sm"
+                      style={{ color: '#8a8178' }}
+                    >
                       <svg
                         className="h-4 w-4"
                         fill="none"
@@ -247,12 +311,15 @@ export default async function OwnerdashboardPage() {
                       <span>Agistri · {p.location || 'Location not set'}</span>
                     </div>
 
-                    <div className="mb-4 font-mono text-xs text-[var(--color-muted-ink)] opacity-50">
+                    <div className="mb-4 font-mono text-xs opacity-50" style={{ color: '#8a8178' }}>
                       /stays/{p.slug}
                     </div>
 
                     {/* Action */}
-                    <div className="flex items-center gap-2 text-sm font-medium text-[var(--color-sea)] transition-colors group-hover:text-[var(--text-accent-hover)]">
+                    <div
+                      className="flex items-center gap-2 text-sm font-medium transition-colors"
+                      style={{ color: '#d97346' }}
+                    >
                       <span>Continue editing</span>
                       <svg
                         className="h-4 w-4 transition-transform group-hover:translate-x-1"
@@ -271,7 +338,10 @@ export default async function OwnerdashboardPage() {
                   </div>
 
                   {/* Hover gradient effect */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-terracotta)] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-[0.02]" />
+                  <div
+                    className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-[0.04]"
+                    style={{ background: 'linear-gradient(to top, #d97346, transparent)' }}
+                  />
                 </Link>
               )
             })}
@@ -281,6 +351,6 @@ export default async function OwnerdashboardPage() {
         {/* Bottom spacing */}
         <div className="h-20" />
       </div>
-    </div>
+    </>
   )
 }
