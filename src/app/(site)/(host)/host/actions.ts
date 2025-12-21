@@ -30,16 +30,14 @@ async function ensureUniqueSlug(supabase: any, base: string) {
   return `${slug}-${Date.now()}`
 }
 
-export async function createPropertyAction() {
+export async function createPropertyAction(): Promise<void> {
   const supabase = await createSupabaseServer()
 
   const {
     data: { user },
+    error: userError,
   } = await supabase.auth.getUser()
-
-  if (!user) {
-    redirect('/host/login')
-  }
+  if (userError || !user) redirect('/host/login')
 
   const title = 'New listing'
   const baseSlug = slugify(title)
@@ -48,7 +46,7 @@ export async function createPropertyAction() {
   const { data: inserted, error: insertError } = await supabase
     .from('properties')
     .insert({
-      host_id: user!.id,
+      host_id: user.id,
       title,
       status: 'draft',
       slug,
@@ -62,7 +60,7 @@ export async function createPropertyAction() {
 
   if (insertError || !inserted?.id) {
     console.error('createPropertyAction insert/return failed', { insertError, inserted })
-    return { ok: false, message: 'Could not create the listing. Please try again later.' }
+    throw new Error('Could not create the listing. Please try again later.')
   }
 
   const propertyId = inserted.id
@@ -73,7 +71,7 @@ export async function createPropertyAction() {
   })
   if (featuresError) {
     console.error('property_features insert failed', featuresError)
-    return { ok: false, message: 'Could not create the listing. Please try again later.' }
+    throw new Error('Could not create the listing. Please try again later.')
   }
 
   const { error: pricesError } = await supabase.from('property_prices').insert({
@@ -83,7 +81,7 @@ export async function createPropertyAction() {
   })
   if (pricesError) {
     console.error('property_prices insert failed', pricesError)
-    return { ok: false, message: 'Could not create the listing. Please try again later.' }
+    throw new Error('Could not create the listing. Please try again later.')
   }
 
   revalidatePath('/host/properties')
