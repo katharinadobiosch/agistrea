@@ -1,3 +1,8 @@
+// ✅ HostNavigation.tsx (angepasst auf neue Tokens; kein tangerine/linen mehr)
+// - Active Pill: terracotta
+// - Container-Pills: warm sand surface
+// - Header: white/clean mit subtle sand tint + border warm
+
 'use client'
 
 import Link from 'next/link'
@@ -10,10 +15,18 @@ function NavLink({ href, label, active }: { href: string; label: string; active:
       href={href}
       className={[
         'rounded-full px-4 py-1.5 text-sm font-medium transition-all',
-        active
-          ? 'bg-(--color-tangerine) text-white shadow-sm'
-          : 'text-(--color-muted-ink) hover:bg-(--color-linen)/50 hover:text-(--color-ink)',
+        active ? 'text-white shadow-sm' : 'transition-colors',
       ].join(' ')}
+      style={
+        active
+          ? {
+              backgroundColor: 'var(--color-terracotta)',
+              boxShadow: '0 8px 20px rgba(185, 122, 90, 0.20)',
+            }
+          : {
+              color: 'var(--color-muted-ink)',
+            }
+      }
     >
       {label}
     </Link>
@@ -24,26 +37,38 @@ export default function HostNavigation() {
   const pathname = usePathname()
 
   const isActive = (path: string) => {
-    if (path === '/host/dashboard') {
-      return pathname === '/host/dashboard'
-    }
+    if (path === '/host/dashboard') return pathname === '/host/dashboard'
     return pathname?.startsWith(path) ?? false
   }
 
   return (
-    <nav className="pointer-events-auto sticky top-0 z-50 border-b border-(--border-light) bg-white/80 backdrop-blur-md">
+    <nav
+      className="pointer-events-auto sticky top-0 z-50 border-b backdrop-blur-md"
+      style={{
+        borderColor: 'var(--border)',
+        backgroundColor: 'rgba(255,255,255,0.82)',
+      }}
+    >
       <div className="relative mx-auto max-w-[1200px] px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Left: Logo + Navigation Pills */}
+          {/* Left */}
           <div className="flex items-center gap-8">
             <Link
               href="/"
-              className="font-serif text-xl text-(--color-tangerine) transition-colors hover:text-(--text-accent-hover)"
+              className="font-serif text-xl transition-colors"
+              style={{ color: 'var(--color-ink-strong)' }}
             >
-              Agistrea
+              <span className="hover:opacity-80">Agistrea</span>
             </Link>
 
-            <div className="flex items-center gap-1 rounded-full bg-[color-mix(in_srgb,var(--color-linen)_40%,transparent)] p-1">
+            {/* pills container */}
+            <div
+              className="flex items-center gap-1 rounded-full p-1"
+              style={{
+                backgroundColor: 'color-mix(in srgb, #ffffff 72%, var(--color-sand) 28%)',
+                border: '1px solid var(--border)',
+              }}
+            >
               <NavLink
                 href="/host/dashboard"
                 label="Dashboard"
@@ -62,27 +87,33 @@ export default function HostNavigation() {
             </div>
           </div>
 
-          {/* Right: Actions */}
+          {/* Right */}
           <div className="flex items-center gap-4">
             <Link
               href="/"
-              className="text-sm text-(--color-muted-ink) transition hover:text-(--color-ink)"
+              className="text-sm transition-colors"
+              style={{ color: 'var(--color-muted-ink)' }}
             >
-              Back to site
+              <span className="hover:text-[color:var(--color-ink)]">Back to site</span>
             </Link>
-            <div className="h-4 w-px bg-(--border-light)" />
+
+            <div className="h-4 w-px" style={{ backgroundColor: 'var(--border)' }} />
+
             <Link
               href="/help"
-              className="text-sm text-(--color-muted-ink) transition hover:text-(--color-tangerine)"
+              className="text-sm transition-colors"
+              style={{ color: 'var(--color-muted-ink)' }}
             >
-              Help
+              <span className="hover:text-[color:var(--color-terracotta)]">Help</span>
             </Link>
+
             <form action={logoutAction}>
               <button
                 type="submit"
-                className="text-sm text-(--color-muted-ink) transition hover:text-(--color-ink)"
+                className="text-sm transition-colors"
+                style={{ color: 'var(--color-muted-ink)' }}
               >
-                Logout
+                <span className="hover:text-[color:var(--color-ink)]">Logout</span>
               </button>
             </form>
           </div>
