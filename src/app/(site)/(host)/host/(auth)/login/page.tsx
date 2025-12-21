@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createSupabaseServer } from '@/lib/supabase/server'
-import HostsLoginPage from '../../../../hosts/login/page'
+import HostAuthForm from '@/components/Hosts/HostAuthForm'
 
 export default async function HostLoginPage() {
   const supabase = await createSupabaseServer()
@@ -9,8 +9,8 @@ export default async function HostLoginPage() {
   } = await supabase.auth.getUser()
 
   if (user) {
-    redirect('/host/dashboard')
+    redirect('/host/properties')
   }
 
-  return <HostsLoginPage />
+  return <HostAuthForm />
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { createPropertyAction } from '../../actions'
+import { createPropertyAction } from '../../../actions'
 import { useFormStatus } from 'react-dom'
 
 function SubmitButton() {
