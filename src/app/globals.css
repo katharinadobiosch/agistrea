@@ -8,6 +8,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -16,11 +17,13 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
+
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -37,66 +40,75 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
 
 :root {
-  --radius: 0.75rem; /* etwas größer für weichere Karten */
+  /* shape */
+  --radius: 0.75rem;
   --page-max-width: 1270px;
   --page-padding-x: 24px;
 
-  /* Brand – Lebendiges Mediterranean (aus den Referenz-Paletten) */
-  --color-tangerine: #d97346; /* Kräftiges Orange aus "Helle Boho" - Primary */
-  --color-peach: #f4a57d; /* Helles Pfirsich - Secondary */
-  --color-blush: #f5c4a3; /* Zartes Rosa aus "Helle Boho" */
-  --color-sage: #93a485; /* Salbei aus "Kinderzimmer" */
-  --color-eucalyptus: #6b7e68; /* Dunkles Grün aus "Helle Boho" */
-  --color-olive: #8b9576; /* Mittleres Olive aus "Helle Boho" */
-  --color-sky: #a5b5c0; /* Blaugrau aus "Kinderzimmer" */
-  --color-coral: #c98674; /* Terracotta aus "Kinderzimmer" */
-  --color-cream-pale: #f5f1e8; /* Helles Creme aus "Kinderzimmer" */
-  --color-sand: #e6d7c3; /* Sand aus "Kinderzimmer" */
+  /* ------------------------------------------------------------------
+     BRAND: Editorial-clean × Southern-warm
+     - White leads (clean)
+     - Sand warms surfaces (sparingly)
+     - Terracotta = primary actions / selected
+     - Sea = links/focus/interactive cues
+     - Olive = success/status/nature
+  ------------------------------------------------------------------ */
 
-  /* Neutrals mit mehr Charakter */
-  --color-cream: #faf7f2; /* Haupthintergrund */
-  --color-linen: #f0ebe3; /* Subtile Backgrounds */
-  --color-clay: #d4c4b0; /* Warmes Neutral */
+  /* Core brand hues (keep your original “honest mediterranean” DNA) */
+  --color-terracotta: #b97a5a; /* primary CTA / selected */
+  --color-olive: #6e775e; /* success/status */
+  --color-sea: #7a90a8; /* links, focus ring, icons */
+  --color-sand: #cbbba4; /* warm surfaces (NOT base) */
 
-  /* Textfarben */
-  --color-ink-strong: #3a3632; /* Headlines */
-  --color-ink: #534f49; /* Body */
-  --color-muted-ink: #8a8178; /* Muted */
-  --color-border-soft: #e0d8cc; /* Border */
+  /* Editorial neutrals */
   --color-white: #ffffff;
-  --color-black: #000000;
+  --color-soft-white: #ffffff; /* base = white for clean editorial */
+  --color-ink-strong: #3a3632;
+  --color-ink: #534f49;
+  --color-muted-ink: #8a8178;
 
-  /* Semantic Tokens - jetzt mit mehr Leben */
-  --bg-base: var(--color-cream);
-  --bg-section: color-mix(in srgb, var(--color-cream) 60%, var(--color-linen) 40%);
-  --bg-card: var(--color-white);
+  /* Borders (slightly warm, but very subtle) */
+  --color-border-soft: color-mix(in srgb, #000 8%, #ffffff 92%); /* soft neutral */
+  --color-border-warm: color-mix(in srgb, var(--color-sand) 28%, #ffffff 72%);
 
+  /* ------------------------------------------------------------------
+     SEMANTIC SURFACES
+  ------------------------------------------------------------------ */
+  --bg-base: #ffffff; /* editorial base */
+  --bg-section: color-mix(in srgb, #ffffff 88%, var(--color-sand) 12%); /* warm only in sections */
+  --bg-card: #ffffff;
+
+  /* Text */
   --text-main: var(--color-ink);
-  --text-light: var(--color-cream);
-  --text-accent: var(--color-tangerine);
-  --text-accent-hover: #c4603a; /* dunkler tangerine */
+  --text-light: #ffffff;
+  --text-accent: var(--color-sea);
+  --text-accent-hover: color-mix(in srgb, var(--color-sea) 78%, #000 22%);
 
-  --btn-primary-bg: var(--color-tangerine);
-  --btn-primary-text: var(--color-white);
-  --btn-primary-hover-bg: #c4603a;
+  /* Buttons */
+  --btn-primary-bg: var(--color-terracotta);
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover-bg: color-mix(in srgb, var(--color-terracotta) 78%, #000 22%);
 
-  --btn-secondary-bg: var(--color-sage);
-  --btn-secondary-text: var(--color-white);
-  --btn-secondary-hover-bg: #7d8f70;
+  --btn-secondary-bg: color-mix(in srgb, var(--color-sand) 55%, #ffffff 45%);
+  --btn-secondary-text: var(--color-ink-strong);
+  --btn-secondary-hover-bg: color-mix(in srgb, var(--color-sand) 70%, #ffffff 30%);
 
-  --border-light: var(--color-border-soft);
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --shadow-medium: 0 8px 32px rgba(217, 115, 70, 0.15); /* vibrant tangerine shadow */
+  /* Shadows: keep subtle + one warm lift for CTAs */
+  --shadow-soft: 0 6px 22px rgba(0, 0, 0, 0.08);
+  --shadow-warm: 0 10px 28px rgba(185, 122, 90, 0.18);
 
   --font-serif: 'Playfair Display', serif;
 
-  /* Mapping auf Tailwind/Shadcn-Design-Tokens */
+  /* ------------------------------------------------------------------
+     SHADCN/TW MAPPING
+  ------------------------------------------------------------------ */
   --background: var(--bg-base);
   --foreground: var(--text-main);
 
@@ -106,39 +118,43 @@
   --popover: var(--bg-base);
   --popover-foreground: var(--text-main);
 
-  --primary: var(--color-tangerine);
-  --primary-foreground: var(--color-white);
+  --primary: var(--color-terracotta);
+  --primary-foreground: #ffffff;
 
-  --secondary: var(--color-sage);
-  --secondary-foreground: var(--color-white);
+  /* Secondary = warm sand surface (editorial), not green */
+  --secondary: color-mix(in srgb, #ffffff 70%, var(--color-sand) 30%);
+  --secondary-foreground: var(--color-ink-strong);
 
-  --muted: var(--color-linen);
+  --muted: color-mix(in srgb, #ffffff 78%, var(--color-sand) 22%);
   --muted-foreground: var(--color-muted-ink);
 
-  --accent: var(--color-coral);
-  --accent-foreground: var(--color-white);
+  /* Accent = sea (functional) */
+  --accent: var(--color-sea);
+  --accent-foreground: #ffffff;
 
   --destructive: #c74e3a;
 
-  --border: var(--border-light);
-  --input: var(--border-light);
-  --ring: var(--color-tangerine);
+  /* Borders/Inputs/Rings */
+  --border: var(--color-border-warm);
+  --input: var(--color-border-warm);
+  --ring: var(--color-sea);
 
-  /* Charts mit den lebendigen Farben */
-  --chart-1: var(--color-tangerine);
-  --chart-2: var(--color-sage);
-  --chart-3: var(--color-coral);
-  --chart-4: var(--color-peach);
-  --chart-5: var(--color-eucalyptus);
+  /* Charts */
+  --chart-1: var(--color-terracotta);
+  --chart-2: var(--color-olive);
+  --chart-3: var(--color-sea);
+  --chart-4: var(--color-sand);
+  --chart-5: color-mix(in srgb, var(--color-terracotta) 65%, #000 35%);
 
-  --sidebar: var(--bg-base);
+  /* Sidebar (clean white, warm highlights) */
+  --sidebar: #ffffff;
   --sidebar-foreground: var(--text-main);
-  --sidebar-primary: var(--color-tangerine);
-  --sidebar-primary-foreground: var(--color-white);
-  --sidebar-accent: var(--color-linen);
-  --sidebar-accent-foreground: var(--text-main);
-  --sidebar-border: var(--border-light);
-  --sidebar-ring: var(--color-tangerine);
+  --sidebar-primary: var(--color-terracotta);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: color-mix(in srgb, #ffffff 72%, var(--color-sand) 28%);
+  --sidebar-accent-foreground: var(--color-ink-strong);
+  --sidebar-border: var(--color-border-warm);
+  --sidebar-ring: var(--color-sea);
 }
 
 html {
@@ -159,45 +175,56 @@ html {
   padding-right: 0;
 }
 
-/* Dark Mode – mit den neuen Farben angepasst */
+/* Dark Mode – keep coherent but not “random navy” */
 .dark {
-  --background: #1a1816;
+  --background: #161514;
   --foreground: #f5f2ed;
-  --card: #252220;
+
+  --card: #1f1d1b;
   --card-foreground: #f5f2ed;
-  --popover: #252220;
+
+  --popover: #1f1d1b;
   --popover-foreground: #f5f2ed;
-  --primary: #e8824f;
-  --primary-foreground: #1a1816;
-  --secondary: #3a3735;
+
+  --primary: color-mix(in srgb, var(--color-terracotta) 85%, #ffffff 15%);
+  --primary-foreground: #161514;
+
+  --secondary: #2a2725;
   --secondary-foreground: #f5f2ed;
-  --muted: #2d2a27;
-  --muted-foreground: #a8a29a;
-  --accent: #d8947c;
-  --accent-foreground: #1a1816;
+
+  --muted: #2a2725;
+  --muted-foreground: #aca59c;
+
+  --accent: color-mix(in srgb, var(--color-sea) 85%, #ffffff 15%);
+  --accent-foreground: #161514;
+
   --destructive: #c74e3a;
-  --border: rgba(232, 130, 79, 0.12);
-  --input: rgba(232, 130, 79, 0.18);
-  --ring: #e8824f;
-  --chart-1: #e8824f;
-  --chart-2: #8b9b7e;
-  --chart-3: #96a7b8;
-  --chart-4: #d8947c;
-  --chart-5: #6d826b;
-  --sidebar: #1a1816;
+
+  --border: rgba(245, 242, 237, 0.12);
+  --input: rgba(245, 242, 237, 0.16);
+  --ring: color-mix(in srgb, var(--color-sea) 80%, #ffffff 20%);
+
+  --chart-1: color-mix(in srgb, var(--color-terracotta) 80%, #ffffff 20%);
+  --chart-2: color-mix(in srgb, var(--color-olive) 80%, #ffffff 20%);
+  --chart-3: color-mix(in srgb, var(--color-sea) 80%, #ffffff 20%);
+  --chart-4: color-mix(in srgb, var(--color-sand) 65%, #ffffff 35%);
+  --chart-5: #8c5a3f;
+
+  --sidebar: #161514;
   --sidebar-foreground: #f5f2ed;
-  --sidebar-primary: #e8824f;
-  --sidebar-primary-foreground: #1a1816;
-  --sidebar-accent: #2d2a27;
+  --sidebar-primary: color-mix(in srgb, var(--color-terracotta) 85%, #ffffff 15%);
+  --sidebar-primary-foreground: #161514;
+  --sidebar-accent: #2a2725;
   --sidebar-accent-foreground: #f5f2ed;
-  --sidebar-border: rgba(232, 130, 79, 0.12);
-  --sidebar-ring: #e8824f;
+  --sidebar-border: rgba(245, 242, 237, 0.1);
+  --sidebar-ring: color-mix(in srgb, var(--color-sea) 80%, #ffffff 20%);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground font-sans;
   }
@@ -228,6 +255,7 @@ html {
   }
 
   a:hover {
+    color: var(--text-accent-hover);
     text-decoration: underline;
   }
 
@@ -236,15 +264,16 @@ html {
     outline-offset: 2px;
   }
 
-  /* Vibrant CTA Button */
+  /* CTA Button (warm lift, but still clean) */
   .add-stay-button {
-    background-color: #d97346;
-    box-shadow: 0 8px 24px rgba(217, 115, 70, 0.28);
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    box-shadow: var(--shadow-warm);
   }
 
   .add-stay-button:hover {
-    background-color: #c4603a;
-    box-shadow: 0 12px 32px rgba(217, 115, 70, 0.35);
+    background-color: var(--btn-primary-hover-bg);
+    box-shadow: 0 14px 34px rgba(185, 122, 90, 0.26);
   }
 }
 
@@ -252,31 +281,20 @@ html {
   font-family: var(--font-serif);
 }
 
-/* Utility classes für die neuen Farben */
-.text-tangerine {
-  color: var(--color-tangerine);
+/* Utility helpers (optional) */
+.text-terracotta {
+  color: var(--color-terracotta);
+}
+.text-sea {
+  color: var(--color-sea);
+}
+.text-olive {
+  color: var(--color-olive);
 }
 
-.text-sage {
-  color: var(--color-sage);
+.bg-section {
+  background-color: var(--bg-section);
 }
-
-.text-coral {
-  color: var(--color-coral);
-}
-
-.bg-tangerine {
-  background-color: var(--color-tangerine);
-}
-
-.bg-sage {
-  background-color: var(--color-sage);
-}
-
-.bg-coral {
-  background-color: var(--color-coral);
-}
-
-.border-tangerine {
-  border-color: var(--color-tangerine);
+.border-warm {
+  border-color: var(--color-border-warm);
 }
