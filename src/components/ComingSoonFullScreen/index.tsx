@@ -80,7 +80,7 @@ export default function ComingSoonFullScreen() {
             Notify me
           </button>
         </form>
-        <p className="pt-[12px] text-[12px]"> Built with ♥ from Agistri for Agistri</p>
+        <p className="pt-3 text-[12px]"> Built with ♥ from Agistri for Agistri</p>
       </div>
 
       <div className="absolute inset-x-0 bottom-6 flex items-center justify-center gap-1 text-white">

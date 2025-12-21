@@ -134,7 +134,7 @@ export default function HostAuthForm() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-[var(--bg-base)] md:pl-[55px]">
+    <div className="min-h-screen w-full bg-(--bg-base) md:pl-[55px]">
       {/* Wrapper: mobile = column, desktop = row */}
       <div className="flex min-h-screen w-full flex-col md:flex-row">
         {/* HERO / IMAGE */}
@@ -151,7 +151,7 @@ export default function HostAuthForm() {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-[var(--bg-base)]" />
+            <div className="absolute inset-0 bg-linear-to-b from-black/35 via-black/10 to-(--bg-base)" />
           </div>
 
           {/* Desktop: großes Bild links */}
@@ -165,12 +165,12 @@ export default function HostAuthForm() {
               className="h-full w-full object-cover object-[77%_50%]"
               priority
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/10" />
+            <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-black/10 via-transparent to-black/10" />
           </div>
         </div>
 
         {/* FORM COLUMN */}
-        <div className="z-[100] flex w-full items-start justify-center px-4 pb-10 md:w-[30%] md:items-center md:px-0 md:py-0">
+        <div className="z-100 flex w-full items-start justify-center px-4 pb-10 md:w-[30%] md:items-center md:px-0 md:py-0">
           {/* Auf Mobile wird die Card leicht in den Hero „reingeschoben“ */}
           <div className="-mt-12 w-full max-w-md md:mt-0">
             <div className="flex flex-col items-center gap-2 px-2 md:px-6">
@@ -179,7 +179,7 @@ export default function HostAuthForm() {
                 {mode === 'login' ? 'Host Login' : 'Create an account'}
               </h1>
 
-              <div className="text-sm text-[var(--color-muted-ink)]">
+              <div className="text-sm text-(--color-muted-ink)">
                 {mode === 'login' ? (
                   <>
                     New to Agistrea?{' '}
@@ -190,7 +190,7 @@ export default function HostAuthForm() {
                         setError(null)
                         setSuccess(null)
                       }}
-                      className="cursor-pointer text-[var(--text-accent)] hover:text-[var(--text-accent-hover)]"
+                      className="cursor-pointer text-(--text-accent) hover:text-(--text-accent-hover)"
                     >
                       Create an account
                     </button>
@@ -205,7 +205,7 @@ export default function HostAuthForm() {
                         setError(null)
                         setSuccess(null)
                       }}
-                      className="cursor-pointer text-[var(--text-accent)] hover:text-[var(--text-accent-hover)]"
+                      className="cursor-pointer text-(--text-accent) hover:text-(--text-accent-hover)"
                     >
                       Login
                     </button>
@@ -215,43 +215,43 @@ export default function HostAuthForm() {
 
               <form
                 onSubmit={mode === 'login' ? onLogin : onRegister}
-                className="mt-2 w-full rounded-2xl bg-white px-5 py-6 shadow-[var(--shadow-soft)] md:px-8"
+                className="mt-2 w-full rounded-2xl bg-white px-5 py-6 shadow-(--shadow-soft) md:px-8"
               >
                 <div className="flex flex-col gap-3">
                   <label className="grid gap-1">
-                    <span className="text-xs text-[var(--color-muted-ink)]">Email</span>
+                    <span className="text-xs text-(--color-muted-ink)">Email</span>
                     <input
                       type="email"
                       placeholder="you@email.com"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       autoComplete="email"
-                      className="w-full rounded-md border border-[var(--border-light)] bg-[var(--bg-base)] px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--ring)]"
+                      className="w-full rounded-md border border-(--border-light) bg-(--bg-base) px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-(--ring)"
                     />
                   </label>
 
                   <label className="grid gap-1">
-                    <span className="text-xs text-[var(--color-muted-ink)]">Password</span>
+                    <span className="text-xs text-(--color-muted-ink)">Password</span>
                     <input
                       type="password"
                       placeholder={mode === 'login' ? 'Password' : 'Min. 8 characters'}
                       value={password}
                       onChange={e => setPassword(e.target.value)}
                       autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
-                      className="w-full rounded-md border border-[var(--border-light)] bg-[var(--bg-base)] px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--ring)]"
+                      className="w-full rounded-md border border-(--border-light) bg-(--bg-base) px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-(--ring)"
                     />
                   </label>
 
                   {mode === 'register' && (
                     <label className="grid gap-1">
-                      <span className="text-xs text-[var(--color-muted-ink)]">Repeat password</span>
+                      <span className="text-xs text-(--color-muted-ink)">Repeat password</span>
                       <input
                         type="password"
                         placeholder="Repeat password"
                         value={password2}
                         onChange={e => setPassword2(e.target.value)}
                         autoComplete="new-password"
-                        className="w-full rounded-md border border-[var(--border-light)] bg-[var(--bg-base)] px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--ring)]"
+                        className="w-full rounded-md border border-(--border-light) bg-(--bg-base) px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-(--ring)"
                       />
                     </label>
                   )}
@@ -259,7 +259,7 @@ export default function HostAuthForm() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="mt-1 w-full rounded-md bg-[var(--btn-primary-bg)] px-4 py-2.5 text-sm text-[var(--btn-primary-text)] transition hover:bg-[var(--btn-primary-hover-bg)] disabled:cursor-not-allowed disabled:opacity-60"
+                    className="mt-1 w-full rounded-md bg-(--btn-primary-bg) px-4 py-2.5 text-sm text-(--btn-primary-text) transition hover:bg-(--btn-primary-hover-bg) disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {loading ? '…' : mode === 'login' ? 'Login' : 'Create account'}
                   </button>
@@ -274,7 +274,7 @@ export default function HostAuthForm() {
                   )}
 
                   {mode === 'register' && (
-                    <p className="pt-1 text-xs text-[var(--color-muted-ink)]">
+                    <p className="pt-1 text-xs text-(--color-muted-ink)">
                       By creating an account you agree to manage listings responsibly.
                     </p>
                   )}

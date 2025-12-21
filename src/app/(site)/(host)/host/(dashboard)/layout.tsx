@@ -13,7 +13,7 @@ export default async function HostDashboardLayout({ children }: { children: Reac
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[var(--color-cream)] via-[var(--color-cream)] to-[color-mix(in_srgb,var(--color-linen)_25%,var(--color-cream))] pl-[60px]">
+    <div className="min-h-screen bg-linear-to-br from-(--color-cream) via-(--color-cream) to-[color-mix(in_srgb,var(--color-linen)_25%,var(--color-cream))] pl-[60px]">
       <HostNavigation />
       <main>{children}</main>
     </div>

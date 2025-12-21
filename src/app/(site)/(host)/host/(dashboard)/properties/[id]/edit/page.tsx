@@ -14,7 +14,7 @@ type PageProps = {
 
 function Card({ children }: { children: React.ReactNode }) {
   return (
-    <div className="border-border bg-card rounded-xl border p-6 shadow-[var(--shadow-soft)]">
+    <div className="border-border bg-card rounded-xl border p-6 shadow-(--shadow-soft)">
       {children}
     </div>
   )
@@ -23,7 +23,7 @@ function Card({ children }: { children: React.ReactNode }) {
 function Label({ children, hint }: { children: React.ReactNode; hint?: React.ReactNode }) {
   return (
     <div className="flex items-start justify-between">
-      <label className="text-sm font-medium text-[var(--color-ink-strong)]">{children}</label>
+      <label className="text-sm font-medium text-(--color-ink-strong)">{children}</label>
       {hint ? <span className="text-muted-foreground text-xs">{hint}</span> : null}
     </div>
   )
@@ -33,7 +33,7 @@ function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}
-      className="border-border ring-offset-background mt-1 w-full rounded-lg border bg-[var(--bg-base)]/80 px-3 py-2 text-sm text-[var(--color-ink)] transition focus:border-[var(--ring)] focus:ring-2 focus:ring-[var(--ring)]/60 focus:outline-none"
+      className="border-border ring-offset-background mt-1 w-full rounded-lg border bg-(--bg-base)/80 px-3 py-2 text-sm text-(--color-ink) transition focus:border-(--ring) focus:ring-2 focus:ring-(--ring)/60 focus:outline-none"
     />
   )
 }
@@ -42,7 +42,7 @@ function Textarea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return (
     <textarea
       {...props}
-      className="border-border ring-offset-background mt-1 w-full rounded-lg border bg-[var(--bg-base)]/80 px-3 py-2 text-sm text-[var(--color-ink)] transition focus:border-[var(--ring)] focus:ring-2 focus:ring-[var(--ring)]/60 focus:outline-none"
+      className="border-border ring-offset-background mt-1 w-full rounded-lg border bg-(--bg-base)/80 px-3 py-2 text-sm text-(--color-ink) transition focus:border-(--ring) focus:ring-2 focus:ring-(--ring)/60 focus:outline-none"
     />
   )
 }
@@ -70,7 +70,7 @@ function Button({
 function ChapterHeader({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <div className="mb-4">
-      <div className="font-serif text-2xl text-[var(--color-ink-strong)]">{title}</div>
+      <div className="font-serif text-2xl text-(--color-ink-strong)">{title}</div>
       {subtitle ? <p className="text-muted-foreground text-sm">{subtitle}</p> : null}
       <div className="border-border mt-4 border-t" />
     </div>
@@ -118,11 +118,11 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
     <div className="bg-background">
       <div className="mx-auto max-w-6xl space-y-6 px-4 py-6">
         {/* Top bar */}
-        <div className="border-border bg-card flex flex-col gap-3 rounded-xl border px-4 py-3 shadow-[var(--shadow-soft)] md:flex-row md:items-center md:justify-between">
+        <div className="border-border bg-card flex flex-col gap-3 rounded-xl border px-4 py-3 shadow-(--shadow-soft) md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             <span className="text-muted-foreground text-sm">Host Dashboard</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)]/70" />
-            <span className="font-serif text-lg text-[var(--color-ink-strong)]">Edit listing</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-(--primary)/70" />
+            <span className="font-serif text-lg text-(--color-ink-strong)">Edit listing</span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="border-border bg-secondary text-muted-foreground rounded-full border px-3 py-1 text-xs font-medium uppercase">
@@ -254,7 +254,7 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
                     return (
                       <div
                         key={img.id}
-                        className="border-border bg-secondary relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg border"
+                        className="border-border bg-secondary relative h-24 w-24 shrink-0 overflow-hidden rounded-lg border"
                       >
                         {src ? (
                           // eslint-disable-next-line @next/next/no-img-element
@@ -264,7 +264,7 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
                             No image
                           </div>
                         )}
-                        <div className="absolute top-1.5 left-1.5 rounded-full bg-black/70 px-2 py-[1px] text-[10px] text-white">
+                        <div className="absolute top-1.5 left-1.5 rounded-full bg-black/70 px-2 py-px text-[10px] text-white">
                           #{img.sort_order ?? 0}
                         </div>
                       </div>
@@ -272,8 +272,8 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
                   })}
                 </div>
               ) : (
-                <div className="border-border rounded-lg border border-dashed bg-[var(--bg-section)]/60 p-4">
-                  <div className="font-serif text-lg text-[var(--color-ink-strong)]">
+                <div className="border-border rounded-lg border border-dashed bg-(--bg-section)/60 p-4">
+                  <div className="font-serif text-lg text-(--color-ink-strong)">
                     Add your first photo
                   </div>
                   <p className="text-muted-foreground text-sm">It sets the tone for the stay.</p>
@@ -282,14 +282,14 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
 
               <form
                 action={uploadPropertyImageAction}
-                className="border-border mt-4 flex flex-col gap-3 rounded-lg border bg-[var(--bg-section)]/50 p-4 sm:flex-row sm:items-end"
+                className="border-border mt-4 flex flex-col gap-3 rounded-lg border bg-(--bg-section)/50 p-4 sm:flex-row sm:items-end"
               >
                 <input type="hidden" name="property_id" value={property.id} />
                 <div className="w-full">
                   <Label>New image</Label>
                   <Input type="file" name="file" accept="image/*" required />
                 </div>
-                <Button type="submit" className="sm:w-[160px]">
+                <Button type="submit" className="sm:w-40">
                   Upload photo
                 </Button>
               </form>
@@ -322,13 +322,13 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
                 {checklist.map(item => (
                   <li
                     key={item.label}
-                    className="flex items-center gap-2 text-sm text-[var(--color-ink)]"
+                    className="flex items-center gap-2 text-sm text-(--color-ink)"
                   >
                     <span
                       className={[
                         'flex h-5 w-5 items-center justify-center rounded-full border',
                         item.done
-                          ? 'border-[var(--color-olive)] bg-[var(--color-olive)] text-white'
+                          ? 'border-(--color-olive) bg-(--color-olive) text-white'
                           : 'border-border text-muted-foreground',
                       ].join(' ')}
                     >

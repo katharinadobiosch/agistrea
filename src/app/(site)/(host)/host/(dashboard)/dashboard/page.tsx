@@ -51,7 +51,12 @@ export default async function OwnerdashboardPage() {
               </p>
             </div>
 
-            <form action={createPropertyAction}>
+            <form
+              action={async (formData: FormData) => {
+                'use server'
+                await createPropertyAction()
+              }}
+            >
               <button
                 type="submit"
                 className="add-stay-button group relative overflow-hidden rounded-2xl px-8 py-4 font-medium text-white transition-all duration-300 hover:scale-[1.02]"
@@ -80,7 +85,7 @@ export default async function OwnerdashboardPage() {
         {/* Quick Stats - mit lebendigen Farben */}
         <div className="mb-10 grid grid-cols-3 gap-6">
           <div
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
+            className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
             style={{ border: '1px solid rgba(147, 164, 133, 0.25)' }}
           >
             <div
@@ -98,7 +103,7 @@ export default async function OwnerdashboardPage() {
           </div>
 
           <div
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
+            className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
             style={{ border: '1px solid rgba(244, 165, 125, 0.25)' }}
           >
             <div
@@ -116,7 +121,7 @@ export default async function OwnerdashboardPage() {
           </div>
 
           <div
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
+            className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
             style={{ border: '1px solid rgba(217, 115, 70, 0.25)' }}
           >
             <div
@@ -279,7 +284,7 @@ export default async function OwnerdashboardPage() {
                   {/* Content */}
                   <div className="p-5">
                     <h3
-                      className="mb-2 font-serif text-xl leading-snug transition-colors group-hover:text-[var(--color-tangerine)]"
+                      className="mb-2 font-serif text-xl leading-snug transition-colors group-hover:text-(--color-tangerine)"
                       style={{ color: '#3a3632' }}
                     >
                       {p.title || 'Untitled stay'}
