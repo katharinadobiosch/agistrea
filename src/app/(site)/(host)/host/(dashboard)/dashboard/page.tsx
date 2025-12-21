@@ -17,48 +17,7 @@ export default async function OwnerdashboardPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--color-soft-white)] via-[var(--color-soft-white)] to-[color-mix(in_srgb,var(--color-sand)_15%,var(--color-soft-white))]">
       {/* Top Navigation Bar - horizontal statt Sidebar */}
-      <nav className="border-b border-[var(--border-light)] bg-[var(--color-white)]/70 backdrop-blur-md">
-        <div className="mx-auto max-w-[1200px] px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <Link href="/" className="font-serif text-xl text-[var(--color-ink-strong)]">
-                Agistrea
-              </Link>
-              <div className="flex items-center gap-1 rounded-full bg-[color-mix(in_srgb,var(--color-sand)_25%,transparent)] p-1">
-                <Link
-                  href="/host/dashboard"
-                  className="rounded-full bg-[var(--color-white)] px-4 py-1.5 text-sm font-medium text-[var(--color-ink-strong)] shadow-sm"
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  href="/host/listings"
-                  className="rounded-full px-4 py-1.5 text-sm text-[var(--color-muted-ink)] transition hover:text-[var(--color-ink)]"
-                >
-                  Listings
-                </Link>
-                <Link
-                  href="/host/create"
-                  className="rounded-full px-4 py-1.5 text-sm text-[var(--color-muted-ink)] transition hover:text-[var(--color-ink)]"
-                >
-                  Create
-                </Link>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/help"
-                className="text-sm text-[var(--color-muted-ink)] transition hover:text-[var(--color-sea)]"
-              >
-                Help
-              </Link>
-              <button className="text-sm text-[var(--color-muted-ink)] transition hover:text-[var(--color-ink)]">
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+    
 
       {/* Main Content */}
       <div className="mx-auto max-w-[1200px] px-6 py-12">
