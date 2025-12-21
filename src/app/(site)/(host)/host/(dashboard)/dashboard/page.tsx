@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { createSupabaseServer } from '@/lib/supabase/server'
 import { createPropertyAction } from '../../actions'
 
@@ -7,13 +8,17 @@ export default async function OwnerdashboardPage() {
 
   const {
     data: { user },
+    error: userError,
   } = await supabase.auth.getUser()
+
+  if (userError || !user) {
+    redirect('/login') // oder '/host/login' – je nach Routing
+  }
 
   const { data: properties, error } = await supabase
     .from('properties')
     .select('*')
     .eq('host_id', user.id)
-
   return (
     <>
       {/* Main Content */}
