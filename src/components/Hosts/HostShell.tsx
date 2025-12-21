@@ -13,7 +13,7 @@ export default function HostShell({ children }: { children: React.ReactNode }) {
       {sidebarOpen && (
         <button
           aria-label="Close sidebar"
-          className="fixed inset-0 z-40 bg-black/40 md:hidden"
+          className="fixed inset-0 z-40 bg-[var(--bg-section)]/70 md:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -21,8 +21,8 @@ export default function HostShell({ children }: { children: React.ReactNode }) {
       {/* Sidebar */}
       <div
         className={[
-          'fixed top-0 left-0 z-50 h-full w-[280px] border-r border-black/10 bg-white',
-          'transition-transform md:translate-x-0',
+          'fixed top-0 left-0 z-50 h-full w-[280px] border-r border-border bg-[var(--bg-section)]/80 backdrop-blur',
+          'transition-transform md:translate-x-0 shadow-[var(--shadow-soft)]',
           sidebarOpen ? 'translate-x-0' : '-translate-x-full',
         ].join(' ')}
       >

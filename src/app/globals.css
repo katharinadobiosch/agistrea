@@ -187,7 +187,6 @@ html {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
     @apply bg-background text-foreground font-sans;
   }
 
@@ -224,4 +223,8 @@ html {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
 }

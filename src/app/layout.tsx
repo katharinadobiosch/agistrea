@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className={`${playfair.variable} min-h-screen bg-white`}>{children}</body>
+      <body className={playfair.variable}>{children}</body>
     </html>
   )
 }

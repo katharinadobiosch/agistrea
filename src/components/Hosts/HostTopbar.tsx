@@ -14,29 +14,26 @@ export default function HostTopbar({ onOpenSidebar }: { onOpenSidebar: () => voi
   }
 
   return (
-    <header
-      onClickCapture={() => console.log('HEADER CLICK CAPTURE')}
-      className="sticky top-0 z-[9999] border-b border-black/10 bg-white/80 backdrop-blur"
-    >
+    <header className="sticky top-0 z-[9999] border-b border-border bg-[var(--bg-base)]/90 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 md:px-8">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={onOpenSidebar}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-black/10 md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-card text-[var(--color-ink-strong)] md:hidden"
             aria-label="Open sidebar"
           >
-            <span className="block h-[2px] w-4 bg-black/70" />
+            <span className="block h-[2px] w-4 bg-[var(--color-ink-strong)]" />
             <span className="sr-only">Menu</span>
           </button>
 
-          <div className="font-medium">Host Dashboard</div>
+          <div className="font-serif text-lg text-[var(--color-ink-strong)]">Host Dashboard</div>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className="rounded-md border border-black/10 px-3 py-1.5 text-sm hover:bg-black/5"
+            className="rounded-full border border-border bg-secondary px-4 py-2 text-sm text-secondary-foreground hover:opacity-90"
           >
             Help
           </button>
@@ -44,7 +41,7 @@ export default function HostTopbar({ onOpenSidebar }: { onOpenSidebar: () => voi
           <button
             type="button"
             onClick={onLogout}
-            className="rounded-md bg-black px-3 py-1.5 text-sm text-white hover:bg-black/80"
+            className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm text-[var(--primary-foreground)] hover:bg-[var(--btn-primary-hover-bg)]"
           >
             Logout
           </button>

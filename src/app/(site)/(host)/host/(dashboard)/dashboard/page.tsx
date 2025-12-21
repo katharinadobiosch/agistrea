@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { createSupabaseServer } from '@/lib/supabase/server'
-import { createPropertyAction } from '../actions'
+import { createPropertyAction } from '../../actions'
 
 export default async function OwnerdashboardPage() {
   const supabase = await createSupabaseServer()
@@ -8,15 +8,6 @@ export default async function OwnerdashboardPage() {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
-  if (!user) {
-    return (
-      <div>
-        <p>Please log in.</p>
-        <Link href="/host/login">Go to login</Link>
-      </div>
-    )
-  }
 
   const { data: properties, error } = await supabase
     .from('properties')
