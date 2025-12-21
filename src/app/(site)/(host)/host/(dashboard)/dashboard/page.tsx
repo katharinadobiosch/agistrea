@@ -17,122 +17,138 @@ export default async function OwnerdashboardPage() {
   return (
     <>
       {/* Main Content */}
-      <div className="mx-auto max-w-[1200px] px-6 py-12">
-        {/* Hero Header mit mediterranem Touch */}
-        <div className="relative mb-12">
-          {/* Decorative elements - vibrant tangerine and sage */}
+      <div className="mx-auto max-w-[1200px] px-4 py-8 sm:px-6 sm:py-12">
+        {/* Hero Header - Mobile First */}
+        <div className="relative mb-8 sm:mb-12">
+          {/* Decorative elements */}
           <div
-            className="absolute top-0 -left-12 h-32 w-32 rounded-full blur-3xl"
+            className="absolute top-0 -left-8 h-24 w-24 rounded-full blur-3xl sm:-left-12 sm:h-32 sm:w-32"
             style={{ backgroundColor: '#d97346', opacity: 0.08 }}
           />
           <div
-            className="absolute top-8 -right-8 h-24 w-24 rounded-full blur-2xl"
+            className="absolute top-4 -right-4 h-20 w-20 rounded-full blur-2xl sm:top-8 sm:-right-8 sm:h-24 sm:w-24"
             style={{ backgroundColor: '#93a485', opacity: 0.1 }}
           />
 
-          <div className="relative flex items-end justify-between gap-8">
-            <div className="max-w-[600px]">
-              <div className="mb-2 flex items-center gap-2">
-                <div className="h-px w-12" style={{ backgroundColor: '#d97346', opacity: 0.6 }} />
-                <span
-                  className="text-xs tracking-wider uppercase"
-                  style={{ color: '#d97346', opacity: 0.75 }}
-                >
-                  Your hosting space
-                </span>
-              </div>
-              <h1 className="font-serif text-5xl leading-tight" style={{ color: '#3a3632' }}>
-                Welcome back
-              </h1>
-              <p className="mt-3 text-lg leading-relaxed" style={{ color: '#8a8178' }}>
-                A calm space to manage your stays on Agistri. Take your time,
-                <br />
-                everything has its season.
-              </p>
+          <div className="relative">
+            {/* Top Label */}
+            <div className="mb-3 flex items-center gap-2 sm:mb-2">
+              <div
+                className="h-px w-8 sm:w-12"
+                style={{ backgroundColor: '#d97346', opacity: 0.6 }}
+              />
+              <span
+                className="text-xs tracking-wider uppercase"
+                style={{ color: '#d97346', opacity: 0.75 }}
+              >
+                Your hosting space
+              </span>
             </div>
 
-            <form
-              action={async (formData: FormData) => {
-                'use server'
-                await createPropertyAction()
-              }}
-            >
-              <button
-                type="submit"
-                className="add-stay-button group relative overflow-hidden rounded-2xl px-8 py-4 font-medium text-white transition-all duration-300 hover:scale-[1.02]"
+            {/* Title + Button Container - Stack on Mobile */}
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
+              <div className="max-w-none flex-1 sm:max-w-[600px]">
+                <h1
+                  className="mb-3 font-serif text-4xl leading-tight sm:text-5xl"
+                  style={{ color: '#3a3632' }}
+                >
+                  Welcome back
+                </h1>
+                <p className="text-base leading-relaxed sm:text-lg" style={{ color: '#8a8178' }}>
+                  A calm space to manage your stays on Agistri. Take your time, everything has its
+                  season.
+                </p>
+              </div>
+
+              {/* Button - Full width on mobile, auto on desktop */}
+              <form
+                action={async (formData: FormData) => {
+                  'use server'
+                  await createPropertyAction()
+                }}
+                className="w-full sm:w-auto"
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  <svg
-                    className="h-5 w-5 transition-transform group-hover:rotate-90"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 4v16m8-8H4"
-                    />
-                  </svg>
-                  Add a new stay
-                </span>
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  className="add-stay-button group relative w-full overflow-hidden rounded-2xl px-6 py-3.5 font-medium text-white transition-all duration-300 hover:scale-[1.02] sm:w-auto sm:px-8 sm:py-4"
+                  style={{
+                    background: 'linear-gradient(135deg, #d97346 0%, #c96640 100%)',
+                    boxShadow: '0 4px 16px rgba(217, 115, 70, 0.3)',
+                  }}
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <svg
+                      className="h-5 w-5 transition-transform group-hover:rotate-90"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg>
+                    <span className="text-sm sm:text-base">Add a new stay</span>
+                  </span>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 
-        {/* Quick Stats - mit lebendigen Farben */}
-        <div className="mb-10 grid grid-cols-3 gap-6">
+        {/* Quick Stats - Responsive Grid */}
+        <div className="mb-8 grid grid-cols-3 gap-3 sm:mb-10 sm:gap-6">
           <div
-            className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
+            className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-white/90 to-white/50 p-4 backdrop-blur-sm transition-all hover:shadow-lg sm:rounded-3xl sm:p-6"
             style={{ border: '1px solid rgba(147, 164, 133, 0.25)' }}
           >
             <div
-              className="absolute top-0 right-0 h-24 w-24 rounded-full blur-2xl transition-opacity group-hover:opacity-[0.12]"
+              className="absolute top-0 right-0 h-16 w-16 rounded-full blur-2xl transition-opacity group-hover:opacity-[0.12] sm:h-24 sm:w-24"
               style={{ backgroundColor: '#93a485', opacity: 0.06 }}
             />
             <div className="relative">
-              <div className="mb-1 text-sm" style={{ color: '#8a8178' }}>
+              <div className="mb-1 text-xs sm:text-sm" style={{ color: '#8a8178' }}>
                 Active stays
               </div>
-              <div className="font-serif text-3xl" style={{ color: '#93a485' }}>
+              <div className="font-serif text-2xl sm:text-3xl" style={{ color: '#93a485' }}>
                 {properties?.filter(p => p.status === 'published').length ?? 0}
               </div>
             </div>
           </div>
 
           <div
-            className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
+            className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-white/90 to-white/50 p-4 backdrop-blur-sm transition-all hover:shadow-lg sm:rounded-3xl sm:p-6"
             style={{ border: '1px solid rgba(244, 165, 125, 0.25)' }}
           >
             <div
-              className="absolute top-0 right-0 h-24 w-24 rounded-full blur-2xl transition-opacity group-hover:opacity-[0.12]"
+              className="absolute top-0 right-0 h-16 w-16 rounded-full blur-2xl transition-opacity group-hover:opacity-[0.12] sm:h-24 sm:w-24"
               style={{ backgroundColor: '#f4a57d', opacity: 0.06 }}
             />
             <div className="relative">
-              <div className="mb-1 text-sm" style={{ color: '#8a8178' }}>
+              <div className="mb-1 text-xs sm:text-sm" style={{ color: '#8a8178' }}>
                 In progress
               </div>
-              <div className="font-serif text-3xl" style={{ color: '#f4a57d' }}>
+              <div className="font-serif text-2xl sm:text-3xl" style={{ color: '#f4a57d' }}>
                 {properties?.filter(p => p.status === 'draft').length ?? 0}
               </div>
             </div>
           </div>
 
           <div
-            className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-white/90 to-white/50 p-6 backdrop-blur-sm transition-all hover:shadow-lg"
+            className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-white/90 to-white/50 p-4 backdrop-blur-sm transition-all hover:shadow-lg sm:rounded-3xl sm:p-6"
             style={{ border: '1px solid rgba(217, 115, 70, 0.25)' }}
           >
             <div
-              className="absolute top-0 right-0 h-24 w-24 rounded-full blur-2xl transition-opacity group-hover:opacity-[0.12]"
+              className="absolute top-0 right-0 h-16 w-16 rounded-full blur-2xl transition-opacity group-hover:opacity-[0.12] sm:h-24 sm:w-24"
               style={{ backgroundColor: '#d97346', opacity: 0.06 }}
             />
             <div className="relative">
-              <div className="mb-1 text-sm" style={{ color: '#8a8178' }}>
+              <div className="mb-1 text-xs sm:text-sm" style={{ color: '#8a8178' }}>
                 Total properties
               </div>
-              <div className="font-serif text-3xl" style={{ color: '#d97346' }}>
+              <div className="font-serif text-2xl sm:text-3xl" style={{ color: '#d97346' }}>
                 {properties?.length ?? 0}
               </div>
             </div>
@@ -141,7 +157,7 @@ export default async function OwnerdashboardPage() {
 
         {/* Section Header */}
         <div className="mb-6 flex items-center gap-3">
-          <h2 className="font-serif text-2xl" style={{ color: '#3a3632' }}>
+          <h2 className="font-serif text-xl sm:text-2xl" style={{ color: '#3a3632' }}>
             Your properties
           </h2>
           <div
@@ -153,7 +169,7 @@ export default async function OwnerdashboardPage() {
         {/* Properties Grid */}
         {error && (
           <pre
-            className="mb-8 rounded-2xl p-4 text-xs"
+            className="mb-8 overflow-x-auto rounded-2xl p-4 text-xs"
             style={{ border: '1px solid #fca5a5', backgroundColor: '#fef2f2', color: '#dc2626' }}
           >
             {JSON.stringify(error, null, 2)}
@@ -162,16 +178,16 @@ export default async function OwnerdashboardPage() {
 
         {!properties || properties.length === 0 ? (
           <div
-            className="flex min-h-[400px] items-center justify-center rounded-3xl border-2 border-dashed bg-white/40"
+            className="flex min-h-[300px] items-center justify-center rounded-2xl border-2 border-dashed bg-white/40 sm:min-h-[400px] sm:rounded-3xl"
             style={{ borderColor: '#e0d8cc' }}
           >
-            <div className="max-w-md text-center">
+            <div className="max-w-md px-6 text-center">
               <div
-                className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full"
+                className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full sm:h-16 sm:w-16"
                 style={{ backgroundColor: 'rgba(147, 164, 133, 0.15)' }}
               >
                 <svg
-                  className="h-8 w-8"
+                  className="h-7 w-7 sm:h-8 sm:w-8"
                   style={{ color: '#93a485' }}
                   fill="none"
                   stroke="currentColor"
@@ -185,20 +201,19 @@ export default async function OwnerdashboardPage() {
                   />
                 </svg>
               </div>
-              <h3 className="mb-2 font-serif text-xl" style={{ color: '#3a3632' }}>
+              <h3 className="mb-2 font-serif text-lg sm:text-xl" style={{ color: '#3a3632' }}>
                 No stays yet
               </h3>
-              <p style={{ color: '#8a8178' }}>
+              <p className="text-sm sm:text-base" style={{ color: '#8a8178' }}>
                 Start by adding your first property to Agistrea.
-                <br />
-                Take it slow, one step at a time.
+                <br className="hidden sm:inline" /> Take it slow, one step at a time.
               </p>
             </div>
           </div>
         ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {properties.map(p => {
-              // Status Styling mit lebendigen Farben
+              // Status Styling
               const statusConfig = {
                 draft: {
                   emoji: '🌱',
@@ -230,12 +245,12 @@ export default async function OwnerdashboardPage() {
                 <Link
                   key={p.id}
                   href={`/host/properties/${p.id}/edit`}
-                  className="group relative overflow-hidden rounded-3xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  className="group relative overflow-hidden rounded-2xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:rounded-3xl"
                   style={{ border: '1px solid #e0d8cc' }}
                 >
-                  {/* Image Area mit lebendigen Farben */}
+                  {/* Image Area */}
                   <div
-                    className="relative h-48 overflow-hidden"
+                    className="relative h-40 overflow-hidden sm:h-48"
                     style={{
                       background:
                         'linear-gradient(135deg, rgba(245, 196, 163, 0.4), rgba(165, 181, 192, 0.25), rgba(147, 164, 133, 0.3))',
@@ -250,7 +265,7 @@ export default async function OwnerdashboardPage() {
                     ) : (
                       <div className="flex h-full items-center justify-center">
                         <svg
-                          className="h-16 w-16 opacity-20"
+                          className="h-12 w-12 opacity-20 sm:h-16 sm:w-16"
                           style={{ color: '#8a8178' }}
                           fill="none"
                           stroke="currentColor"
@@ -268,13 +283,13 @@ export default async function OwnerdashboardPage() {
 
                     {/* Status Badge */}
                     <div
-                      className="absolute top-3 right-3 flex items-center gap-1.5 rounded-full px-3 py-1.5 backdrop-blur-sm"
+                      className="absolute top-2 right-2 flex items-center gap-1.5 rounded-full px-2.5 py-1 backdrop-blur-sm sm:top-3 sm:right-3 sm:px-3 sm:py-1.5"
                       style={{
                         backgroundColor: status.bg,
                         border: `1px solid ${status.border}`,
                       }}
                     >
-                      <span className="text-sm">{status.emoji}</span>
+                      <span className="text-xs sm:text-sm">{status.emoji}</span>
                       <span className="text-xs font-medium" style={{ color: status.text }}>
                         {status.label}
                       </span>
@@ -282,20 +297,20 @@ export default async function OwnerdashboardPage() {
                   </div>
 
                   {/* Content */}
-                  <div className="p-5">
+                  <div className="p-4 sm:p-5">
                     <h3
-                      className="mb-2 font-serif text-xl leading-snug transition-colors group-hover:text-(--color-tangerine)"
+                      className="mb-2 font-serif text-lg leading-snug transition-colors group-hover:text-(--color-tangerine) sm:text-xl"
                       style={{ color: '#3a3632' }}
                     >
                       {p.title || 'Untitled stay'}
                     </h3>
 
                     <div
-                      className="mb-3 flex items-center gap-2 text-sm"
+                      className="mb-3 flex items-center gap-2 text-xs sm:text-sm"
                       style={{ color: '#8a8178' }}
                     >
                       <svg
-                        className="h-4 w-4"
+                        className="h-3.5 w-3.5 flex-shrink-0 sm:h-4 sm:w-4"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -313,21 +328,24 @@ export default async function OwnerdashboardPage() {
                           d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                         />
                       </svg>
-                      <span>Agistri · {p.location || 'Location not set'}</span>
+                      <span className="truncate">Agistri · {p.location || 'Location not set'}</span>
                     </div>
 
-                    <div className="mb-4 font-mono text-xs opacity-50" style={{ color: '#8a8178' }}>
+                    <div
+                      className="mb-3 truncate font-mono text-[10px] opacity-50 sm:mb-4 sm:text-xs"
+                      style={{ color: '#8a8178' }}
+                    >
                       /stays/{p.slug}
                     </div>
 
                     {/* Action */}
                     <div
-                      className="flex items-center gap-2 text-sm font-medium transition-colors"
+                      className="flex items-center gap-2 text-xs font-medium transition-colors sm:text-sm"
                       style={{ color: '#d97346' }}
                     >
                       <span>Continue editing</span>
                       <svg
-                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                        className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -354,7 +372,7 @@ export default async function OwnerdashboardPage() {
         )}
 
         {/* Bottom spacing */}
-        <div className="h-20" />
+        <div className="h-16 sm:h-20" />
       </div>
     </>
   )

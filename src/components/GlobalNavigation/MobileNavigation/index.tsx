@@ -17,13 +17,14 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onClose }) 
         'px-6 pt-[72px]',
         'transform transition-transform duration-500 ease-out',
         'md:hidden',
+        'z-10',
 
         isOpen ? 'translate-y-0' : '-translate-y-full',
       ]
         .filter(Boolean)
         .join(' ')}
     >
-      <nav className="mt-6 space-y-6">
+      <nav className="z-10 mt-6 space-y-6">
         {/* <Link
           href="/en"
           className="block tracking-[0.14em] uppercase hover:underline"
@@ -72,7 +73,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onClose }) 
           className="block tracking-[0.14em] uppercase hover:underline"
           onClick={onClose}
         >
-          Log In
+          Host Login
         </Link>
       </nav>
     </div>
