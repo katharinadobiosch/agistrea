@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function ComingSoonFullScreen() {
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
+    <div className="coming-soon relative h-screen w-screen overflow-hidden">
       <Image
         src="/assets/images/Homepage/hero-agistri-2.jpeg"
         alt="A view of the sea and small Greek houses surrounded by pine trees on Agistri island."

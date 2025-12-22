@@ -24,7 +24,7 @@ export function SideNav({ isMenuOpen, onToggleMenu }: SideNavProps) {
 
   return (
     <>
-      <aside className="fixed z-100 hidden h-screen w-[60px] flex-col items-center justify-between border-r border-slate-200 pt-6 pb-6 backdrop-blur md:flex">
+      <aside className="side-nav fixed z-100 hidden h-screen w-[60px] flex-col items-center justify-between border-r border-slate-200 pt-6 pb-6 backdrop-blur md:flex">
         {/* Top icons */}
         <div className="mt-4 flex flex-col items-center gap-4 text-slate-700">
           <button aria-label="Home">

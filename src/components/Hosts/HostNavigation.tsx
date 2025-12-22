@@ -61,7 +61,7 @@ export default function HostNavigation() {
   return (
     <>
       <nav
-        className="pointer-events-auto sticky top-0 z-50 border-b backdrop-blur-md"
+        className="host-navigation pointer-events-auto sticky top-0 z-50 border-b backdrop-blur-md"
         style={{
           borderColor: 'var(--border)',
           backgroundColor: 'rgba(255,255,255,0.82)',

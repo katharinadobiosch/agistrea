@@ -10,7 +10,7 @@ type DesktopNavigationProps = {
 export default function DesktopNavigation({ isOpen, onClose }: DesktopNavigationProps) {
   return (
     <div
-      className={`fixed top-0 right-0 left-20 z-90 transform transition-transform duration-300 ease-out ${isOpen ? 'translate-y-0' : '-translate-y-full'} `}
+      className={`desktop-navigation fixed top-0 right-0 left-20 z-90 transform transition-transform duration-300 ease-out ${isOpen ? 'translate-y-0' : '-translate-y-full'} `}
     >
       <div className="border-b border-slate-800 bg-[#020617]/95 text-white shadow-xl">
         <div className="flex items-start justify-between px-16 py-10">

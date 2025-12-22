@@ -41,7 +41,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
     <>
       <header
         id="header"
-        className={`fixed z-50 w-full max-w-[100vw] px-6 py-3 transition-colors duration-300 md:hidden ${headerBg}`}
+        className={`mobile-header fixed z-50 w-full max-w-[100vw] px-6 py-3 transition-colors duration-300 md:hidden ${headerBg}`}
       >
         <div className="header-bar z-50 flex items-center">
           {/* Left: Menu, FAQ, Language */}

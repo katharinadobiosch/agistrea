@@ -134,7 +134,7 @@ export default function HostAuthForm() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-(--bg-base) md:pl-[55px]">
+    <div className="host-auth-form min-h-screen w-full bg-(--bg-base) md:pl-[55px]">
       {/* Wrapper: mobile = column, desktop = row */}
       <div className="flex min-h-screen w-full flex-col md:flex-row">
         {/* HERO / IMAGE */}
