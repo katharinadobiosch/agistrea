@@ -115,7 +115,7 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
   ]
 
   return (
-    <div className="bg-background">
+    <div id="property-details-page" className="bg-background">
       <div className="mx-auto max-w-6xl space-y-6 px-4 py-6">
         {/* Top bar */}
         <div className="border-border bg-card flex flex-col gap-3 rounded-xl border px-4 py-3 shadow-(--shadow-soft) md:flex-row md:items-center md:justify-between">

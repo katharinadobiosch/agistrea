@@ -22,7 +22,7 @@ export default async function OwnerdashboardPage() {
   return (
     <>
       {/* Main Content */}
-      <div className="mx-auto max-w-[1200px] px-4 py-8 sm:px-6 sm:py-12">
+      <div id="owner-dashboard-page" className="mx-auto max-w-[1200px] px-4 py-8 sm:px-6 sm:py-12">
         {/* Hero Header - Mobile First */}
         <div className="relative mb-8 sm:mb-12">
           {/* Decorative elements */}
