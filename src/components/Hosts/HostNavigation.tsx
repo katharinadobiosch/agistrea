@@ -67,7 +67,7 @@ export default function HostNavigation() {
           backgroundColor: 'rgba(255,255,255,0.82)',
         }}
       >
-        <div className="relative mx-auto max-w-[1200px] px-4 py-3 sm:px-6 sm:py-4">
+        <div className="relative mx-auto max-w-300 px-4 py-3 sm:px-6 sm:py-4">
           <div className="flex items-center justify-between">
             {/* Left - Logo */}
             <Link
@@ -112,7 +112,7 @@ export default function HostNavigation() {
                 className="text-sm transition-colors"
                 style={{ color: 'var(--color-muted-ink)' }}
               >
-                <span className="hover:text-[color:var(--color-ink)]">Back to site</span>
+                <span className="hover:text-(--color-ink)">Back to site</span>
               </Link>
 
               <div className="h-4 w-px" style={{ backgroundColor: 'var(--border)' }} />
@@ -122,7 +122,7 @@ export default function HostNavigation() {
                 className="text-sm transition-colors"
                 style={{ color: 'var(--color-muted-ink)' }}
               >
-                <span className="hover:text-[color:var(--color-terracotta)]">Help</span>
+                <span className="hover:text-(--color-terracotta)">Help</span>
               </Link>
 
               <form action={logoutAction}>
@@ -131,7 +131,9 @@ export default function HostNavigation() {
                   className="text-sm transition-colors"
                   style={{ color: 'var(--color-muted-ink)' }}
                 >
-                  <span className="hover:text-[color:var(--color-ink)]">Logout</span>
+                  <span className="cursor-pointer hover:text-(--color-ink) hover:underline">
+                    Logout
+                  </span>
                 </button>
               </form>
             </div>
@@ -174,7 +176,7 @@ export default function HostNavigation() {
       {/* Mobile Menu Slide-in */}
       <div
         className={[
-          'fixed top-0 right-0 bottom-0 z-50 w-[280px] transform transition-transform duration-300 ease-in-out lg:hidden',
+          'fixed top-0 right-0 bottom-0 z-50 w-70 transform transition-transform duration-300 ease-in-out lg:hidden',
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full',
         ].join(' ')}
         style={{
@@ -295,7 +297,7 @@ export default function HostNavigation() {
             <form action={logoutAction}>
               <button
                 type="submit"
-                className="w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors"
+                className="w-full cursor-pointer rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors"
                 style={{
                   color: 'var(--color-muted-ink)',
                   backgroundColor: 'color-mix(in srgb, #ffffff 72%, var(--color-sand) 28%)',

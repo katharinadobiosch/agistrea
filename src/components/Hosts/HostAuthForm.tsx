@@ -134,13 +134,13 @@ export default function HostAuthForm() {
   }
 
   return (
-    <div className="host-auth-form min-h-screen w-full bg-(--bg-base) md:pl-[55px]">
+    <div className="host-auth-form min-h-screen w-full bg-(--bg-base) md:pl-13.75">
       {/* Wrapper: mobile = column, desktop = row */}
       <div className="flex min-h-screen w-full flex-col md:flex-row">
         {/* HERO / IMAGE */}
         <div className="relative w-full md:w-[70%]">
           {/* Mobile: Bild als Hero oben */}
-          <div className="relative h-[38vh] min-h-[260px] w-full md:hidden">
+          <div className="relative h-[38vh] min-h-65 w-full md:hidden">
             <Image
               src="/assets/images/login/AdobeStock_300660678.jpeg"
               alt="Agistri street view"

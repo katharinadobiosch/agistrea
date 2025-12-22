@@ -22,7 +22,7 @@ export default async function OwnerdashboardPage() {
   return (
     <>
       {/* Main Content */}
-      <div id="owner-dashboard-page" className="mx-auto max-w-[1200px] px-4 py-8 sm:px-6 sm:py-12">
+      <div id="owner-dashboard-page" className="mx-auto max-w-300 px-4 py-8 sm:px-6 sm:py-12">
         {/* Hero Header - Mobile First */}
         <div className="relative mb-8 sm:mb-12">
           {/* Decorative elements */}
@@ -52,7 +52,7 @@ export default async function OwnerdashboardPage() {
 
             {/* Title + Button Container - Stack on Mobile */}
             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
-              <div className="max-w-none flex-1 sm:max-w-[600px]">
+              <div className="max-w-none flex-1 sm:max-w-150">
                 <h1
                   className="mb-3 font-serif text-4xl leading-tight sm:text-5xl"
                   style={{ color: '#3a3632' }}
@@ -183,7 +183,7 @@ export default async function OwnerdashboardPage() {
 
         {!properties || properties.length === 0 ? (
           <div
-            className="flex min-h-[300px] items-center justify-center rounded-2xl border-2 border-dashed bg-white/40 sm:min-h-[400px] sm:rounded-3xl"
+            className="flex min-h-75 items-center justify-center rounded-2xl border-2 border-dashed bg-white/40 sm:min-h-100 sm:rounded-3xl"
             style={{ borderColor: '#e0d8cc' }}
           >
             <div className="max-w-md px-6 text-center">
@@ -315,7 +315,7 @@ export default async function OwnerdashboardPage() {
                       style={{ color: '#8a8178' }}
                     >
                       <svg
-                        className="h-3.5 w-3.5 flex-shrink-0 sm:h-4 sm:w-4"
+                        className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"

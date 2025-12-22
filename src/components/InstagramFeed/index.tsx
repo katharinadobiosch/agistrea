@@ -62,7 +62,7 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
   const profileUrl = `https://www.instagram.com/${username.replace('@', '')}/`
 
   return (
-    <section className="instagram-feed border-border border-t pt-6 pr-[15px] pb-6 pl-[15px] md:pt-8 md:pb-8 md:pl-[85px]">
+    <section className="instagram-feed border-border border-t pt-6 pr-3.75 pb-6 pl-3.75 md:pt-8 md:pb-8 md:pl-21.25">
       <div className="mb-4 flex items-baseline justify-between">
         <div>
           <p className="text-muted-foreground text-[12px] font-semibold tracking-[2px] uppercase">
@@ -110,10 +110,10 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
         rel="noreferrer"
         className="flex justify-end gap-2 text-[12px] font-medium"
       >
-        <span className="text-[var(--color-sea)] hover:text-[var(--text-accent-hover)]">
+        <span className="text-(--color-sea) hover:text-(--text-accent-hover)">
           View on Instagram →
         </span>
-        <span className="text-foreground text-[14px] hover:text-[var(--color-sea)]">
+        <span className="text-foreground text-[14px] hover:text-(--color-sea)">
           {username}
         </span>
       </Link>

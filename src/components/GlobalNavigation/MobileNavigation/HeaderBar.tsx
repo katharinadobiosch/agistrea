@@ -49,7 +49,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
             {/* Menu Button */}
             <button
               type="button"
-              className="pt-[5px] pr-[15px]"
+              className="pt-1.25 pr-3.75"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
               onClick={onToggleMenu}
@@ -62,7 +62,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
               <span className="sr-only">{isMenuOpen ? 'Close menu' : 'Open menu'}</span>
             </button>
 
-            <button type="button" className="pt-[5px] pr-[15px]" aria-label="Open FAQ">
+            <button type="button" className="pt-1.25 pr-3.75" aria-label="Open FAQ">
               <i className={`fa-regular fa-circle-question ${fg}`} />
               <span className="sr-only">Open FAQ</span>
             </button>
@@ -135,12 +135,12 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
 
           {/* Right: Cart, Favs, User */}
           <div className="flex flex-1 items-center justify-end gap-2 md:hidden">
-            <button type="button" className="pt-[5px] pr-[15px]" aria-label="Open login fav">
+            <button type="button" className="pt-1.25 pr-3.75" aria-label="Open login fav">
               <i className={`fa-regular fa-heart ${fg}`} />
               <span className="sr-only">Open Login Favorite</span>
             </button>
 
-            <button type="button" className="pt-[5px] pr-[15px]" aria-label="Open login">
+            <button type="button" className="pt-1.25 pr-3.75" aria-label="Open login">
               <i className={`fa-regular fa-user ${fg}`} />
               <span className="sr-only">Open Login</span>
             </button>

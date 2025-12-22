@@ -14,7 +14,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onClose }) 
         'mobile-navigation',
         'fixed inset-0',
         'bg-slate-900 text-white',
-        'px-6 pt-[72px]',
+        'px-6 pt-18',
         'transform transition-transform duration-500 ease-out',
         'md:hidden',
         'z-10',

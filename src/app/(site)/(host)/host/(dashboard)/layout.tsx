@@ -15,7 +15,7 @@ export default async function HostDashboardLayout({ children }: { children: Reac
   return (
     <div
       id="dashboard-wrapper"
-      className="min-h-screen bg-linear-to-br from-(--color-cream) via-(--color-cream) to-[color-mix(in_srgb,var(--color-linen)_25%,var(--color-cream))] md:pl-[60px]"
+      className="min-h-screen bg-linear-to-br from-(--color-cream) via-(--color-cream) to-[color-mix(in_srgb,var(--color-linen)_25%,var(--color-cream))] md:pl-15"
     >
       <HostNavigation />
       <main>{children}</main>
