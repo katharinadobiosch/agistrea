@@ -12,6 +12,7 @@ const PROPERTY_IMAGE_BUCKET = 'property-images'
 
 type Property = {
   id: string
+  host_id: string
   slug: string | null
   status: 'draft' | 'published' | string
   title: string
@@ -35,22 +36,23 @@ type PropertyImage = {
 }
 
 type AvailabilityRow = {
-  day: string // Supabase returns date as string (YYYY-MM-DD)
+  day: string
   available: boolean
   price_per_night: number | null
   min_nights: number | null
 }
 
 export default async function PropertyPage({ params }: PageProps) {
-  const { slug } = await params
+  const { slug } = params
   const supabase = await createSupabaseServer()
 
-  // Fetch property (published by slug)
+  // 1) Property by slug (NO status filter)
   const { data: property, error: propertyError } = await supabase
     .from('properties')
     .select(
       `
         id,
+        host_id,
         slug,
         status,
         title,
@@ -68,10 +70,20 @@ export default async function PropertyPage({ params }: PageProps) {
       `
     )
     .eq('slug', slug)
-    .eq('status', 'published')
     .single<Property>()
 
   if (propertyError || !property) notFound()
+
+  // 2) Gate drafts: only owner can preview
+  const isPublished = property.status === 'published'
+  if (!isPublished) {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    // must be logged in and must be the owner
+    if (!user || user.id !== property.host_id) notFound()
+  }
 
   // Fetch images
   const { data: images } = await supabase
@@ -109,6 +121,11 @@ export default async function PropertyPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#faf7f2' }}>
+      {!isPublished && (
+        <div className="bg-black py-2 text-center text-xs text-white">
+          Draft preview — only visible to you
+        </div>
+      )}
       <nav className="border-b bg-white/80 backdrop-blur-md" style={{ borderColor: '#e0d8cc' }}>
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
           <Link href="/" className="font-serif text-xl transition" style={{ color: '#d97346' }}>
