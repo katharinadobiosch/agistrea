@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 type CalendarDay = {
-  date: Date
+  day: Date
   available: boolean
   price: number | null
   isToday: boolean
@@ -54,7 +54,7 @@ export function PricingCalendar({
       const availData = availability.find(a => a.day === dateStr)
 
       days.push({
-        date: new Date(current),
+        day: new Date(current),
         available: availData?.available ?? true,
         price: availData?.price_per_night ?? null,
         isToday: current.getTime() === today.getTime(),
@@ -72,15 +72,15 @@ export function PricingCalendar({
   const days = generateCalendarDays()
   const monthName = currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
 
-  const toggleDateSelection = (date: Date) => {
-    if (date < new Date()) return // Can't select past dates
+  const toggleDateSelection = (day: Date) => {
+    if (day < new Date()) return // Can't select past dates
 
     setSelectedDates(prev => {
-      const exists = prev.find(d => d.getTime() === date.getTime())
+      const exists = prev.find(d => d.getTime() === day.getTime())
       if (exists) {
-        return prev.filter(d => d.getTime() !== date.getTime())
+        return prev.filter(d => d.getTime() !== day.getTime())
       } else {
-        return [...prev, date]
+        return [...prev, day]
       }
     })
   }
@@ -90,9 +90,9 @@ export function PricingCalendar({
 
     setSaving(true)
     try {
-      const updates = selectedDates.map(date => ({
+      const updates = selectedDates.map(day => ({
         property_id: propertyId,
-        day: date.toISOString().split('T')[0], // ✅
+        day: day.toISOString().split('T')[0], // ✅
         available: bulkAvailable,
         price_per_night: bulkPrice ? Number(bulkPrice) : null,
       }))
@@ -170,14 +170,14 @@ export function PricingCalendar({
       {/* Calendar grid */}
       <div className="grid grid-cols-7 gap-1">
         {days.map((day, i) => {
-          const isCurrentMonth = day.date.getMonth() === currentMonth.getMonth()
+          const isCurrentMonth = day.day.getMonth() === currentMonth.getMonth()
           const displayPrice = day.price ?? defaultPrice
 
           return (
             <button
               key={i}
               type="button"
-              onClick={() => toggleDateSelection(day.date)}
+              onClick={() => toggleDateSelection(day.day)}
               disabled={day.isPast}
               className="relative aspect-square rounded-lg border p-1 text-left transition"
               style={{
@@ -196,7 +196,7 @@ export function PricingCalendar({
                 className="text-xs font-medium sm:text-sm"
                 style={{ color: day.isToday ? '#d97346' : '#3a3632' }}
               >
-                {day.date.getDate()}
+                {day.day.getDate()}
               </div>
 
               {/* Price */}
@@ -229,7 +229,7 @@ export function PricingCalendar({
         >
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium" style={{ color: '#3a3632' }}>
-              {selectedDates.length} {selectedDates.length === 1 ? 'date' : 'dates'} selected
+              {selectedDates.length} {selectedDates.length === 1 ? 'day' : 'dates'} selected
             </span>
             <button
               type="button"
