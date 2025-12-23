@@ -5,6 +5,7 @@ import {
   updatePropertyAction,
   uploadPropertyImageAction,
 } from '../../../../actions'
+import { PricingCalendar } from '@/components/Hosts/PricingCalendar'
 
 const PROPERTY_IMAGE_BUCKET = 'property-images'
 
@@ -101,6 +102,17 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
     .select('id, storage_path, sort_order')
     .eq('property_id', id)
     .order('sort_order', { ascending: true })
+
+  const today = new Date()
+  const threeMonthsFromNow = new Date()
+  threeMonthsFromNow.setMonth(threeMonthsFromNow.getMonth() + 3)
+
+  const { data: availability } = await supabase
+    .from('property_availability')
+    .select('day, available, price_per_night, min_nights')
+    .eq('property_id', id)
+    .gte('day', today.toISOString().split('T')[0])
+    .lte('day', threeMonthsFromNow.toISOString().split('T')[0])
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const buildImageUrl = (path: string) =>
@@ -396,6 +408,16 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
                 </Button>
               </div>
             </Card>
+            <PricingCalendar
+              propertyId={property.id}
+              defaultPrice={Number(property.default_price_per_night ?? 100)}
+              currency={property.currency ?? 'EUR'}
+              availability={(availability ?? []).map(a => ({
+                day: a.day,
+                available: a.available,
+                price_per_night: a.price_per_night,
+              }))}
+            />
           </div>
         </div>
       </div>
