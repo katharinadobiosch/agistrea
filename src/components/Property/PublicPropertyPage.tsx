@@ -119,7 +119,7 @@ export default async function PublicPropertyPage({ slug }: PageProps) {
   const mainImageUrl = mainImage?.storage_path ? buildImageUrl(mainImage.storage_path) : null
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#faf7f2' }}>
+    <div className="public-property-page min-h-screen" style={{ backgroundColor: '#faf7f2' }}>
       {!isPublished && (
         <div className="bg-black py-2 text-center text-xs text-white">
           Draft preview — only visible to you
