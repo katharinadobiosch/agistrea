@@ -345,7 +345,6 @@ function BookingCard({
         defaultPrice={defaultPrice}
         currency={currency}
         availability={availability}
-        minNights={minNights}
       />
     </div>
   )
