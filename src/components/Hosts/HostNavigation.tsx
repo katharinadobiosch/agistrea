@@ -10,7 +10,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { logoutAction } from '@/app/(site)/(host)/host/actions'
+import { logoutAction } from '@/app/[lang]/(site)/(host)/host/actions'
 
 function NavLink({
   href,

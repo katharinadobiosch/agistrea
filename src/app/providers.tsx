@@ -3,7 +3,12 @@
 import React from 'react'
 import { TranslationProvider } from '@/../utils/TranslationProvider'
 
-export default function Providers({ children }: { children: React.ReactNode }) {
-  // später: language aus cookie / route / state
-  return <TranslationProvider language="en">{children}</TranslationProvider>
+export default function Providers({
+  children,
+  lang,
+}: {
+  children: React.ReactNode
+  lang: 'en' | 'gr'
+}) {
+  return <TranslationProvider language={lang}>{children}</TranslationProvider>
 }
