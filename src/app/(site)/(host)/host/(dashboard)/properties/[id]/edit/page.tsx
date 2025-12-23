@@ -98,7 +98,7 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
 
   const { data: images } = await supabase
     .from('property_images')
-    .select('id, path, sort_order')
+    .select('id, storage_path, sort_order')
     .eq('property_id', id)
     .order('sort_order', { ascending: true })
 
@@ -200,6 +200,54 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
                   </div>
                 </div>
 
+                <div className="space-y-3">
+                  <Label hint="Shown to guests unless overridden by calendar">
+                    Pricing defaults
+                  </Label>
+
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                    <div className="space-y-2">
+                      <Label hint="Per night">Default price</Label>
+                      <Input
+                        name="default_price_per_night"
+                        type="number"
+                        inputMode="decimal"
+                        step="0.01"
+                        min="0"
+                        defaultValue={property.default_price_per_night ?? ''}
+                        placeholder="100"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label hint="Minimum stay">Min nights</Label>
+                      <Input
+                        name="default_min_nights"
+                        type="number"
+                        min={1}
+                        defaultValue={property.default_min_nights ?? 1}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label hint="Currency">Currency</Label>
+                      <select
+                        name="currency"
+                        defaultValue={property.currency ?? 'EUR'}
+                        className="border-border ring-offset-background mt-1 w-full rounded-lg border bg-(--bg-base)/80 px-3 py-2 text-sm text-(--color-ink) transition focus:border-(--ring) focus:ring-2 focus:ring-(--ring)/60 focus:outline-none"
+                      >
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="USD">USD</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <p className="text-muted-foreground text-xs">
+                    Tip: You can override availability and prices per day in the calendar.
+                  </p>
+                </div>
+
                 <div className="space-y-2">
                   <Label hint="Share the mood, not just facts">Tell the story</Label>
                   <Textarea
@@ -250,7 +298,8 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
               {images && images.length > 0 ? (
                 <div className="flex gap-3 overflow-x-auto pb-2">
                   {images.map(img => {
-                    const src = img?.path ? buildImageUrl(img.path) : null
+                    const src = img?.storage_path ? buildImageUrl(img.storage_path) : null
+
                     return (
                       <div
                         key={img.id}

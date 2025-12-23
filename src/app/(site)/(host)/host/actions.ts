@@ -43,6 +43,7 @@ export async function createPropertyAction(): Promise<void> {
   const baseSlug = slugify(title)
   const slug = await ensureUniqueSlug(supabase, baseSlug)
 
+  // ✅ EINMAL properties anlegen (mit defaults)
   const { data: inserted, error: insertError } = await supabase
     .from('properties')
     .insert({
@@ -54,6 +55,11 @@ export async function createPropertyAction(): Promise<void> {
       guests: 2,
       bedrooms: 1,
       bathrooms: 1,
+
+      // ✅ defaults (DB: properties.*)
+      // default_price_per_night: 100,
+      // default_min_nights: 2,
+      currency: 'EUR',
     })
     .select('id, slug')
     .single()
@@ -65,6 +71,7 @@ export async function createPropertyAction(): Promise<void> {
 
   const propertyId = inserted.id
 
+  // ✅ property_features anlegen
   const { error: featuresError } = await supabase.from('property_features').insert({
     property_id: propertyId,
     features: {},
@@ -74,15 +81,7 @@ export async function createPropertyAction(): Promise<void> {
     throw new Error('Could not create the listing. Please try again later.')
   }
 
-  const { error: pricesError } = await supabase.from('property_prices').insert({
-    property_id: propertyId,
-    base_per_night: 0,
-    min_nights: 1,
-  })
-  if (pricesError) {
-    console.error('property_prices insert failed', pricesError)
-    throw new Error('Could not create the listing. Please try again later.')
-  }
+  // ❌ property_prices block komplett entfernen (Tabelle gibt’s nicht mehr)
 
   revalidatePath('/host/properties')
   revalidatePath('/host/dashboard')
@@ -98,10 +97,7 @@ export async function updatePropertyAction(formData: FormData) {
   } = await supabase.auth.getUser()
 
   const propertyId = String(formData.get('property_id') ?? '')
-
-  if (!user || !propertyId) {
-    redirect('/host/login')
-  }
+  if (!user || !propertyId) redirect('/host/login')
 
   const { data: ownership } = await supabase
     .from('properties')
@@ -109,8 +105,23 @@ export async function updatePropertyAction(formData: FormData) {
     .eq('id', propertyId)
     .maybeSingle()
 
-  if (!ownership || ownership.host_id !== user!.id) {
+  if (!ownership || ownership.host_id !== user.id) {
     throw new Error('Not allowed to edit this property.')
+  }
+
+  // helper: empty string => null
+  const toNullableNumber = (v: FormDataEntryValue | null) => {
+    const s = String(v ?? '').trim()
+    if (!s) return null
+    const n = Number(s)
+    return Number.isFinite(n) ? n : null
+  }
+
+  const toIntOrNull = (v: FormDataEntryValue | null) => {
+    const s = String(v ?? '').trim()
+    if (!s) return null
+    const n = Number.parseInt(s, 10)
+    return Number.isFinite(n) ? n : null
   }
 
   const payload = {
@@ -123,6 +134,12 @@ export async function updatePropertyAction(formData: FormData) {
     contact_name: String(formData.get('contact_name') ?? ''),
     contact_email: String(formData.get('contact_email') ?? ''),
     contact_phone: String(formData.get('contact_phone') ?? ''),
+
+    // ✅ NEW: pricing defaults
+    default_price_per_night: toNullableNumber(formData.get('default_price_per_night')),
+    default_min_nights: toIntOrNull(formData.get('default_min_nights')) ?? 1,
+    currency: String(formData.get('currency') ?? 'EUR'),
+
     updated_at: new Date().toISOString(),
   }
 
