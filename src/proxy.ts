@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
 export const config = {
-  matcher: ['/hosts/:path*'],
+  matcher: ['/hosts/:path*', '/host/:path*'],
 }
 
 export default async function proxy(req: NextRequest) {
@@ -35,13 +35,19 @@ export default async function proxy(req: NextRequest) {
   } = await supabase.auth.getUser()
 
   const path = req.nextUrl.pathname
-  const isOwnerRoute = path.startsWith('/hosts')
-  const isAuthRoute = path.startsWith('/hosts/login') || path.startsWith('/hosts/register')
+  const isHostsRoute = path.startsWith('/hosts')
+  const isHostRoute = path.startsWith('/host')
+  const isOwnerRoute = isHostsRoute || isHostRoute
+  const isAuthRoute =
+    path.startsWith('/hosts/login') ||
+    path.startsWith('/hosts/register') ||
+    path.startsWith('/host/login') ||
+    path.startsWith('/host/register')
 
   if (isOwnerRoute) {
     if (!user && !isAuthRoute) {
       const redirectUrl = req.nextUrl.clone()
-      redirectUrl.pathname = '/hosts/login'
+      redirectUrl.pathname = isHostRoute ? '/host/login' : '/hosts/login'
       redirectUrl.searchParams.set('returnTo', path)
 
       return NextResponse.redirect(redirectUrl)

@@ -8,6 +8,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -16,11 +17,13 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
+
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -37,52 +40,75 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
 
 :root {
-  --radius: 0.625rem;
+  /* shape */
+  --radius: 0.75rem;
   --page-max-width: 1270px;
   --page-padding-x: 24px;
 
-  /* Brand – Honest Mediterranean */
-  --color-terracotta: #b97a5a; /* Primary CTA / Buttons */
-  --color-olive: #6e775e; /* Natural accent (Pins, Pflanzen) */
-  --color-sea: #7a90a8; /* Meer / Links, Icons */
-  --color-sand: #cbbba4; /* Soft backgrounds, Chips */
+  /* ------------------------------------------------------------------
+     BRAND: Editorial-clean × Southern-warm
+     - White leads (clean)
+     - Sand warms surfaces (sparingly)
+     - Terracotta = primary actions / selected
+     - Sea = links/focus/interactive cues
+     - Olive = success/status/nature
+  ------------------------------------------------------------------ */
 
-  /* Neutrals & Struktur */
-  --color-soft-white: #faf7f2; /* Haupt-Background */
-  /* Textfarben */
-  --color-ink-strong: #4a463f; /* Headlines */
-  --color-ink: #5a564e; /* Body */
-  --color-muted-ink: #8c8982; /* Muted */
-  --color-border-soft: #e3ded7;
+  /* Core brand hues (keep your original “honest mediterranean” DNA) */
+  --color-terracotta: #b97a5a; /* primary CTA / selected */
+  --color-olive: #6e775e; /* success/status */
+  --color-sea: #7a90a8; /* links, focus ring, icons */
+  --color-sand: #cbbba4; /* warm surfaces (NOT base) */
+
+  /* Editorial neutrals */
   --color-white: #ffffff;
-  --color-black: #000000;
+  --color-soft-white: #ffffff; /* base = white for clean editorial */
+  --color-ink-strong: #3a3632;
+  --color-ink: #534f49;
+  --color-muted-ink: #8a8178;
 
-  /* Semantic — eigene Tokens */
-  --bg-base: var(--color-soft-white);
-  --bg-section: color-mix(in srgb, var(--color-soft-white) 70%, var(--color-sand) 30%);
-  --bg-card: var(--color-white);
+  /* Borders (slightly warm, but very subtle) */
+  --color-border-soft: color-mix(in srgb, #000 8%, #ffffff 92%); /* soft neutral */
+  --color-border-warm: color-mix(in srgb, var(--color-sand) 28%, #ffffff 72%);
 
+  /* ------------------------------------------------------------------
+     SEMANTIC SURFACES
+  ------------------------------------------------------------------ */
+  --bg-base: #ffffff; /* editorial base */
+  --bg-section: color-mix(in srgb, #ffffff 88%, var(--color-sand) 12%); /* warm only in sections */
+  --bg-card: #ffffff;
+
+  /* Text */
   --text-main: var(--color-ink);
-  --text-light: var(--color-soft-white);
+  --text-light: #ffffff;
   --text-accent: var(--color-sea);
-  --text-accent-hover: #637894; /* etwas dunkler als --color-sea */
+  --text-accent-hover: color-mix(in srgb, var(--color-sea) 78%, #000 22%);
 
+  /* Buttons */
   --btn-primary-bg: var(--color-terracotta);
-  --btn-primary-text: var(--color-soft-white);
-  --btn-primary-hover-bg: #a6684c; /* leicht dunkler */
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover-bg: color-mix(in srgb, var(--color-terracotta) 78%, #000 22%);
 
-  --border-light: var(--color-border-soft);
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --btn-secondary-bg: color-mix(in srgb, var(--color-sand) 55%, #ffffff 45%);
+  --btn-secondary-text: var(--color-ink-strong);
+  --btn-secondary-hover-bg: color-mix(in srgb, var(--color-sand) 70%, #ffffff 30%);
+
+  /* Shadows: keep subtle + one warm lift for CTAs */
+  --shadow-soft: 0 6px 22px rgba(0, 0, 0, 0.08);
+  --shadow-warm: 0 10px 28px rgba(185, 122, 90, 0.18);
 
   --font-serif: 'Playfair Display', serif;
 
-  /* Mapping auf Tailwind/Shadcn-Design-Tokens */
+  /* ------------------------------------------------------------------
+     SHADCN/TW MAPPING
+  ------------------------------------------------------------------ */
   --background: var(--bg-base);
   --foreground: var(--text-main);
 
@@ -93,101 +119,113 @@
   --popover-foreground: var(--text-main);
 
   --primary: var(--color-terracotta);
-  --primary-foreground: var(--text-light);
+  --primary-foreground: #ffffff;
 
-  --secondary: var(--color-sand);
-  --secondary-foreground: var(--text-main);
+  /* Secondary = warm sand surface (editorial), not green */
+  --secondary: color-mix(in srgb, #ffffff 70%, var(--color-sand) 30%);
+  --secondary-foreground: var(--color-ink-strong);
 
-  --muted: var(--color-sand);
+  --muted: color-mix(in srgb, #ffffff 78%, var(--color-sand) 22%);
   --muted-foreground: var(--color-muted-ink);
 
+  /* Accent = sea (functional) */
   --accent: var(--color-sea);
-  --accent-foreground: var(--text-light);
+  --accent-foreground: #ffffff;
 
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: #c74e3a;
 
-  --border: var(--border-light);
-  --input: var(--border-light);
+  /* Borders/Inputs/Rings */
+  --border: var(--color-border-warm);
+  --input: var(--color-border-warm);
   --ring: var(--color-sea);
 
-  /* Charts grob angepasst, kannst du später feintunen */
+  /* Charts */
   --chart-1: var(--color-terracotta);
   --chart-2: var(--color-olive);
   --chart-3: var(--color-sea);
   --chart-4: var(--color-sand);
-  --chart-5: #8c5a3f;
+  --chart-5: color-mix(in srgb, var(--color-terracotta) 65%, #000 35%);
 
-  --sidebar: var(--bg-base);
+  /* Sidebar (clean white, warm highlights) */
+  --sidebar: #ffffff;
   --sidebar-foreground: var(--text-main);
   --sidebar-primary: var(--color-terracotta);
-  --sidebar-primary-foreground: var(--text-light);
-  --sidebar-accent: var(--color-sand);
-  --sidebar-accent-foreground: var(--text-main);
-  --sidebar-border: var(--border-light);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: color-mix(in srgb, #ffffff 72%, var(--color-sand) 28%);
+  --sidebar-accent-foreground: var(--color-ink-strong);
+  --sidebar-border: var(--color-border-warm);
   --sidebar-ring: var(--color-sea);
 }
 
-/*  1rem = 10px */
 html {
   color: var(--text-main);
-  /* font-size: 62.5%; */
 }
 
 #site-wrapper {
   margin: 0 auto;
   max-width: 100vw;
-  min-height: 100vh; /* mindestens Bildschirmhöhe */
-  display: flex; /* flex-container */
-  flex-direction: column; /* Header, Main, Footer untereinander */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 #wrapper {
-  flex: 1; /* Main füllt den verfügbaren Platz */
+  flex: 1;
   padding-left: 0;
   padding-right: 0;
 }
 
-/* Dark Mode – erstmal Standard lassen, kannst du später anpassen */
+/* Dark Mode – keep coherent but not “random navy” */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #161514;
+  --foreground: #f5f2ed;
+
+  --card: #1f1d1b;
+  --card-foreground: #f5f2ed;
+
+  --popover: #1f1d1b;
+  --popover-foreground: #f5f2ed;
+
+  --primary: color-mix(in srgb, var(--color-terracotta) 85%, #ffffff 15%);
+  --primary-foreground: #161514;
+
+  --secondary: #2a2725;
+  --secondary-foreground: #f5f2ed;
+
+  --muted: #2a2725;
+  --muted-foreground: #aca59c;
+
+  --accent: color-mix(in srgb, var(--color-sea) 85%, #ffffff 15%);
+  --accent-foreground: #161514;
+
+  --destructive: #c74e3a;
+
+  --border: rgba(245, 242, 237, 0.12);
+  --input: rgba(245, 242, 237, 0.16);
+  --ring: color-mix(in srgb, var(--color-sea) 80%, #ffffff 20%);
+
+  --chart-1: color-mix(in srgb, var(--color-terracotta) 80%, #ffffff 20%);
+  --chart-2: color-mix(in srgb, var(--color-olive) 80%, #ffffff 20%);
+  --chart-3: color-mix(in srgb, var(--color-sea) 80%, #ffffff 20%);
+  --chart-4: color-mix(in srgb, var(--color-sand) 65%, #ffffff 35%);
+  --chart-5: #8c5a3f;
+
+  --sidebar: #161514;
+  --sidebar-foreground: #f5f2ed;
+  --sidebar-primary: color-mix(in srgb, var(--color-terracotta) 85%, #ffffff 15%);
+  --sidebar-primary-foreground: #161514;
+  --sidebar-accent: #2a2725;
+  --sidebar-accent-foreground: #f5f2ed;
+  --sidebar-border: rgba(245, 242, 237, 0.1);
+  --sidebar-ring: color-mix(in srgb, var(--color-sea) 80%, #ffffff 20%);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
     @apply bg-background text-foreground font-sans;
   }
 
@@ -217,6 +255,7 @@ html {
   }
 
   a:hover {
+    color: var(--text-accent-hover);
     text-decoration: underline;
   }
 
@@ -224,4 +263,38 @@ html {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
+
+  /* CTA Button (warm lift, but still clean) */
+  .add-stay-button {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    box-shadow: var(--shadow-warm);
+  }
+
+  .add-stay-button:hover {
+    background-color: var(--btn-primary-hover-bg);
+    box-shadow: 0 14px 34px rgba(185, 122, 90, 0.26);
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Utility helpers (optional) */
+.text-terracotta {
+  color: var(--color-terracotta);
+}
+.text-sea {
+  color: var(--color-sea);
+}
+.text-olive {
+  color: var(--color-olive);
+}
+
+.bg-section {
+  background-color: var(--bg-section);
+}
+.border-warm {
+  border-color: var(--color-border-warm);
 }

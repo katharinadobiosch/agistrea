@@ -1,5 +1,6 @@
 import './globals.css'
 import { playfair } from './fonts'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata = {
   title: 'Agistrea',
@@ -22,7 +23,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className={`${playfair.variable} min-h-screen bg-white`}>{children}</body>
+      <body className={playfair.variable}>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   )
 }

@@ -1,7 +1,26 @@
 'use client'
-import { useState, useEffect } from 'react'
+
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
+
+/* ---------------- language helpers ---------------- */
+
+const LANGS = ['en', 'gr'] as const
+type Lang = (typeof LANGS)[number]
+
+function getLangFromPath(pathname: string): Lang {
+  const first = pathname.split('/')[1] as Lang | undefined
+  return (LANGS as readonly string[]).includes(first ?? '') ? (first as Lang) : 'en'
+}
+
+function swapLangInPath(pathname: string, nextLang: Lang) {
+  const rest = pathname.replace(/^\/(en|gr)(?=\/|$)/, '')
+  return `/${nextLang}${rest || ''}`
+}
+
+/* ---------------- component ---------------- */
 
 type HeaderBarProps = {
   isLanguageMenuOpen: boolean
@@ -16,14 +35,19 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
   isMenuOpen,
   onToggleMenu,
 }) => {
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const lang = useMemo(() => getLangFromPath(pathname), [pathname])
   const [onHero, setOnHero] = useState(true)
+
+  /* ---------- hero observer ---------- */
 
   useEffect(() => {
     const hero = document.querySelector('.hero')
     if (!hero) return
 
     const obs = new IntersectionObserver(([entry]) => setOnHero(entry.isIntersecting), {
-      // “Headerhöhe” abziehen, damit es früher umschaltet
       rootMargin: '-90px 0px 0px 0px',
       threshold: 0.05,
     })
@@ -32,24 +56,40 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
     return () => obs.disconnect()
   }, [])
 
+  /* ---------- styles ---------- */
+
   const fg = onHero ? 'text-white/90' : 'text-[var(--color-ink-strong)]'
   const headerBg = onHero
     ? 'bg-transparent'
     : 'bg-[var(--color-soft-white)]/85 backdrop-blur-md border-b border-black/5'
 
+  /* ---------- language ---------- */
+
+  const flagSrc =
+    lang === 'gr' ? '/assets/images/Homepage/lang_gr.jpg' : '/assets/images/Homepage/lang_en.png'
+
+  const flagAlt = lang === 'gr' ? 'greek' : 'english'
+
+  const goLang = (next: Lang) => {
+    router.push(swapLangInPath(pathname, next))
+    if (isLanguageMenuOpen) toggleLanguageMenu()
+  }
+
+  /* ---------------- render ---------------- */
+
   return (
     <>
       <header
         id="header"
-        className={`fixed z-50 w-full max-w-[100vw] px-6 py-3 transition-colors duration-300 md:hidden ${headerBg}`}
+        className={`mobile-header fixed z-50 w-full max-w-[100vw] px-6 py-3 transition-colors duration-300 md:hidden ${headerBg}`}
       >
         <div className="header-bar z-50 flex items-center">
-          {/* Left: Menu, FAQ, Language */}
+          {/* Left */}
           <div className="flex flex-1 items-center gap-2 md:hidden">
-            {/* Menu Button */}
+            {/* Menu */}
             <button
               type="button"
-              className="pt-[5px] pr-[15px]"
+              className="pt-1.25 pr-3.75"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
               onClick={onToggleMenu}
@@ -59,15 +99,14 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
               ) : (
                 <i className={`fa-solid fa-bars text-xl ${fg}`} />
               )}
-              <span className="sr-only">{isMenuOpen ? 'Close menu' : 'Open menu'}</span>
             </button>
 
-            <button type="button" className="pt-[5px] pr-[15px]" aria-label="Open FAQ">
+            {/* FAQ */}
+            <button type="button" className="pt-1.25 pr-3.75" aria-label="Open FAQ">
               <i className={`fa-regular fa-circle-question ${fg}`} />
-              <span className="sr-only">Open FAQ</span>
             </button>
 
-            {/* Language selector */}
+            {/* Language */}
             <div className="relative pt-1">
               <button
                 type="button"
@@ -76,83 +115,68 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
                 aria-expanded={isLanguageMenuOpen}
                 onClick={toggleLanguageMenu}
               >
-                <Image
-                  src="/assets/images/Homepage/lang_en.png"
-                  alt="english"
-                  width={13}
-                  height={13}
-                  className="object-contain"
-                />
+                <Image src={flagSrc} alt={flagAlt} width={13} height={13} />
               </button>
 
               {isLanguageMenuOpen && (
-                <ul className="absolute left-0 mt-2 w-32 rounded-md bg-white text-sm shadow-lg ring-1 ring-white/5">
+                <ul className="absolute left-0 mt-2 w-32 rounded-md bg-white text-sm shadow-lg">
                   <li>
-                    <Link
-                      href="/en"
-                      className="flex items-center px-3 py-2 text-slate-900 hover:bg-slate-50"
+                    <button
+                      type="button"
+                      onClick={() => goLang('en')}
+                      className="flex w-full items-center px-3 py-2 hover:bg-slate-50"
                     >
                       <Image
                         src="/assets/images/Homepage/lang_en.png"
                         alt="english"
                         width={13}
                         height={13}
-                        className="object-contain"
                       />
-                      <span className="pl-2" id="english">
-                        English
-                      </span>
-                    </Link>
+                      <span className="pl-2">English</span>
+                    </button>
                   </li>
                   <li>
-                    <Link
-                      href="/nl"
-                      className="flex items-center px-3 py-2 text-slate-900 hover:bg-slate-50"
+                    <button
+                      type="button"
+                      onClick={() => goLang('gr')}
+                      className="flex w-full items-center px-3 py-2 hover:bg-slate-50"
                     >
                       <Image
                         src="/assets/images/Homepage/lang_gr.jpg"
                         alt="greek"
                         width={13}
                         height={13}
-                        className="object-contain"
                       />
-                      <span className="pl-2" id="greek">
-                        Greek
-                      </span>
-                    </Link>
+                      <span className="pl-2">Greek</span>
+                    </button>
                   </li>
                 </ul>
               )}
             </div>
           </div>
 
-          {/* Center: Logo (Mobile) */}
+          {/* Center logo */}
           <div className="flex flex-1 justify-center">
-            <Link href="/en">
+            <Link href={`/${lang}`}>
               <div className={`font-serif text-3xl font-semibold ${fg}`}>Agistrea</div>
             </Link>
           </div>
 
-          {/* Right: Cart, Favs, User */}
+          {/* Right */}
           <div className="flex flex-1 items-center justify-end gap-2 md:hidden">
-            <button type="button" className="pt-[5px] pr-[15px]" aria-label="Open login fav">
+            <button type="button" className="pt-1.25 pr-3.75">
               <i className={`fa-regular fa-heart ${fg}`} />
-              <span className="sr-only">Open Login Favorite</span>
             </button>
-
-            <button type="button" className="pt-[5px] pr-[15px]" aria-label="Open login">
+            <button type="button" className="pt-1.25 pr-3.75">
               <i className={`fa-regular fa-user ${fg}`} />
-              <span className="sr-only">Open Login</span>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Desktop Logo: sichtbar ab 768px */}
-      <div
-        className={`fixed top-0 z-50 hidden w-full justify-center py-4 transition-colors duration-300 md:flex ${headerBg}`}
-      >
-        <Link href="/en">
+      {/* Desktop logo */}
+      <div className={`fixed top-0 z-50 hidden w-full justify-center py-4 md:flex ${headerBg}`}>
+        <Link href={`/${lang}`}>
           <div className={`font-serif text-3xl font-semibold ${fg}`}>Agistrea</div>
         </Link>
       </div>

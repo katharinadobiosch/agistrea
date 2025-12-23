@@ -4,12 +4,12 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="footer mt-auto bg-(--bg-section) md:pl-[85px]">
+    <footer className="footer mt-auto bg-(--bg-section) md:pl-21.25">
       {/* durchgehende Linie über die ganze Seite */}
       <div className="border-border/70 w-full border-t" />
 
       {/* alles, was eingerückt neben der Sidebar sein soll */}
-      <div className="px-[15px] md:ml-20 md:w-[calc(100%-80px)]">
+      <div className="px-3.75 md:ml-20 md:w-[calc(100%-80px)]">
         <div className="max-w-(--page-max-width) py-10 md:w-full">
           {/* 4 Spalten */}
           <div className="text-muted-foreground grid gap-8 text-sm md:grid-cols-4">
@@ -144,7 +144,7 @@ export function Footer() {
               <ul className="space-y-1.5">
                 <li>
                   <Link
-                    href="/hosts/login"
+                    href="/host/login"
                     className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     List your place
@@ -152,7 +152,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/hosts/login"
+                    href="/host/login"
                     className="text-(--color-ink) transition-colors hover:text-(--color-ink-strong)"
                   >
                     Host login

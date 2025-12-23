@@ -3,9 +3,9 @@ import Image from 'next/image'
 
 export default function Intro() {
   return (
-    <section className="intro pt-[100vh] md:pt-0">
+    <section className="intro">
       {/* Text-Block */}
-      <section className="intro-text md:pv-8 space-y-3 pt-6 pr-[15px] pb-6 pl-[15px] md:pt-8 md:pl-[85px]">
+      <section className="intro-text md:pv-8 space-y-3 pt-6 pr-3.75 pb-6 pl-3.75 md:pt-8 md:pl-21.25">
         <p className="text-[12px] font-semibold tracking-[2.5px] text-(--color-olive) uppercase md:text-[13px]">
           Agistri, Greece
         </p>
@@ -43,7 +43,7 @@ export default function Intro() {
       </div> */}
 
       {/* Drei kleine Cards */}
-      <section className="highlights grid gap-8 pt-6 pr-[15px] pb-6 pl-[15px] md:pt-8 md:pb-8 md:pl-[85px]">
+      <section className="highlights grid gap-8 pt-6 pr-3.75 pb-6 pl-3.75 md:pt-8 md:pb-8 md:pl-21.25">
         <div className="bg-card">
           <h2 className="text-foreground text-[14px] font-semibold">Tiny island, short distance</h2>
           <p className="text-muted-foreground mt-1.5 text-[14px] leading-relaxed">
