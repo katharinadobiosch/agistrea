@@ -110,10 +110,10 @@ export default function InstagramFeed({ username, limit = 6 }: InstagramFeedProp
         rel="noreferrer"
         className="flex justify-end gap-2 text-[12px] font-medium"
       >
-        <span className="text-(--color-sea) hover:text-(--text-accent-hover)">
+        <span className="pt-3 text-(--color-sea) hover:text-(--text-accent-hover)">
           View on Instagram →
         </span>
-        <span className="text-foreground text-[14px] hover:text-(--color-sea)">
+        <span className="text-foreground pt-3 text-[14px] hover:text-(--color-sea)">
           {username}
         </span>
       </Link>

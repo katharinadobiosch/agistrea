@@ -3,9 +3,9 @@ import InstagramFeed from '@/components/InstagramFeed'
 
 export default function HomePage() {
   return (
-    <div id="home" className="w-full pt-0 md:pt-[93vh]">
+    <div id="home" className="w-full pt-[100vh] md:pt-[100vh]">
       <Intro />
-      <InstagramFeed username="@agistrea" limit={6} />
+      <InstagramFeed username="@agistrea" limit={5} />
     </div>
   )
 }

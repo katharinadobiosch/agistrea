@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function Intro() {
   return (
-    <section className="intro pt-[100vh] md:pt-0">
+    <section className="intro">
       {/* Text-Block */}
       <section className="intro-text md:pv-8 space-y-3 pt-6 pr-3.75 pb-6 pl-3.75 md:pt-8 md:pl-21.25">
         <p className="text-[12px] font-semibold tracking-[2.5px] text-(--color-olive) uppercase md:text-[13px]">
