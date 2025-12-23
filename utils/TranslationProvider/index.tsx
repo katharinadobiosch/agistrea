@@ -1,31 +1,34 @@
-// utils/TranslationProvider/index.tsx
 'use client'
 
 import React, { createContext, useCallback, useContext, useMemo } from 'react'
 import translations from '../translations'
 
 export const DEFAULT_LANGUAGE = 'en'
+export type Language = keyof typeof translations // 'en' | 'gr'
+
+type TranslationValue = string | number | ((...args: any[]) => any)
 
 type TranslationContextValue = {
-  language: 'en' | 'gr'
-  t: (key: string, fallback?: any) => any
+  language: Language
+  t: (key: string, fallback?: TranslationValue) => TranslationValue
 }
 
 const TranslationContext = createContext<TranslationContextValue>({
-  language: DEFAULT_LANGUAGE,
-  t: (_key, fallback = '') => fallback,
+  language: DEFAULT_LANGUAGE as Language,
+  t: (_key, fallback = '') => fallback ?? '',
 })
 
 export function TranslationProvider({
-  language = DEFAULT_LANGUAGE,
+  language = DEFAULT_LANGUAGE as Language,
   children,
 }: {
-  language?: 'en' | 'gr'
+  language?: Language
   children: React.ReactNode
 }) {
   const t = useCallback(
-    (key: string, fallback = '') => {
-      return translations?.[language]?.[key] ?? fallback
+    (key: string, fallback: TranslationValue = ''): TranslationValue => {
+      const dict = translations[language] as Record<string, TranslationValue>
+      return dict[key] ?? fallback
     },
     [language]
   )
@@ -38,3 +41,6 @@ export function TranslationProvider({
 export function useTranslation() {
   return useContext(TranslationContext)
 }
+
+export default TranslationContext
+export { translations }
