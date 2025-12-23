@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import { createSupabaseServer } from '@/lib/supabase/server'
 import { createPropertyAction } from '../../actions'
 
-export default async function OwnerdashboardPage() {
+export default async function OwnerDashboardPage() {
   const supabase = await createSupabaseServer()
 
   const {

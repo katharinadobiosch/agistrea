@@ -289,8 +289,6 @@ export async function uploadPropertyImageAction(formData: FormData) {
 }
 
 export async function logoutAction() {
-  console.log('button clicked')
-
   const supabase = await createSupabaseServer()
   await supabase.auth.signOut()
   redirect('/host/login')

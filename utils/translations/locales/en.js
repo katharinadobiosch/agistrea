@@ -128,4 +128,80 @@ export default {
   PRODUCT_DETAIL_ATTRIBUTE_SAFETY: 'Product safety',
 
   LAST_SEEN: 'LAST SEEN',
+
+  PUBLIC_PROPERTY_DRAFT_PREVIEW_NOTICE: 'Draft preview — only visible to you',
+  PUBLIC_PROPERTY_BRAND_NAME: 'Agistrea',
+  PUBLIC_PROPERTY_FALLBACK_LOCATION: 'Agistri',
+  PUBLIC_PROPERTY_FALLBACK_TITLE: 'Untitled Property',
+  PUBLIC_PROPERTY_MAIN_IMAGE_ALT_FALLBACK: 'Property',
+  PUBLIC_PROPERTY_GUESTS_LABEL: guests => `${guests} guests`,
+  PUBLIC_PROPERTY_BEDROOMS_LABEL: bedrooms => `${bedrooms} bedrooms`,
+  PUBLIC_PROPERTY_BATHROOMS_LABEL: bathrooms => `${bathrooms} bathrooms`,
+  PUBLIC_PROPERTY_ABOUT_HEADING: 'About this stay',
+  PUBLIC_PROPERTY_PHOTOS_HEADING: 'Photos',
+  PUBLIC_PROPERTY_PHOTO_ALT: photoIndex => `Photo ${photoIndex}`,
+  PUBLIC_PROPERTY_NO_IMAGE: 'No image',
+  PUBLIC_PROPERTY_GET_IN_TOUCH_HEADING: 'Get in touch',
+  PUBLIC_PROPERTY_CONTACT_PROPERTY_FALLBACK: 'the property',
+  PUBLIC_PROPERTY_PRICE_SUFFIX_PER_NIGHT: '/ night',
+  PUBLIC_PROPERTY_META_NOT_FOUND_TITLE: 'Stay not found | Agistrea',
+  PUBLIC_PROPERTY_META_DEFAULT_LOCATION: 'Agistri',
+  PUBLIC_PROPERTY_META_DESCRIPTION: (title, location) => `Book ${title} in ${location} with Agistrea.`,
+
+  CONTACT_FORM_SUBJECT_LINE: propertyTitle => `Inquiry about ${propertyTitle}`,
+  CONTACT_FORM_EMAIL_BODY_TEMPLATE: ({ name, email, phone, checkIn, checkOut, message }) =>
+    `
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Check-in: ${checkIn}
+Check-out: ${checkOut}
+
+Message:
+${message}
+  `.trim(),
+  CONTACT_FORM_SENT_TITLE: 'Message sent!',
+  CONTACT_FORM_SENT_SUBTITLE:
+    'The host will get back to you soon. Check your email for their response.',
+  CONTACT_FORM_LABEL_NAME: 'Your name',
+  CONTACT_FORM_PLACEHOLDER_NAME: 'Maria Schmidt',
+  CONTACT_FORM_LABEL_EMAIL: 'Email',
+  CONTACT_FORM_PLACEHOLDER_EMAIL: 'maria@example.com',
+  CONTACT_FORM_LABEL_PHONE_OPTIONAL: 'Phone (optional)',
+  CONTACT_FORM_PLACEHOLDER_PHONE: '+49 ...',
+  CONTACT_FORM_LABEL_CHECK_IN: 'Check-in',
+  CONTACT_FORM_LABEL_CHECK_OUT: 'Check-out',
+  CONTACT_FORM_LABEL_MESSAGE: 'Your message',
+  CONTACT_FORM_PLACEHOLDER_MESSAGE: "Hi! I'm interested in booking your place for...",
+  CONTACT_FORM_REACH_OUT_DIRECTLY: 'Or reach out directly:',
+  CONTACT_FORM_BUTTON_SENDING: 'Sending...',
+  CONTACT_FORM_BUTTON_SEND_INQUIRY: 'Send inquiry',
+  CONTACT_FORM_FOLLOWUP_TIME: "You'll hear back within 24 hours",
+  CONTACT_FORM_SEND_ERROR_PREFIX: 'Failed to send inquiry:',
+
+  HOST_AUTH_OFFLINE_MESSAGE:
+    'Could not reach the authentication service. Please try again in a moment. If this keeps happening, check the Supabase URL/key configuration.',
+  HOST_AUTH_GENERIC_ERROR: 'Something went wrong. Please try again.',
+  HOST_AUTH_REQUIRE_EMAIL_PASSWORD: 'Please enter email and password.',
+  HOST_AUTH_PASSWORD_MIN_LENGTH: 'Password must be at least 8 characters.',
+  HOST_AUTH_PASSWORD_MISMATCH: 'Passwords do not match.',
+  HOST_AUTH_ACCOUNT_CREATED: 'Account created! Please check your email to confirm your account.',
+  HOST_AUTH_TITLE_LOGIN: 'Host Login',
+  HOST_AUTH_TITLE_REGISTER: 'Create an account',
+  HOST_AUTH_PROMPT_NEW_TO_BRAND: 'New to Agistrea?',
+  HOST_AUTH_PROMPT_CREATE_ACCOUNT: 'Create an account',
+  HOST_AUTH_PROMPT_ALREADY_HAVE_ACCOUNT: 'Already have an account?',
+  HOST_AUTH_PROMPT_LOGIN: 'Login',
+  HOST_AUTH_LABEL_EMAIL: 'Email',
+  HOST_AUTH_PLACEHOLDER_EMAIL: 'you@email.com',
+  HOST_AUTH_LABEL_PASSWORD: 'Password',
+  HOST_AUTH_PLACEHOLDER_PASSWORD: 'Password',
+  HOST_AUTH_PLACEHOLDER_PASSWORD_REGISTER: 'Min. 8 characters',
+  HOST_AUTH_LABEL_REPEAT_PASSWORD: 'Repeat password',
+  HOST_AUTH_PLACEHOLDER_REPEAT_PASSWORD: 'Repeat password',
+  HOST_AUTH_BUTTON_LOADING: '…',
+  HOST_AUTH_BUTTON_LOGIN: 'Login',
+  HOST_AUTH_BUTTON_CREATE_ACCOUNT: 'Create account',
+  HOST_AUTH_REGISTER_NOTICE: 'By creating an account you agree to manage listings responsibly.',
+  HOST_AUTH_IMAGE_ALT: 'Agistri street view',
 }

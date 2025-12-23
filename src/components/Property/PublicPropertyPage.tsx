@@ -120,7 +120,7 @@ export default async function PublicPropertyPage({ slug }: PageProps) {
 
   return (
     <div
-      className="public-property-page min-h-screen pl-[60px]"
+      className="public-property-page min-h-screen pl-15"
       style={{ backgroundColor: '#faf7f2' }}
     >
       {!isPublished && (
