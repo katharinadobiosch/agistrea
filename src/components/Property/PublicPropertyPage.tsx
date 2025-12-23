@@ -42,7 +42,7 @@ type AvailabilityRow = {
 }
 
 export default async function PropertyPage({ params }: PageProps) {
-  const { slug } = params
+  const { slug } = await params
   const supabase = await createSupabaseServer()
 
   // Fetch property (published by slug)
