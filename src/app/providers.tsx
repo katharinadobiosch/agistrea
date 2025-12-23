@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { TranslationProvider } from '@/utils/TranslationProvider'
+import { TranslationProvider } from '../../utils/TranslationProvider'
 
 export default function Providers({
   children,
