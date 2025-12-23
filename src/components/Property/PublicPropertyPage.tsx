@@ -5,7 +5,7 @@ import { PricingCalendar as ReservationCalendar } from '@/components/Hosts/Prici
 import { ContactForm } from './ContactForm'
 
 type PageProps = {
-  params: { slug: string }
+  slug: string
 }
 
 const PROPERTY_IMAGE_BUCKET = 'property-images'
@@ -42,8 +42,7 @@ type AvailabilityRow = {
   min_nights: number | null
 }
 
-export default async function PropertyPage({ params }: PageProps) {
-  const { slug } = params
+export default async function PublicPropertyPage({ slug }: PageProps) {
   const supabase = await createSupabaseServer()
 
   // 1) Property by slug (NO status filter)
@@ -70,7 +69,7 @@ export default async function PropertyPage({ params }: PageProps) {
       `
     )
     .eq('slug', slug)
-    .single<Property>()
+    .single()
 
   if (propertyError || !property) notFound()
 
