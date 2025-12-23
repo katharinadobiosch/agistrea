@@ -1,7 +1,6 @@
 import './globals.css'
 import { playfair } from './fonts'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import TranslationProvider from './providers'
 
 export const metadata = {
   title: 'Agistrea',
@@ -25,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={playfair.variable}>
-        <TranslationProvider>{children}</TranslationProvider>
+        {children}
         <SpeedInsights />
       </body>
     </html>
