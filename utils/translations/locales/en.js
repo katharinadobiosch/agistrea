@@ -146,7 +146,8 @@ export default {
   PUBLIC_PROPERTY_PRICE_SUFFIX_PER_NIGHT: '/ night',
   PUBLIC_PROPERTY_META_NOT_FOUND_TITLE: 'Stay not found | Agistrea',
   PUBLIC_PROPERTY_META_DEFAULT_LOCATION: 'Agistri',
-  PUBLIC_PROPERTY_META_DESCRIPTION: (title, location) => `Book ${title} in ${location} with Agistrea.`,
+  PUBLIC_PROPERTY_META_DESCRIPTION: (title, location) =>
+    `Book ${title} in ${location} with Agistrea.`,
 
   CONTACT_FORM_SUBJECT_LINE: propertyTitle => `Inquiry about ${propertyTitle}`,
   CONTACT_FORM_EMAIL_BODY_TEMPLATE: ({ name, email, phone, checkIn, checkOut, message }) =>
