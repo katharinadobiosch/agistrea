@@ -3,7 +3,11 @@ import { redirect } from 'next/navigation'
 import { createSupabaseServer } from '@/lib/supabase/server'
 import { createPropertyAction } from '../../actions'
 
-export default async function OwnerDashboardPage() {
+type Lang = 'en' | 'gr'
+
+export default async function OwnerDashboardPage({ params }: { params?: { lang?: Lang } } = {}) {
+  const lang: Lang = params?.lang === 'gr' ? 'gr' : 'en'
+
   const supabase = await createSupabaseServer()
 
   const {
@@ -12,13 +16,14 @@ export default async function OwnerDashboardPage() {
   } = await supabase.auth.getUser()
 
   if (userError || !user) {
-    redirect('/login') // oder '/host/login' – je nach Routing
+    redirect(`/${lang}/host/login`)
   }
 
   const { data: properties, error } = await supabase
     .from('properties')
     .select('*')
     .eq('host_id', user.id)
+
   return (
     <>
       {/* Main Content */}
@@ -249,7 +254,7 @@ export default async function OwnerDashboardPage() {
               return (
                 <Link
                   key={p.id}
-                  href={`/host/properties/${p.id}/edit`}
+                  href={`/${lang}/host/properties/${p.id}/edit`}
                   className="group relative overflow-hidden rounded-2xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:rounded-3xl"
                   style={{ border: '1px solid #e0d8cc' }}
                 >
