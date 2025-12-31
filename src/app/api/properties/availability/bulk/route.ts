@@ -1,9 +1,9 @@
-import { createSupabaseServer } from '@/lib/supabase/server'
+import { createSupabaseServerAction } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await createSupabaseServer()
+    const supabase = await createSupabaseServerAction()
 
     const {
       data: { user },
@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
       .select('id')
       .in('id', propertyIds)
       .eq('host_id', user.id)
+      .is('deleted_at', null)
 
     if (propError || !properties || properties.length !== propertyIds.length) {
       return NextResponse.json({ error: 'Unauthorized or invalid property' }, { status: 403 })

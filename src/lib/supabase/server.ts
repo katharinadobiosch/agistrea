@@ -1,36 +1,45 @@
-import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { createServerClient } from '@supabase/ssr'
 
-export async function createSupabaseServer() {
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+/**
+ * READ-ONLY
+ * Use in Server Components (page.tsx/layout.tsx). Never writes cookies.
+ */
+export async function createSupabaseServerReadOnly() {
   const cookieStore = await cookies()
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-  if (!supabaseUrl) {
-    throw new Error('NEXT_PUBLIC_SUPABASE_URL is not set. Add it to your env before running the app.')
-  }
-  if (!supabaseAnonKey) {
-    throw new Error(
-      'NEXT_PUBLIC_SUPABASE_ANON_KEY is not set. Add it to your env before running the app.'
-    )
-  }
-
-  return createServerClient(
-    supabaseUrl,
-    supabaseAnonKey,
-    {
-      cookies: {
-        get(name: string) {
-          const all = cookieStore.getAll()
-          return all.find(c => c.name === name)?.value
-        },
-        set(name: string, value: string, options: any) {
-          cookieStore.set({ name, value, ...options })
-        },
-        remove(name: string, options: any) {
-          cookieStore.set({ name, value: '', ...options, maxAge: 0 })
-        },
+  return createServerClient(supabaseUrl, supabaseAnonKey, {
+    cookies: {
+      getAll() {
+        return cookieStore.getAll()
       },
-    }
-  )
+      setAll() {
+        // no-op: Server Components must not modify cookies
+      },
+    },
+  })
+}
+
+/**
+ * WRITE
+ * Use ONLY in Server Actions ('use server') or Route Handlers (route.ts).
+ */
+export async function createSupabaseServerAction() {
+  const cookieStore = await cookies()
+
+  return createServerClient(supabaseUrl, supabaseAnonKey, {
+    cookies: {
+      getAll() {
+        return cookieStore.getAll()
+      },
+      setAll(cookiesToSet) {
+        for (const { name, value, options } of cookiesToSet) {
+          cookieStore.set(name, value, options)
+        }
+      },
+    },
+  })
 }

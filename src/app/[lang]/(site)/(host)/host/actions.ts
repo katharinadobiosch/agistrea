@@ -1,6 +1,6 @@
 'use server'
 
-import { createSupabaseServer } from '@/lib/supabase/server'
+import { createSupabaseServerAction } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { randomUUID } from 'crypto'
@@ -24,6 +24,7 @@ async function ensureUniqueSlug(supabase: any, base: string) {
       .select('id')
       .eq('slug', candidate)
       .maybeSingle()
+      .is('deleted_at', null)
 
     if (!data) return candidate
   }
@@ -31,7 +32,7 @@ async function ensureUniqueSlug(supabase: any, base: string) {
 }
 
 export async function createPropertyAction(): Promise<void> {
-  const supabase = await createSupabaseServer()
+  const supabase = await createSupabaseServerAction()
 
   const {
     data: { user },
@@ -90,7 +91,7 @@ export async function createPropertyAction(): Promise<void> {
 }
 
 export async function updatePropertyAction(formData: FormData) {
-  const supabase = await createSupabaseServer()
+  const supabase = await createSupabaseServerAction()
 
   const {
     data: { user },
@@ -158,7 +159,7 @@ export async function updatePropertyAction(formData: FormData) {
 }
 
 export async function publishPropertyAction(formData: FormData) {
-  const supabase = await createSupabaseServer()
+  const supabase = await createSupabaseServerAction()
 
   const {
     data: { user },
@@ -201,7 +202,7 @@ export async function publishPropertyAction(formData: FormData) {
 }
 
 export async function uploadPropertyImageAction(formData: FormData) {
-  const supabase = await createSupabaseServer()
+  const supabase = await createSupabaseServerAction()
 
   const {
     data: { user },
@@ -289,7 +290,34 @@ export async function uploadPropertyImageAction(formData: FormData) {
 }
 
 export async function logoutAction() {
-  const supabase = await createSupabaseServer()
+  const supabase = await createSupabaseServerAction()
   await supabase.auth.signOut()
   redirect('/host/login')
+}
+
+export async function deletePropertyAction(propertyId: string) {
+  const supabase = await createSupabaseServerAction()
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser()
+
+  if (userError || !user) redirect('/host/login')
+
+  const { error } = await supabase
+    .from('properties')
+    .update({ deleted_at: new Date().toISOString(), updated_at: new Date().toISOString() })
+    .eq('id', propertyId)
+    .eq('host_id', user.id)
+
+  if (error) {
+    console.error(error)
+    throw new Error('Delete failed. Please try again later.')
+  }
+
+  revalidatePath('/host/dashboard')
+  revalidatePath('/host/properties')
+
+  redirect('/host/properties')
 }

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { createSupabaseServer } from '@/lib/supabase/server'
+import { createSupabaseServerReadOnly } from '@/lib/supabase/server'
 import { createPropertyAction } from '../../actions'
 
 type Lang = 'en' | 'gr'
@@ -9,7 +9,7 @@ export default async function OwnerDashboardPage({ params }: { params: Promise<{
   const { lang: rawLang } = await params
   const lang: Lang = rawLang === 'gr' ? 'gr' : 'en'
 
-  const supabase = await createSupabaseServer()
+const supabase = await createSupabaseServerReadOnly()
 
   const {
     data: { user },

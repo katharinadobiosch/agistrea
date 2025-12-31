@@ -1,9 +1,10 @@
 import { redirect } from 'next/navigation'
-import { createSupabaseServer } from '@/lib/supabase/server'
+import { createSupabaseServerReadOnly } from '@/lib/supabase/server'
 import {
   publishPropertyAction,
   updatePropertyAction,
   uploadPropertyImageAction,
+  deletePropertyAction,
 } from '../../../../actions'
 import { PricingCalendar } from '@/components/Hosts/PricingCalendar'
 
@@ -81,7 +82,7 @@ function ChapterHeader({ title, subtitle }: { title: string; subtitle?: string }
 export default async function OwnerPropertyEditPage({ params }: PageProps) {
   const { id } = await params
 
-  const supabase = await createSupabaseServer()
+  const supabase = await createSupabaseServerReadOnly()
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -93,6 +94,7 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
     .eq('id', id)
     .eq('host_id', user.id)
     .single()
+    .is('deleted_at', null)
 
   if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>
   if (!property) return <div>Not found or not allowed.</div>
@@ -419,6 +421,16 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
               }))}
             />
           </div>
+          <form
+            action={async () => {
+              'use server'
+              await deletePropertyAction(property.id)
+            }}
+          >
+            <button type="submit" className="danger-button">
+              Delete listing
+            </button>
+          </form>
         </div>
       </div>
     </div>

@@ -1,9 +1,9 @@
-import { createSupabaseServer } from '@/lib/supabase/server'
+import { createSupabaseServerReadOnly } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import HostNavigation from '@/components/Hosts/HostNavigation'
 
 export default async function HostDashboardLayout({ children }: { children: React.ReactNode }) {
-  const supabase = await createSupabaseServer()
+const supabase = await createSupabaseServerReadOnly()
   const {
     data: { user },
   } = await supabase.auth.getUser()

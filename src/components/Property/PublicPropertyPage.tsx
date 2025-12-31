@@ -1,4 +1,4 @@
-import { createSupabaseServer } from '@/lib/supabase/server'
+import { createSupabaseServerReadOnly } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { PricingCalendar as ReservationCalendar } from '@/components/Hosts/PricingCalendar'
@@ -43,7 +43,7 @@ type AvailabilityRow = {
 }
 
 export default async function PublicPropertyPage({ slug }: PageProps) {
-  const supabase = await createSupabaseServer()
+import { createSupabaseServerReadOnly } from '@/lib/supabase/server'
 
   // 1) Property by slug (NO status filter)
   const { data: property, error: propertyError } = await supabase
@@ -119,10 +119,7 @@ export default async function PublicPropertyPage({ slug }: PageProps) {
   const mainImageUrl = mainImage?.storage_path ? buildImageUrl(mainImage.storage_path) : null
 
   return (
-    <div
-      className="public-property-page min-h-screen pl-15"
-      style={{ backgroundColor: '#faf7f2' }}
-    >
+    <div className="public-property-page min-h-screen pl-15" style={{ backgroundColor: '#faf7f2' }}>
       {!isPublished && (
         <div className="bg-black py-2 text-center text-xs text-white">
           Draft preview — only visible to you

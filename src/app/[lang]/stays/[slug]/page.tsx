@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import PublicPropertyPage from '@/components/Property/PublicPropertyPage'
-import { createSupabaseServer } from '@/lib/supabase/server'
+import { createSupabaseServerReadOnly } from '@/lib/supabase/server'
 
 type PageProps = {
   params: Promise<{ slug: string }>
 }
 export async function generateMetadata({ params }: PageProps) {
-  const supabase = await createSupabaseServer()
+const supabase = await createSupabaseServerReadOnly()
   const { slug } = await params
 
   const { data: property } = await supabase
@@ -14,6 +14,7 @@ export async function generateMetadata({ params }: PageProps) {
     .select('title, description, location_text, slug, status')
     .eq('slug', slug)
     .single()
+    .is('deleted_at', null)
 
   if (!property) return { title: 'Stay not found | Agistrea' }
 

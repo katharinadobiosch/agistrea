@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
-import { createSupabaseServer } from '@/lib/supabase/server'
+import { createSupabaseServerAction } from '@/lib/supabase/server'
 
 function slugify(input: string): string {
   return input
@@ -12,7 +12,7 @@ function slugify(input: string): string {
 
 export async function POST(req: Request) {
   try {
-    const supabase = await createSupabaseServer()
+    const supabase = await createSupabaseServerAction()
     const {
       data: { user },
       error: userError,
