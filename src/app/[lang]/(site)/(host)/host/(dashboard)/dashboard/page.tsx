@@ -5,8 +5,9 @@ import { createPropertyAction } from '../../actions'
 
 type Lang = 'en' | 'gr'
 
-export default async function OwnerDashboardPage({ params }: { params?: { lang?: Lang } } = {}) {
-  const lang: Lang = params?.lang === 'gr' ? 'gr' : 'en'
+export default async function OwnerDashboardPage({ params }: { params: Promise<{ lang?: Lang }> }) {
+  const { lang: rawLang } = await params
+  const lang: Lang = rawLang === 'gr' ? 'gr' : 'en'
 
   const supabase = await createSupabaseServer()
 
@@ -228,7 +229,6 @@ export default async function OwnerDashboardPage({ params }: { params?: { lang?:
                 draft: {
                   emoji: '🌱',
                   label: 'Growing',
-                  cta: 'Please complete your stay details',
                   bg: 'rgba(147, 164, 133, 0.15)',
                   border: 'rgba(147, 164, 133, 0.28)',
                   text: '#93a485',
@@ -236,7 +236,6 @@ export default async function OwnerDashboardPage({ params }: { params?: { lang?:
                 published: {
                   emoji: '☀️',
                   label: 'Live',
-                  cta: 'Edit your stay details',
                   bg: 'rgba(217, 115, 70, 0.15)',
                   border: 'rgba(217, 115, 70, 0.28)',
                   text: '#d97346',
@@ -244,8 +243,6 @@ export default async function OwnerDashboardPage({ params }: { params?: { lang?:
                 pending: {
                   emoji: '🌊',
                   label: 'In review',
-                  cta: 'Edit your stay details',
-
                   bg: 'rgba(244, 165, 125, 0.15)',
                   border: 'rgba(244, 165, 125, 0.28)',
                   text: '#f4a57d',
@@ -357,7 +354,7 @@ export default async function OwnerDashboardPage({ params }: { params?: { lang?:
                       className="flex items-center gap-2 text-xs font-medium transition-colors sm:text-sm"
                       style={{ color: '#d97346' }}
                     >
-                      {status.cta === 'draft' ? (
+                      {p.status === 'draft' ? (
                         <span>Please complete your stay details</span>
                       ) : (
                         <span>Edit your stay details</span>
