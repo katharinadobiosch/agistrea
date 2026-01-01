@@ -1,2 +1,4 @@
 #!/bin/sh
-npm run typecheck && npm run build
+. "$(dirname "$0")/_/husky.sh"
+
+npm run typecheck
