@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit",
     "check": "npm run lint && npm run typecheck",
     "check:full": "npm run typecheck && npm run build",
-    "prepare": "node -e \"if(process.env.CI || process.env.VERCEL){process.exit(0)}\" && husky"
+    "prepare": "sh -c 'if [ -n \"$CI\" ] || [ -n \"$VERCEL\" ]; then echo \"skip husky on ci/vercel\"; exit 0; fi; husky'"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
@@ -37,6 +37,7 @@
     "baseline-browser-mapping": "2.8.32",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
+    "husky": "9.1.7",
     "prettier": "3.7.3",
     "prettier-plugin-tailwindcss": "0.7.1",
     "tailwindcss": "^4",
