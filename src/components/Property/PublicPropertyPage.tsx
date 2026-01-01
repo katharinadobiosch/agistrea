@@ -1,4 +1,4 @@
-import { createSupabaseServerReadOnly } from '@/lib/supabase/server'
+import { createSupabaseServerReadOnly } from '../../lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { PricingCalendar as ReservationCalendar } from '@/components/Hosts/PricingCalendar'
@@ -43,8 +43,6 @@ type AvailabilityRow = {
 }
 
 export default async function PublicPropertyPage({ slug }: PageProps) {
-import { createSupabaseServerReadOnly } from '@/lib/supabase/server'
-
   // 1) Property by slug (NO status filter)
   const { data: property, error: propertyError } = await supabase
     .from('properties')

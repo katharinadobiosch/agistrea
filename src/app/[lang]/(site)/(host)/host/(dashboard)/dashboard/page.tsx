@@ -9,7 +9,7 @@ export default async function OwnerDashboardPage({ params }: { params: Promise<{
   const { lang: rawLang } = await params
   const lang: Lang = rawLang === 'gr' ? 'gr' : 'en'
 
-const supabase = await createSupabaseServerReadOnly()
+  const supabase = await createSupabaseServerReadOnly()
 
   const {
     data: { user },
@@ -24,6 +24,7 @@ const supabase = await createSupabaseServerReadOnly()
     .from('properties')
     .select('*')
     .eq('host_id', user.id)
+    .is('deleted_at', null)
 
   return (
     <>

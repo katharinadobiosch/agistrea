@@ -421,12 +421,9 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
               }))}
             />
           </div>
-          <form
-            action={async () => {
-              'use server'
-              await deletePropertyAction(property.id)
-            }}
-          >
+          <form action={deletePropertyAction}>
+            <input type="hidden" name="property_id" value={property.id} />
+            <input type="hidden" name="lang" value={lang} />
             <button type="submit" className="danger-button">
               Delete listing
             </button>
