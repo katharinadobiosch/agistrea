@@ -1,4 +1,4 @@
-import { createSupabaseServerReadOnly } from '../../lib/supabase/server'
+import { createSupabaseServerReadOnly } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { PricingCalendar as ReservationCalendar } from '@/components/Hosts/PricingCalendar'
@@ -43,6 +43,7 @@ type AvailabilityRow = {
 }
 
 export default async function PublicPropertyPage({ slug }: PageProps) {
+  const supabase = await createSupabaseServerReadOnly()
   // 1) Property by slug (NO status filter)
   const { data: property, error: propertyError } = await supabase
     .from('properties')
@@ -238,7 +239,7 @@ export default async function PublicPropertyPage({ slug }: PageProps) {
                   Photos
                 </h2>
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
-                  {images.slice(1).map((img, idx) => {
+                  {images.slice(1).map((img: PropertyImage, idx: number) => {
                     const src = img.storage_path ? buildImageUrl(img.storage_path) : null
                     return (
                       <div

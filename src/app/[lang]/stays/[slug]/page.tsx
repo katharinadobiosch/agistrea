@@ -6,15 +6,15 @@ type PageProps = {
   params: Promise<{ slug: string }>
 }
 export async function generateMetadata({ params }: PageProps) {
-const supabase = await createSupabaseServerReadOnly()
+  const supabase = await createSupabaseServerReadOnly()
   const { slug } = await params
 
   const { data: property } = await supabase
     .from('properties')
     .select('title, description, location_text, slug, status')
     .eq('slug', slug)
-    .single()
     .is('deleted_at', null)
+    .single()
 
   if (!property) return { title: 'Stay not found | Agistrea' }
 

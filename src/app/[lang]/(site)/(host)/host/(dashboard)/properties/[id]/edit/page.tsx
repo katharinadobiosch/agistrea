@@ -8,6 +8,12 @@ import {
 } from '../../../../actions'
 import { PricingCalendar } from '@/components/Hosts/PricingCalendar'
 
+async function deletePropertyActionWrapper(formData: FormData) {
+  'use server'
+  const propertyId = formData.get('property_id') as string
+  await deletePropertyAction(propertyId)
+}
+
 const PROPERTY_IMAGE_BUCKET = 'property-images'
 
 type PageProps = {
@@ -93,8 +99,8 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
     .select('*')
     .eq('id', id)
     .eq('host_id', user.id)
-    .single()
     .is('deleted_at', null)
+    .single()
 
   if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>
   if (!property) return <div>Not found or not allowed.</div>
@@ -421,9 +427,8 @@ export default async function OwnerPropertyEditPage({ params }: PageProps) {
               }))}
             />
           </div>
-          <form action={deletePropertyAction}>
+          <form action={deletePropertyActionWrapper}>
             <input type="hidden" name="property_id" value={property.id} />
-            <input type="hidden" name="lang" value={lang} />
             <button type="submit" className="danger-button">
               Delete listing
             </button>
